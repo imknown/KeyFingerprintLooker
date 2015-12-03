@@ -113,21 +113,27 @@ namespace KeyFingerprintLooker
 			
 			appendLog(result);
 			
-			string[] results = Regex.Split(result,"\r\n",RegexOptions.IgnoreCase);
+			try{
+				string[] results = Regex.Split(result,"\r\n",RegexOptions.IgnoreCase);
 
-			string debugInfo =  results[11];
-			
-			string[] debugInfos = Regex.Split(debugInfo,"\n",RegexOptions.IgnoreCase);
-			
-			MD5_CAPS_UseColonForSplit = debugInfos[5].Trim();
-			MD5_CAPS_UseColonForSplit = MD5_CAPS_UseColonForSplit.Replace("MD5: ", string.Empty);
-			MD5_CAPS = MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
-			MD5_txt.Text = MD5_CAPS_UseColonForSplit;
-			
-			SHA1_CAPS_UseColonForSplit = debugInfos[6].Trim();
-			SHA1_CAPS_UseColonForSplit = SHA1_CAPS_UseColonForSplit.Replace("SHA1: ", string.Empty);
-			SHA1_CAPS = SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
-			SHA1_txt.Text = SHA1_CAPS_UseColonForSplit;
+				string debugInfo =  results[11];
+				
+				string[] debugInfos = Regex.Split(debugInfo,"\n",RegexOptions.IgnoreCase);
+				
+				MD5_CAPS_UseColonForSplit = debugInfos[5].Trim();
+				MD5_CAPS_UseColonForSplit = MD5_CAPS_UseColonForSplit.Replace("MD5: ", string.Empty);
+				MD5_CAPS = MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
+				MD5_txt.Text = MD5_CAPS_UseColonForSplit;
+				
+				SHA1_CAPS_UseColonForSplit = debugInfos[6].Trim();
+				SHA1_CAPS_UseColonForSplit = SHA1_CAPS_UseColonForSplit.Replace("SHA1: ", string.Empty);
+				SHA1_CAPS = SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
+				SHA1_txt.Text = SHA1_CAPS_UseColonForSplit;
+			}
+			catch(Exception ex)
+			{
+				appendLog(ex.StackTrace);
+			}
 		}
 		
 		string MD5_CAPS, SHA1_CAPS;
