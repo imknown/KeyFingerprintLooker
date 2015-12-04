@@ -17,10 +17,20 @@ namespace KeyFingerprintLooker.Model
 	/// </summary>
 	public class Result
 	{
+		public const string AliasInfosSplitter = "\n\r\n\n\r\n*******************************************\r\n*******************************************\n\n\r\n";
+		public const string AliasInfosSplitterReplacer = "====\r\n";
+		
+		public string AliasCount {get; set;}
+		
 		/// <summary>
 		/// 别名
 		/// </summary>
-		public List<string> AliasNameList {get; set;}
+		public List<AliasInfo> AliasInfoList {get; set;}
+	}
+	
+	public class AliasInfo
+	{
+		public string AliasName {get; set;}
 		
 		public string MD5_CAPS {get; set;}
 		

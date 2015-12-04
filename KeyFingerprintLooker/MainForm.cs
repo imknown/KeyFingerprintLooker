@@ -10,6 +10,8 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Collections;
+using System.Collections.Generic;
 
 using KeyFingerprintLooker.Utils;
 using KeyFingerprintLooker.Model;
@@ -30,7 +32,7 @@ namespace KeyFingerprintLooker
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+			// 
 		}
 		
 		private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -66,21 +68,26 @@ namespace KeyFingerprintLooker
 
 		void Button2Click(object sender, EventArgs e)
 		{
-			OpenFileDialog openDialog = new OpenFileDialog();
-			openDialog.Filter = "秘钥文件(*.keystore;*.jks)|*.keystore;*.jks|所有文件 (*.*)|*.*";
+			OpenFileDialog OpenDialog = new OpenFileDialog();
+			OpenDialog.Filter = "秘钥文件(*.keystore;*.jks)|*.keystore;*.jks|所有文件 (*.*)|*.*";
 			
-			if(DialogResult.OK == openDialog.ShowDialog())
+			if(DialogResult.OK == OpenDialog.ShowDialog())
 			{
-				keystore_file_path_txt.Text = openDialog.FileName;
+				keystore_file_path_txt.Text = OpenDialog.FileName;
 			}
 		}
 		
 		void Button3Click(object sender, EventArgs e)
 		{
-			string keystoreFilePath = keystore_file_path_txt.Text;
+			if(checkBox4.Checked)
+			{
+				textBox3.Text = string.Empty;
+			}
 			
-			if(!File.Exists(keystoreFilePath)){
-				appendLog("秘钥文件不存在");
+			string KeystoreFilePath = keystore_file_path_txt.Text;
+			
+			if(!File.Exists(KeystoreFilePath)){
+				AppendLog("秘钥文件不存在");
 				
 				return;
 			}
@@ -101,64 +108,99 @@ namespace KeyFingerprintLooker
 			
 			if(!JavaHomeExist)
 			{
-				appendLog("环境变量 Java_Home 无效, 请重新配置");
+				AppendLog("环境变量 Java_Home 无效, 请重新配置");
 				
 				return;
 			}
 			
-			string cmdString = /* surroundInCmd( */ KeytoolPath /* ) */ + " -list -v -keystore " + surroundInCmd(keystore_file_path_txt.Text) + " -storepass " + surroundInCmd(textBox1.Text);
+			string CmdString = /* surroundInCmd( */ KeytoolPath /* ) */ + " -list -v -keystore " + surroundInCmd(keystore_file_path_txt.Text) + " -storepass " + surroundInCmd(textBox1.Text);
 			
-			string cmdResult = Command.RunCmd(cmdString);
+			string CmdResult = Command.RunCmd(CmdString);
 			
-			if(cmdResult.Contains(Password.PASSWORD_ERROR))
+			if(CmdResult.Contains(Password.PASSWORD_ERROR))
 			{
-				appendLog("密码错误");
+				AppendLog("密码错误");
 				return;
 			}
-			else if(cmdResult == string.Empty)
+			else if(CmdResult == string.Empty)
 			{
-				appendLog("环境变量 Java_Home 有误, 可能存在空格");
+				AppendLog("环境变量 Java_Home 有误, 可能存在空格");
 				return;
 			}
 			
-			appendLog(cmdResult);
+			String CmdResultForWindows = CmdResult.Replace("\r\n", "\n").Replace("\n", "\r\n");
+			AppendLog(CmdResultForWindows);
 			
-			try{
-				parseResult(cmdResult);
+			try
+			{
+				parseResult(CmdResult);
 			}
 			catch(Exception ex)
 			{
-				appendLog(ex.StackTrace);
+				AppendLog(ex.StackTrace);
 			}
 		}
 		
-		void parseResult(string cmdResult)
+		void parseResult(string CmdResult)
 		{
-			string[] results = Regex.Split(cmdResult,"\r\n",RegexOptions.IgnoreCase);
-
-				string debugInfo =  results[11];
+			Result = new Result();
+			
+			comboBox1.Items.Clear();
+			Result.AliasInfoList = new List<AliasInfo>();
+			AliasInfo AliasInfo = new AliasInfo();
+			
+			StringReader sr = new StringReader(CmdResult);
+			string str = string.Empty;
+			
+			while (sr.Peek() != -1)
+			{
+				str = sr.ReadLine().Trim();
 				
-				string[] debugInfos = Regex.Split(debugInfo,"\n",RegexOptions.IgnoreCase);
+				if(str == string.Empty)
+				{
+					continue;
+				}
 				
-				result = new Result();
-				
-				result.MD5_CAPS_UseColonForSplit = debugInfos[5].Trim();
-				result.MD5_CAPS_UseColonForSplit = result.MD5_CAPS_UseColonForSplit.Replace("MD5: ", string.Empty);
-				result.MD5_CAPS = result.MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
-				MD5_txt.Text = result.MD5_CAPS_UseColonForSplit;
-				
-				result.SHA1_CAPS_UseColonForSplit = debugInfos[6].Trim();
-				result.SHA1_CAPS_UseColonForSplit = result.SHA1_CAPS_UseColonForSplit.Replace("SHA1: ", string.Empty);
-				result.SHA1_CAPS = result.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
-				SHA1_txt.Text = result.SHA1_CAPS_UseColonForSplit;
+				if (str.Contains("您的密钥库包含"))
+				{
+					Result.AliasCount =  str.Replace("您的密钥库包含 ", string.Empty).Replace(" 个条目", string.Empty );
+				}
+				else if(str.Contains("别名: "))
+				{
+					str = str.Replace("别名: ", string.Empty);
+					AliasInfo = new AliasInfo();
+					AliasInfo.AliasName = str;
+				}
+				else if(str.Contains("创建日期:"))
+				{
+					str = str.Replace("创建日期: ", string.Empty);
+					AliasInfo.CreateDate = str;
+				}
+				else if(str.Contains("MD5:"))
+				{
+					AliasInfo.MD5_CAPS_UseColonForSplit = str.Replace("MD5: ", string.Empty);
+					AliasInfo.MD5_CAPS = AliasInfo.MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
+				}
+				else if(str.Contains("SHA1:"))
+				{
+					AliasInfo.SHA1_CAPS_UseColonForSplit = str.Replace("SHA1: ", string.Empty);
+					AliasInfo.SHA1_CAPS = AliasInfo.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
+					
+					Result.AliasInfoList.Add(AliasInfo);
+					comboBox1.Items.Add(AliasInfo.AliasName);
+				}
+			}
+			
+			sr.Close();
+			label1.Text = Result.AliasCount + " 个别名";
+			comboBox1.SelectedIndex = 0;
 		}
 		
-		bool UseColonForSplit = true, UseCaps = true;
-		
 		Password password = new Password();
-		Result result = new Result();
+		bool UseColonForSplit = true, UseCaps = true;
+		Result Result = new Result();
 		
-		void appendLog(string something)
+		void AppendLog(string something)
 		{
 			textBox3.Text = "\r\n" + DateTime.Now.TimeOfDay.ToString() + "\r\n" + something + "\r\n" + textBox3.Text  ;
 		}
@@ -170,17 +212,11 @@ namespace KeyFingerprintLooker
 		
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
-			UseColonForSplit = checkBox1.Checked;
-			if(UseColonForSplit)
-			{
-				MD5_txt.Text = result.MD5_CAPS_UseColonForSplit;
-				SHA1_txt.Text = result.SHA1_CAPS_UseColonForSplit;
-			}
-			else
-			{
-				MD5_txt.Text = result.MD5_CAPS;
-				SHA1_txt.Text = result.SHA1_CAPS;
-			}
+			int SelectedIndex = comboBox1.SelectedIndex;
+			
+			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
+			
+			chechUseColonForSplit();
 			
 			chechUseCapsOrNot();
 		}
@@ -188,6 +224,25 @@ namespace KeyFingerprintLooker
 		void CheckBox2CheckedChanged(object sender, EventArgs e)
 		{
 			chechUseCapsOrNot();
+		}
+		
+		void chechUseColonForSplit()
+		{
+			int SelectedIndex = comboBox1.SelectedIndex;
+			
+			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
+			
+			UseColonForSplit = checkBox1.Checked;
+			if(UseColonForSplit)
+			{
+				MD5_txt.Text = AliasInfo.MD5_CAPS_UseColonForSplit;
+				SHA1_txt.Text = AliasInfo.SHA1_CAPS_UseColonForSplit;
+			}
+			else
+			{
+				MD5_txt.Text = AliasInfo.MD5_CAPS;
+				SHA1_txt.Text = AliasInfo.SHA1_CAPS;
+			}
 		}
 
 		void chechUseCapsOrNot()
@@ -241,6 +296,12 @@ namespace KeyFingerprintLooker
 			{
 				password.ReleaseKeyStorePassword = textBox1.Text;
 			}
+		}
+		
+		void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			chechUseColonForSplit();
+			chechUseCapsOrNot();
 		}
 	}
 }

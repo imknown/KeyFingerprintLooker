@@ -40,6 +40,7 @@ namespace KeyFingerprintLooker
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -55,8 +56,10 @@ namespace KeyFingerprintLooker
 			this.button7 = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -68,7 +71,7 @@ namespace KeyFingerprintLooker
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.keystore_file_path_txt.Location = new System.Drawing.Point(6, 20);
 			this.keystore_file_path_txt.Name = "keystore_file_path_txt";
-			this.keystore_file_path_txt.Size = new System.Drawing.Size(404, 21);
+			this.keystore_file_path_txt.Size = new System.Drawing.Size(493, 21);
 			this.keystore_file_path_txt.TabIndex = 0;
 			this.keystore_file_path_txt.Text = "请指定 秘钥文件 路径, 支持拖拽";
 			this.keystore_file_path_txt.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
@@ -98,6 +101,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.radioButton2);
 			this.groupBox2.Controls.Add(this.radioButton1);
 			this.groupBox2.Controls.Add(this.checkBox3);
@@ -107,16 +111,26 @@ namespace KeyFingerprintLooker
 			this.groupBox2.Controls.Add(this.button2);
 			this.groupBox2.Location = new System.Drawing.Point(12, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(580, 81);
+			this.groupBox2.Size = new System.Drawing.Size(710, 81);
 			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "源";
+			// 
+			// label4
+			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label4.Location = new System.Drawing.Point(505, 18);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(33, 23);
+			this.label4.TabIndex = 20;
+			this.label4.Text = "密码";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// radioButton2
 			// 
 			this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.radioButton2.Location = new System.Drawing.Point(426, 48);
+			this.radioButton2.Location = new System.Drawing.Point(556, 48);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(65, 24);
 			this.radioButton2.TabIndex = 6;
@@ -129,7 +143,7 @@ namespace KeyFingerprintLooker
 			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(355, 48);
+			this.radioButton1.Location = new System.Drawing.Point(485, 48);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(65, 24);
 			this.radioButton1.TabIndex = 5;
@@ -145,7 +159,7 @@ namespace KeyFingerprintLooker
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox3.Enabled = false;
-			this.checkBox3.Location = new System.Drawing.Point(497, 49);
+			this.checkBox3.Location = new System.Drawing.Point(627, 49);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(77, 24);
 			this.checkBox3.TabIndex = 4;
@@ -156,7 +170,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.textBox1.AllowDrop = true;
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(414, 20);
+			this.textBox1.Location = new System.Drawing.Point(544, 20);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
 			this.textBox1.Size = new System.Drawing.Size(160, 21);
@@ -169,7 +183,7 @@ namespace KeyFingerprintLooker
 			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(367, 21);
+			this.checkBox1.Location = new System.Drawing.Point(497, 21);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(72, 24);
 			this.checkBox1.TabIndex = 6;
@@ -181,7 +195,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.SHA1_txt.AllowDrop = true;
 			this.SHA1_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.SHA1_txt.Location = new System.Drawing.Point(108, 80);
+			this.SHA1_txt.Location = new System.Drawing.Point(238, 80);
 			this.SHA1_txt.Name = "SHA1_txt";
 			this.SHA1_txt.ReadOnly = true;
 			this.SHA1_txt.Size = new System.Drawing.Size(385, 21);
@@ -190,7 +204,7 @@ namespace KeyFingerprintLooker
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.Location = new System.Drawing.Point(72, 80);
+			this.label2.Location = new System.Drawing.Point(202, 80);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(30, 23);
 			this.label2.TabIndex = 5;
@@ -200,7 +214,7 @@ namespace KeyFingerprintLooker
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(499, 78);
+			this.button5.Location = new System.Drawing.Point(629, 78);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(75, 23);
 			this.button5.TabIndex = 10;
@@ -218,14 +232,14 @@ namespace KeyFingerprintLooker
 			this.textBox3.Name = "textBox3";
 			this.textBox3.ReadOnly = true;
 			this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox3.Size = new System.Drawing.Size(568, 233);
+			this.textBox3.Size = new System.Drawing.Size(698, 228);
 			this.textBox3.TabIndex = 13;
 			this.textBox3.Text = "\r\n无日志";
 			// 
 			// button3
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(499, 21);
+			this.button3.Location = new System.Drawing.Point(629, 21);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(75, 23);
 			this.button3.TabIndex = 3;
@@ -236,7 +250,7 @@ namespace KeyFingerprintLooker
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button6.Location = new System.Drawing.Point(499, 346);
+			this.button6.Location = new System.Drawing.Point(629, 341);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(75, 23);
 			this.button6.TabIndex = 11;
@@ -248,7 +262,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.MD5_txt.AllowDrop = true;
 			this.MD5_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.MD5_txt.Location = new System.Drawing.Point(108, 51);
+			this.MD5_txt.Location = new System.Drawing.Point(238, 51);
 			this.MD5_txt.Name = "MD5_txt";
 			this.MD5_txt.ReadOnly = true;
 			this.MD5_txt.Size = new System.Drawing.Size(385, 21);
@@ -257,7 +271,7 @@ namespace KeyFingerprintLooker
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(499, 49);
+			this.button7.Location = new System.Drawing.Point(629, 49);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(75, 23);
 			this.button7.TabIndex = 16;
@@ -268,7 +282,7 @@ namespace KeyFingerprintLooker
 			// label3
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label3.Location = new System.Drawing.Point(72, 49);
+			this.label3.Location = new System.Drawing.Point(202, 51);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(30, 23);
 			this.label3.TabIndex = 14;
@@ -280,8 +294,10 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.checkBox4);
 			this.groupBox1.Controls.Add(this.comboBox1);
 			this.groupBox1.Controls.Add(this.checkBox2);
+			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.button7);
 			this.groupBox1.Controls.Add(this.MD5_txt);
@@ -294,27 +310,40 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Controls.Add(this.checkBox1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 99);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(580, 375);
+			this.groupBox1.Size = new System.Drawing.Size(710, 370);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "结果";
+			// 
+			// checkBox4
+			// 
+			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox4.Checked = true;
+			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox4.Location = new System.Drawing.Point(475, 342);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(148, 24);
+			this.checkBox4.TabIndex = 19;
+			this.checkBox4.Text = "重新计算后, 清空日志";
+			this.checkBox4.UseVisualStyleBackColor = true;
 			// 
 			// comboBox1
 			// 
 			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(108, 23);
+			this.comboBox1.Location = new System.Drawing.Point(238, 23);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(253, 20);
 			this.comboBox1.TabIndex = 18;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1SelectedIndexChanged);
 			// 
 			// checkBox2
 			// 
 			this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox2.Checked = true;
 			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(445, 21);
+			this.checkBox2.Location = new System.Drawing.Point(575, 21);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(48, 24);
 			this.checkBox2.TabIndex = 17;
@@ -322,15 +351,25 @@ namespace KeyFingerprintLooker
 			this.checkBox2.UseVisualStyleBackColor = true;
 			this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2CheckedChanged);
 			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.Location = new System.Drawing.Point(136, 23);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(96, 23);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "别名";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(604, 486);
+			this.ClientSize = new System.Drawing.Size(734, 481);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.MinimumSize = new System.Drawing.Size(620, 520);
+			this.MinimumSize = new System.Drawing.Size(750, 520);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "密钥指纹获取器";
@@ -340,6 +379,9 @@ namespace KeyFingerprintLooker
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.CheckBox checkBox4;
+		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.RadioButton radioButton1;
 		private System.Windows.Forms.RadioButton radioButton2;
