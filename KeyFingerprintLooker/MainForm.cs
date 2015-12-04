@@ -7,13 +7,12 @@
  * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 using KeyFingerprintLooker.Utils;
+using KeyFingerprintLooker.Model;
 
 namespace KeyFingerprintLooker
 {
@@ -86,7 +85,7 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			
-			bool ok = false;
+			bool JavaHomeExist = false;
 			string JavaHome = Environment.GetEnvironmentVariable("Java_Home");
 			string KeytoolPath = "";
 			
@@ -96,39 +95,36 @@ namespace KeyFingerprintLooker
 				
 				// 判断环境变量是否有效
 				if(File.Exists(KeytoolPath)){
-					ok = true;
+					JavaHomeExist = true;
 				}
 			}
 			
-			if(!ok)
+			if(!JavaHomeExist)
 			{
 				appendLog("环境变量 Java_Home 无效, 请重新配置");
 				
 				return;
 			}
 			
-			string cmdString = KeytoolPath + " -list -v -keystore " + "\"" + keystore_file_path_txt.Text + "\"" + " -storepass android";
+			string cmdString = /* surroundInCmd( */ KeytoolPath /* ) */ + " -list -v -keystore " + surroundInCmd(keystore_file_path_txt.Text) + " -storepass " + surroundInCmd(textBox1.Text);
 			
-			string result = Command.RunCmd(cmdString);
+			string cmdResult = Command.RunCmd(cmdString);
 			
-			appendLog(result);
+			if(cmdResult.Contains(Password.PASSWORD_ERROR))
+			{
+				appendLog("密码错误");
+				return;
+			}
+			else if(cmdResult == string.Empty)
+			{
+				appendLog("环境变量 Java_Home 有误, 可能存在空格");
+				return;
+			}
+			
+			appendLog(cmdResult);
 			
 			try{
-				string[] results = Regex.Split(result,"\r\n",RegexOptions.IgnoreCase);
-
-				string debugInfo =  results[11];
-				
-				string[] debugInfos = Regex.Split(debugInfo,"\n",RegexOptions.IgnoreCase);
-				
-				MD5_CAPS_UseColonForSplit = debugInfos[5].Trim();
-				MD5_CAPS_UseColonForSplit = MD5_CAPS_UseColonForSplit.Replace("MD5: ", string.Empty);
-				MD5_CAPS = MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
-				MD5_txt.Text = MD5_CAPS_UseColonForSplit;
-				
-				SHA1_CAPS_UseColonForSplit = debugInfos[6].Trim();
-				SHA1_CAPS_UseColonForSplit = SHA1_CAPS_UseColonForSplit.Replace("SHA1: ", string.Empty);
-				SHA1_CAPS = SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
-				SHA1_txt.Text = SHA1_CAPS_UseColonForSplit;
+				parseResult(cmdResult);
 			}
 			catch(Exception ex)
 			{
@@ -136,14 +132,40 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
-		string MD5_CAPS, SHA1_CAPS;
-		string MD5_CAPS_UseColonForSplit, SHA1_CAPS_UseColonForSplit;
+		void parseResult(string cmdResult)
+		{
+			string[] results = Regex.Split(cmdResult,"\r\n",RegexOptions.IgnoreCase);
+
+				string debugInfo =  results[11];
+				
+				string[] debugInfos = Regex.Split(debugInfo,"\n",RegexOptions.IgnoreCase);
+				
+				result = new Result();
+				
+				result.MD5_CAPS_UseColonForSplit = debugInfos[5].Trim();
+				result.MD5_CAPS_UseColonForSplit = result.MD5_CAPS_UseColonForSplit.Replace("MD5: ", string.Empty);
+				result.MD5_CAPS = result.MD5_CAPS_UseColonForSplit.Replace(":", string.Empty);
+				MD5_txt.Text = result.MD5_CAPS_UseColonForSplit;
+				
+				result.SHA1_CAPS_UseColonForSplit = debugInfos[6].Trim();
+				result.SHA1_CAPS_UseColonForSplit = result.SHA1_CAPS_UseColonForSplit.Replace("SHA1: ", string.Empty);
+				result.SHA1_CAPS = result.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
+				SHA1_txt.Text = result.SHA1_CAPS_UseColonForSplit;
+		}
 		
 		bool UseColonForSplit = true, UseCaps = true;
+		
+		Password password = new Password();
+		Result result = new Result();
 		
 		void appendLog(string something)
 		{
 			textBox3.Text = "\r\n" + DateTime.Now.TimeOfDay.ToString() + "\r\n" + something + "\r\n" + textBox3.Text  ;
+		}
+		
+		string surroundInCmd(string something)
+		{
+			return "\"" +something + "\"";
 		}
 		
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
@@ -151,13 +173,13 @@ namespace KeyFingerprintLooker
 			UseColonForSplit = checkBox1.Checked;
 			if(UseColonForSplit)
 			{
-				MD5_txt.Text = MD5_CAPS_UseColonForSplit;
-				SHA1_txt.Text = SHA1_CAPS_UseColonForSplit;
+				MD5_txt.Text = result.MD5_CAPS_UseColonForSplit;
+				SHA1_txt.Text = result.SHA1_CAPS_UseColonForSplit;
 			}
 			else
 			{
-				MD5_txt.Text = MD5_CAPS;
-				SHA1_txt.Text = SHA1_CAPS;
+				MD5_txt.Text = result.MD5_CAPS;
+				SHA1_txt.Text = result.SHA1_CAPS;
 			}
 			
 			chechUseCapsOrNot();
@@ -191,6 +213,34 @@ namespace KeyFingerprintLooker
 		void Button5Click(object sender, EventArgs e)
 		{
 			Clipboard.SetDataObject(SHA1_txt.Text);
+		}
+		
+		void RadioButton1CheckedChanged(object sender, EventArgs e)
+		{
+			if(radioButton1.Checked)
+			{
+				textBox1.ReadOnly = true;
+				
+				textBox1.Text = Password.DEBUG_KEYSTORE_PASSWORD;
+			}
+		}
+		
+		void RadioButton2CheckedChanged(object sender, EventArgs e)
+		{
+			if(radioButton2.Checked)
+			{
+				textBox1.ReadOnly = false;
+
+				textBox1.Text = password.ReleaseKeyStorePassword;
+			}
+		}
+		
+		void TextBox1TextChanged(object sender, EventArgs e)
+		{
+			if(radioButton2.Checked)
+			{
+				password.ReleaseKeyStorePassword = textBox1.Text;
+			}
 		}
 	}
 }
