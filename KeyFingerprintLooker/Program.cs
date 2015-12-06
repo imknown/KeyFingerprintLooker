@@ -26,6 +26,5 @@ namespace KeyFingerprintLooker
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
 		}
-		
 	}
 }

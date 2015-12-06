@@ -7,14 +7,12 @@
  * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
  */
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
-using KeyFingerprintLooker.Utils;
 using KeyFingerprintLooker.Model;
+using KeyFingerprintLooker.Utils;
 
 namespace KeyFingerprintLooker
 {
@@ -35,7 +33,32 @@ namespace KeyFingerprintLooker
 			// 
 		}
 		
-		private void Form1_DragEnter(object sender, DragEventArgs e)
+		private string FindInstallLocationOfJava()
+		{
+			string InstallLocationWant = string.Empty;
+			
+			ProcessType ProcessType = Reg.GetProcessType();
+			AppendLog(ProcessType.ToString());
+			
+			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X64, ProcessType.X86 };
+			List<String> InstallLocationList = Reg.FindRegKey(ProcessTypeList, "Java");
+			
+			foreach (string InstallLocation in InstallLocationList)
+			{
+				AppendLog(InstallLocation);
+			}
+			
+			foreach (string InstallLocationTemp in InstallLocationList)
+			{
+				InstallLocationWant = InstallLocationTemp;
+				
+				break;
+			}
+			
+			return InstallLocationWant;
+		}
+		
+		private void TextBox_DragEnter(object sender, DragEventArgs e)
 		{
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
@@ -47,7 +70,40 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
-		private void Form1_DragDrop(object sender, DragEventArgs e)
+		private void keytool_file_path_txtDragDrop(object sender, DragEventArgs e)
+		{
+			keystore_file_path_txt.Text = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+		}
+		
+		void Button4Click(object sender, EventArgs e)
+		{
+			// keytool_file_path_txt.Text = GetKeytoolPath();
+			
+			keytool_file_path_txt.Text = FindInstallLocationOfJava() + @"bin\keytool.exe";;
+		}
+		
+		void Button8Click(object sender, EventArgs e)
+		{
+			OpenFileDialog OpenDialog = new OpenFileDialog();
+			OpenDialog.Filter = "秘钥文件(*.keystore;*.jks)|*.keystore;*.jks|所有文件 (*.*)|*.*";
+			
+			if(DialogResult.OK == OpenDialog.ShowDialog())
+			{
+				keystore_file_path_txt.Text = OpenDialog.FileName;
+			}
+		}
+		
+		# region [ 秘钥文件 ]
+		
+		void Keystore_file_path_txtTextChanged(object sender, EventArgs e)
+		{
+			if(keystore_file_path_txt.Text == string.Empty)
+			{
+				keystore_file_path_txt.Text = "请指定 秘钥文件 路径, 支持拖拽";
+			}
+		}
+		
+		private void Keystore_file_path_txtDragDrop(object sender, DragEventArgs e)
 		{
 			keystore_file_path_txt.Text = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
 		}
@@ -63,7 +119,7 @@ namespace KeyFingerprintLooker
 
 		void Button6Click(object sender, EventArgs e)
 		{
-			textBox3.Text = string.Empty;
+			operation_log_txt.Text = string.Empty;
 		}
 
 		void Button2Click(object sender, EventArgs e)
@@ -77,11 +133,13 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
+		# endregion
+		
 		void Button3Click(object sender, EventArgs e)
 		{
 			if(checkBox4.Checked)
 			{
-				textBox3.Text = string.Empty;
+				operation_log_txt.Text = string.Empty;
 			}
 			
 			string KeystoreFilePath = keystore_file_path_txt.Text;
@@ -92,28 +150,16 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			
-			bool JavaHomeExist = false;
-			string JavaHome = Environment.GetEnvironmentVariable("Java_Home");
-			string KeytoolPath = "";
+			string KeytoolFilePath = keytool_file_path_txt.Text;
 			
-			if(Directory.Exists(JavaHome))
+			if(!File.Exists(KeystoreFilePath))
 			{
-				KeytoolPath = JavaHome + @"\bin\keytool.exe";
-				
-				// 判断环境变量是否有效
-				if(File.Exists(KeytoolPath)){
-					JavaHomeExist = true;
-				}
-			}
-			
-			if(!JavaHomeExist)
-			{
-				AppendLog("环境变量 Java_Home 无效, 请重新配置");
+				AppendLog("keytool.exe 文件不存在");
 				
 				return;
 			}
 			
-			string CmdString = /* surroundInCmd( */ KeytoolPath /* ) */ + " -list -v -keystore " + surroundInCmd(keystore_file_path_txt.Text) + " -storepass " + surroundInCmd(textBox1.Text);
+			string CmdString = /* surroundInCmd( */ KeytoolFilePath /* ) */ + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
 			
 			string CmdResult = Command.RunCmd(CmdString);
 			
@@ -124,7 +170,7 @@ namespace KeyFingerprintLooker
 			}
 			else if(CmdResult == string.Empty)
 			{
-				AppendLog("环境变量 Java_Home 有误, 可能存在空格");
+				AppendLog("keytool.exe 文件路径有误, 或者存在空格");
 				return;
 			}
 			
@@ -139,6 +185,25 @@ namespace KeyFingerprintLooker
 			{
 				AppendLog(ex.StackTrace);
 			}
+		}
+		
+		[method: Obsolete("Use FindInstallLocationOfJava() instead")]   
+		string GetKeytoolPath()
+		{
+			string KeytoolPath = "";
+			string JavaHome = Environment.GetEnvironmentVariable("Java_Home");
+			
+			if(Directory.Exists(JavaHome))
+			{
+				KeytoolPath = JavaHome + @"\bin\keytool.exe";
+				
+				// 判断环境变量是否有效
+				if(!File.Exists(KeytoolPath)){
+					KeytoolPath = string.Empty;
+				}
+			}
+			
+			return KeytoolPath;
 		}
 		
 		void parseResult(string CmdResult)
@@ -202,7 +267,7 @@ namespace KeyFingerprintLooker
 		
 		void AppendLog(string something)
 		{
-			textBox3.Text = "\r\n" + DateTime.Now.TimeOfDay.ToString() + "\r\n" + something + "\r\n" + textBox3.Text  ;
+			operation_log_txt.Text = "\r\n" + DateTime.Now.TimeOfDay.ToString() + "\r\n" + something + "\r\n" + operation_log_txt.Text  ;
 		}
 		
 		string surroundInCmd(string something)
@@ -272,29 +337,31 @@ namespace KeyFingerprintLooker
 		
 		void RadioButton1CheckedChanged(object sender, EventArgs e)
 		{
-			if(radioButton1.Checked)
+			if(keystore_file_type_debug_rdbtn.Checked)
 			{
-				textBox1.ReadOnly = true;
+				password_txt.ReadOnly = true;
+				auto_fetch_keystore_file_path_btn.Enabled = true;
 				
-				textBox1.Text = Password.DEBUG_KEYSTORE_PASSWORD;
+				password_txt.Text = Password.DEBUG_KEYSTORE_PASSWORD;
 			}
 		}
 		
 		void RadioButton2CheckedChanged(object sender, EventArgs e)
 		{
-			if(radioButton2.Checked)
+			if(keystore_file_type_release_rdbtn.Checked)
 			{
-				textBox1.ReadOnly = false;
-
-				textBox1.Text = password.ReleaseKeyStorePassword;
+				password_txt.ReadOnly = false;
+				auto_fetch_keystore_file_path_btn.Enabled = false;
+				
+				password_txt.Text = password.ReleaseKeyStorePassword;
 			}
 		}
 		
 		void TextBox1TextChanged(object sender, EventArgs e)
 		{
-			if(radioButton2.Checked)
+			if(keystore_file_type_release_rdbtn.Checked)
 			{
-				password.ReleaseKeyStorePassword = textBox1.Text;
+				password.ReleaseKeyStorePassword = password_txt.Text;
 			}
 		}
 		
