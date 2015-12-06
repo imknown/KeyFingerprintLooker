@@ -110,11 +110,29 @@ namespace KeyFingerprintLooker
 		
 		void Button1Click(object sender, EventArgs e)
 		{
+			String Path = "未找到有效的文件";
+			
 			string MyDocumentFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			
 			string DotAndroidFolderPath = MyDocumentFolderPath.Substring(0, MyDocumentFolderPath.LastIndexOf(@"\"));
+			string GoogleOfficialKey = DotAndroidFolderPath + @"\.android\" + "debug.keystore";
+
+			string XamarinUnofficialKey = Environment.GetEnvironmentVariable("LocalAppData") + @"\Xamarin\Mono for Android\debug.keystore";
 			
-			keystore_file_path_txt.Text = DotAndroidFolderPath + @"\.android\" + "debug.keystore";
+			if(File.Exists(XamarinUnofficialKey))
+			{
+				AppendLog(XamarinUnofficialKey);
+				
+				Path = XamarinUnofficialKey;
+			}
+			
+			if((!xamarin_first_chk.Checked || !File.Exists(XamarinUnofficialKey)) && File.Exists(GoogleOfficialKey))
+			{
+				AppendLog(GoogleOfficialKey);
+				
+				Path = GoogleOfficialKey;
+			}
+			
+			keystore_file_path_txt.Text = Path;
 		}
 
 		void Button6Click(object sender, EventArgs e)
@@ -168,6 +186,11 @@ namespace KeyFingerprintLooker
 				AppendLog("密码错误");
 				return;
 			}
+			else if(CmdResult.Contains(Password.BAD_FILE_ERROR))
+			{	
+				AppendLog("密钥文件已损坏");
+				return;
+			}
 			else if(CmdResult == string.Empty)
 			{
 				AppendLog("keytool.exe 文件路径有误, 或者存在空格");
@@ -187,7 +210,7 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
-		[method: Obsolete("Use FindInstallLocationOfJava() instead")]   
+		[method: Obsolete("Use FindInstallLocationOfJava() instead")]
 		string GetKeytoolPath()
 		{
 			string KeytoolPath = "";

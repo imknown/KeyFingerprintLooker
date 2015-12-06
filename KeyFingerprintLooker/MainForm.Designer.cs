@@ -64,6 +64,7 @@ namespace KeyFingerprintLooker
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -108,6 +109,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.xamarin_first_chk);
 			this.groupBox2.Controls.Add(this.auto_fetch_keytool_file_path_btn);
 			this.groupBox2.Controls.Add(this.browse_keytool_file_path_btn);
 			this.groupBox2.Controls.Add(this.label6);
@@ -122,7 +124,7 @@ namespace KeyFingerprintLooker
 			this.groupBox2.Controls.Add(this.browse_keystore_file_path_btn);
 			this.groupBox2.Location = new System.Drawing.Point(12, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(710, 108);
+			this.groupBox2.Size = new System.Drawing.Size(710, 139);
 			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "源";
@@ -151,7 +153,7 @@ namespace KeyFingerprintLooker
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(6, 18);
+			this.label6.Location = new System.Drawing.Point(6, 20);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(114, 23);
 			this.label6.TabIndex = 23;
@@ -173,7 +175,7 @@ namespace KeyFingerprintLooker
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(6, 47);
+			this.label5.Location = new System.Drawing.Point(6, 45);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(114, 23);
 			this.label5.TabIndex = 21;
@@ -182,7 +184,7 @@ namespace KeyFingerprintLooker
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(6, 74);
+			this.label4.Location = new System.Drawing.Point(6, 103);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(114, 23);
 			this.label4.TabIndex = 20;
@@ -192,7 +194,7 @@ namespace KeyFingerprintLooker
 			// keystore_file_type_release_rdbtn
 			// 
 			this.keystore_file_type_release_rdbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.keystore_file_type_release_rdbtn.Location = new System.Drawing.Point(629, 73);
+			this.keystore_file_type_release_rdbtn.Location = new System.Drawing.Point(629, 102);
 			this.keystore_file_type_release_rdbtn.Name = "keystore_file_type_release_rdbtn";
 			this.keystore_file_type_release_rdbtn.Size = new System.Drawing.Size(75, 24);
 			this.keystore_file_type_release_rdbtn.TabIndex = 8;
@@ -205,7 +207,7 @@ namespace KeyFingerprintLooker
 			// 
 			this.keystore_file_type_debug_rdbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.keystore_file_type_debug_rdbtn.Checked = true;
-			this.keystore_file_type_debug_rdbtn.Location = new System.Drawing.Point(548, 73);
+			this.keystore_file_type_debug_rdbtn.Location = new System.Drawing.Point(548, 102);
 			this.keystore_file_type_debug_rdbtn.Name = "keystore_file_type_debug_rdbtn";
 			this.keystore_file_type_debug_rdbtn.Size = new System.Drawing.Size(75, 24);
 			this.keystore_file_type_debug_rdbtn.TabIndex = 7;
@@ -220,7 +222,7 @@ namespace KeyFingerprintLooker
 			this.password_txt.AllowDrop = true;
 			this.password_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.password_txt.Location = new System.Drawing.Point(126, 74);
+			this.password_txt.Location = new System.Drawing.Point(126, 105);
 			this.password_txt.Name = "password_txt";
 			this.password_txt.ReadOnly = true;
 			this.password_txt.Size = new System.Drawing.Size(416, 21);
@@ -282,7 +284,7 @@ namespace KeyFingerprintLooker
 			this.operation_log_txt.Name = "operation_log_txt";
 			this.operation_log_txt.ReadOnly = true;
 			this.operation_log_txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.operation_log_txt.Size = new System.Drawing.Size(698, 281);
+			this.operation_log_txt.Size = new System.Drawing.Size(698, 339);
 			this.operation_log_txt.TabIndex = 13;
 			this.operation_log_txt.Text = "\r\n无日志";
 			// 
@@ -300,7 +302,7 @@ namespace KeyFingerprintLooker
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button6.Location = new System.Drawing.Point(629, 394);
+			this.button6.Location = new System.Drawing.Point(629, 452);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(75, 23);
 			this.button6.TabIndex = 11;
@@ -358,9 +360,9 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.SHA1_txt);
 			this.groupBox1.Controls.Add(this.checkBox1);
-			this.groupBox1.Location = new System.Drawing.Point(12, 126);
+			this.groupBox1.Location = new System.Drawing.Point(12, 157);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(710, 423);
+			this.groupBox1.Size = new System.Drawing.Size(710, 481);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "结果";
@@ -370,7 +372,7 @@ namespace KeyFingerprintLooker
 			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox4.Checked = true;
 			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox4.Location = new System.Drawing.Point(475, 395);
+			this.checkBox4.Location = new System.Drawing.Point(475, 453);
 			this.checkBox4.Name = "checkBox4";
 			this.checkBox4.Size = new System.Drawing.Size(148, 24);
 			this.checkBox4.TabIndex = 19;
@@ -411,12 +413,24 @@ namespace KeyFingerprintLooker
 			this.label1.Text = "别名";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// xamarin_first_chk
+			// 
+			this.xamarin_first_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.xamarin_first_chk.Checked = true;
+			this.xamarin_first_chk.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.xamarin_first_chk.Location = new System.Drawing.Point(356, 75);
+			this.xamarin_first_chk.Name = "xamarin_first_chk";
+			this.xamarin_first_chk.Size = new System.Drawing.Size(186, 24);
+			this.xamarin_first_chk.TabIndex = 20;
+			this.xamarin_first_chk.Text = "优先查找 Xamarin Debug Key";
+			this.xamarin_first_chk.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(734, 561);
+			this.ClientSize = new System.Drawing.Size(734, 650);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.MinimumSize = new System.Drawing.Size(750, 600);
@@ -429,6 +443,7 @@ namespace KeyFingerprintLooker
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.CheckBox xamarin_first_chk;
 		private System.Windows.Forms.Button browse_keytool_file_path_btn;
 		private System.Windows.Forms.Button auto_fetch_keytool_file_path_btn;
 		private System.Windows.Forms.Label label5;
