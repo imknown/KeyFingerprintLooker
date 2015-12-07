@@ -85,11 +85,11 @@ namespace KeyFingerprintLooker
 		void Button8Click(object sender, EventArgs e)
 		{
 			OpenFileDialog OpenDialog = new OpenFileDialog();
-			OpenDialog.Filter = "秘钥文件(*.keystore;*.jks)|*.keystore;*.jks|所有文件 (*.*)|*.*";
+			OpenDialog.Filter = "keytool.exe|keytool.exe";
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
 			{
-				keystore_file_path_txt.Text = OpenDialog.FileName;
+				keytool_file_path_txt.Text = OpenDialog.FileName;
 			}
 		}
 		
@@ -187,7 +187,7 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			else if(CmdResult.Contains(Password.BAD_FILE_ERROR))
-			{	
+			{
 				AppendLog("密钥文件已损坏");
 				return;
 			}
