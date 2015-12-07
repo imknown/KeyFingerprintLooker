@@ -28,37 +28,37 @@ namespace KeyFingerprintLooker.Utils
 		public static List<String> FindRegKey(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
 			#region [ 初始化 ]
-			RegistryKey lmKey, x86UninstallKey, x64UninstallKey;
+			RegistryKey lmKey, WOW64UninstallKey, CurrentVersionUninstallKey;
 
 			lmKey = Registry.LocalMachine;
 
-			x64UninstallKey = lmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\");
-			x86UninstallKey = lmKey.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\");
+			CurrentVersionUninstallKey = lmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\");
+			WOW64UninstallKey = lmKey.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\");
 
-			string[] x64ProgramKeys = new String[0];
-			string[] x86ProgramKeys = new String[0];
+			string[] CurrentVersionProgramKeys = new String[0];
+			string[] WOW64ProgramKeys = new String[0];
 			
 			if(ProcessTypeList.Contains(ProcessType.X64))
 			{
-				x64ProgramKeys = x64UninstallKey.GetSubKeyNames();
+				CurrentVersionProgramKeys = CurrentVersionUninstallKey.GetSubKeyNames();
 			}
 			
 			if(ProcessTypeList.Contains(ProcessType.X86))
 			{
-				x86ProgramKeys = x86UninstallKey.GetSubKeyNames();
+				WOW64ProgramKeys = WOW64UninstallKey.GetSubKeyNames();
 			}
 			
 			#endregion
 			
-			List<String> x64InstallLocationList = FindInstallLocation(x64UninstallKey, x64ProgramKeys, whichToFound);
-			List<String> x86InstallLocationList = FindInstallLocation(x86UninstallKey, x86ProgramKeys, whichToFound);
+			List<String> CurrentVersionInstallLocationList = FindInstallLocation(CurrentVersionUninstallKey, CurrentVersionProgramKeys, whichToFound);
+			List<String> WOW64InstallLocationList = FindInstallLocation(WOW64UninstallKey, WOW64ProgramKeys, whichToFound);
 			
 			List<String> InstallLocationList = new List<String>();
-			InstallLocationList.AddRange(x64InstallLocationList);
-			InstallLocationList.AddRange(x86InstallLocationList);
+			InstallLocationList.AddRange(CurrentVersionInstallLocationList);
+			InstallLocationList.AddRange(WOW64InstallLocationList);
 			
-			x64UninstallKey.Close();
-			x86UninstallKey.Close();
+			CurrentVersionUninstallKey.Close();
+			WOW64UninstallKey.Close();
 			lmKey.Close();
 			
 			return InstallLocationList;

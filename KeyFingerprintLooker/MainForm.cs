@@ -31,16 +31,29 @@ namespace KeyFingerprintLooker
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			// 
+			
+			ProcessType Type = Reg.GetProcessType();
+			about_txt.Text += ", " + Type.ToString() + " 模式";
 		}
 		
 		private string FindInstallLocationOfJava()
 		{
 			string InstallLocationWant = string.Empty;
 			
-			ProcessType ProcessType = Reg.GetProcessType();
-			AppendLog(ProcessType.ToString());
+			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X86 };
 			
-			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X64, ProcessType.X86 };
+			ProcessType Type = Reg.GetProcessType();
+			if(Type == ProcessType.X64)
+			{
+				ProcessTypeList.Add(ProcessType.X64);
+				
+				AppendLog(ProcessType.X64.ToString() + "模式");
+			}
+			else
+			{
+				AppendLog(ProcessType.X86.ToString() + "模式");
+			}
+			
 			List<String> InstallLocationList = Reg.FindRegKey(ProcessTypeList, "Java");
 			
 			foreach (string InstallLocation in InstallLocationList)
@@ -177,7 +190,7 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			
-			string CmdString = /* surroundInCmd( */ KeytoolFilePath /* ) */ + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
+			string CmdString = surroundInCmd(KeytoolFilePath) + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
 			
 			string CmdResult = Command.RunCmd(CmdString);
 			
@@ -295,7 +308,7 @@ namespace KeyFingerprintLooker
 		
 		string surroundInCmd(string something)
 		{
-			return "\"" +something + "\"";
+			return "\"" + something + "\"";
 		}
 		
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
@@ -392,6 +405,20 @@ namespace KeyFingerprintLooker
 		{
 			chechUseColonForSplit();
 			chechUseCapsOrNot();
+		}
+		
+		void Not_wrap_content_chkCheckedChanged(object sender, EventArgs e)
+		{
+			if(not_wrap_content_chk.Checked)
+			{
+				operation_log_txt.WordWrap = true;
+				operation_log_txt.ScrollBars = ScrollBars.Vertical;
+			}
+			else
+			{
+				operation_log_txt.WordWrap = false;
+				operation_log_txt.ScrollBars = ScrollBars.Both;
+			}
 		}
 	}
 }

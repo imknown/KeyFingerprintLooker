@@ -21,18 +21,25 @@ namespace KeyFingerprintLooker.Utils
 			Process p = new Process();
 
 			p.StartInfo.FileName = "cmd.exe";           //设定程序名
-			p.StartInfo.Arguments = "/c " + command;    //设定程式执行参数
+			// p.StartInfo.Arguments = "/c " + command;    //设定程式执行参数
 			p.StartInfo.UseShellExecute = false;        //关闭Shell的使用
 			p.StartInfo.RedirectStandardInput = true;   //重定向标准输入
 			p.StartInfo.RedirectStandardOutput = true;  //重定向标准输出
-			p.StartInfo.RedirectStandardError = false;   //重定向错误输出
+			p.StartInfo.RedirectStandardError = true;   //重定向错误输出
 			p.StartInfo.CreateNoWindow = true;          //设置不显示窗口
-			p.Start();   //启动
+			p.Start();
 			
-			//p.StandardInput.WriteLine(command);       //也可以用这种方式输入要执行的命令
-			//p.StandardInput.WriteLine("exit");        //不过要记得加上Exit要不然下一行程式执行的时候会当机
+			p.StandardInput.WriteLine(command);       //也可以用这种方式输入要执行的命令
+			p.StandardInput.WriteLine("exit");        //不过要记得加上Exit要不然下一行程式执行的时候会当机
 			
-			return p.StandardOutput.ReadToEnd();        //从输出流取得命令执行结果
+			p.StandardInput.AutoFlush = true;   //启动
+			
+			string output = p.StandardOutput.ReadToEnd();
+			
+			p.WaitForExit();//等待程序执行完退出进程
+            p.Close();
+
+			return output;        //从输出流取得命令执行结果
 		}
 	}
 }

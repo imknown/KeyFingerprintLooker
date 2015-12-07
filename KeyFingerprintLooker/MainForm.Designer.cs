@@ -40,6 +40,7 @@ namespace KeyFingerprintLooker
 			this.auto_fetch_keystore_file_path_btn = new System.Windows.Forms.Button();
 			this.browse_keystore_file_path_btn = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.auto_fetch_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.browse_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.label6 = new System.Windows.Forms.Label();
@@ -60,11 +61,12 @@ namespace KeyFingerprintLooker
 			this.copy_MD5_btn = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.not_wrap_content_chk = new System.Windows.Forms.CheckBox();
+			this.about_txt = new System.Windows.Forms.Label();
 			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -128,6 +130,18 @@ namespace KeyFingerprintLooker
 			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "源";
+			// 
+			// xamarin_first_chk
+			// 
+			this.xamarin_first_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.xamarin_first_chk.Checked = true;
+			this.xamarin_first_chk.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.xamarin_first_chk.Location = new System.Drawing.Point(356, 75);
+			this.xamarin_first_chk.Name = "xamarin_first_chk";
+			this.xamarin_first_chk.Size = new System.Drawing.Size(186, 24);
+			this.xamarin_first_chk.TabIndex = 20;
+			this.xamarin_first_chk.Text = "优先查找 Xamarin Debug Key";
+			this.xamarin_first_chk.UseVisualStyleBackColor = true;
 			// 
 			// auto_fetch_keytool_file_path_btn
 			// 
@@ -346,6 +360,8 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.not_wrap_content_chk);
+			this.groupBox1.Controls.Add(this.about_txt);
 			this.groupBox1.Controls.Add(this.checkBox4);
 			this.groupBox1.Controls.Add(this.comboBox1);
 			this.groupBox1.Controls.Add(this.checkBox2);
@@ -366,6 +382,28 @@ namespace KeyFingerprintLooker
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "结果";
+			// 
+			// not_wrap_content_chk
+			// 
+			this.not_wrap_content_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.not_wrap_content_chk.Checked = true;
+			this.not_wrap_content_chk.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.not_wrap_content_chk.Location = new System.Drawing.Point(386, 453);
+			this.not_wrap_content_chk.Name = "not_wrap_content_chk";
+			this.not_wrap_content_chk.Size = new System.Drawing.Size(83, 24);
+			this.not_wrap_content_chk.TabIndex = 25;
+			this.not_wrap_content_chk.Text = "自动换行";
+			this.not_wrap_content_chk.UseVisualStyleBackColor = true;
+			this.not_wrap_content_chk.CheckedChanged += new System.EventHandler(this.Not_wrap_content_chkCheckedChanged);
+			// 
+			// about_txt
+			// 
+			this.about_txt.Location = new System.Drawing.Point(6, 452);
+			this.about_txt.Name = "about_txt";
+			this.about_txt.Size = new System.Drawing.Size(142, 23);
+			this.about_txt.TabIndex = 24;
+			this.about_txt.Text = "0.2 beta";
+			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// checkBox4
 			// 
@@ -413,18 +451,6 @@ namespace KeyFingerprintLooker
 			this.label1.Text = "别名";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// xamarin_first_chk
-			// 
-			this.xamarin_first_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.xamarin_first_chk.Checked = true;
-			this.xamarin_first_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.xamarin_first_chk.Location = new System.Drawing.Point(356, 75);
-			this.xamarin_first_chk.Name = "xamarin_first_chk";
-			this.xamarin_first_chk.Size = new System.Drawing.Size(186, 24);
-			this.xamarin_first_chk.TabIndex = 20;
-			this.xamarin_first_chk.Text = "优先查找 Xamarin Debug Key";
-			this.xamarin_first_chk.UseVisualStyleBackColor = true;
-			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -443,6 +469,8 @@ namespace KeyFingerprintLooker
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.CheckBox not_wrap_content_chk;
+		private System.Windows.Forms.Label about_txt;
 		private System.Windows.Forms.CheckBox xamarin_first_chk;
 		private System.Windows.Forms.Button browse_keytool_file_path_btn;
 		private System.Windows.Forms.Button auto_fetch_keytool_file_path_btn;
