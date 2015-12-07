@@ -298,7 +298,7 @@ namespace KeyFingerprintLooker
 			this.operation_log_txt.Name = "operation_log_txt";
 			this.operation_log_txt.ReadOnly = true;
 			this.operation_log_txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.operation_log_txt.Size = new System.Drawing.Size(698, 339);
+			this.operation_log_txt.Size = new System.Drawing.Size(698, 250);
 			this.operation_log_txt.TabIndex = 13;
 			this.operation_log_txt.Text = "\r\n无日志";
 			// 
@@ -316,7 +316,7 @@ namespace KeyFingerprintLooker
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button6.Location = new System.Drawing.Point(629, 452);
+			this.button6.Location = new System.Drawing.Point(629, 363);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(75, 23);
 			this.button6.TabIndex = 11;
@@ -378,7 +378,7 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Controls.Add(this.checkBox1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 157);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(710, 481);
+			this.groupBox1.Size = new System.Drawing.Size(710, 392);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "结果";
@@ -388,7 +388,7 @@ namespace KeyFingerprintLooker
 			this.not_wrap_content_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.not_wrap_content_chk.Checked = true;
 			this.not_wrap_content_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.not_wrap_content_chk.Location = new System.Drawing.Point(386, 453);
+			this.not_wrap_content_chk.Location = new System.Drawing.Point(386, 364);
 			this.not_wrap_content_chk.Name = "not_wrap_content_chk";
 			this.not_wrap_content_chk.Size = new System.Drawing.Size(83, 24);
 			this.not_wrap_content_chk.TabIndex = 25;
@@ -398,7 +398,8 @@ namespace KeyFingerprintLooker
 			// 
 			// about_txt
 			// 
-			this.about_txt.Location = new System.Drawing.Point(6, 452);
+			this.about_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.about_txt.Location = new System.Drawing.Point(6, 363);
 			this.about_txt.Name = "about_txt";
 			this.about_txt.Size = new System.Drawing.Size(142, 23);
 			this.about_txt.TabIndex = 24;
@@ -410,7 +411,7 @@ namespace KeyFingerprintLooker
 			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox4.Checked = true;
 			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox4.Location = new System.Drawing.Point(475, 453);
+			this.checkBox4.Location = new System.Drawing.Point(475, 364);
 			this.checkBox4.Name = "checkBox4";
 			this.checkBox4.Size = new System.Drawing.Size(148, 24);
 			this.checkBox4.TabIndex = 19;
@@ -456,7 +457,7 @@ namespace KeyFingerprintLooker
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(734, 650);
+			this.ClientSize = new System.Drawing.Size(734, 561);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.MinimumSize = new System.Drawing.Size(750, 600);
