@@ -90,9 +90,17 @@ namespace KeyFingerprintLooker
 		
 		void Button4Click(object sender, EventArgs e)
 		{
+			String Path = "未找到有效的文件";
+			
 			// keytool_file_path_txt.Text = GetKeytoolPath();
 			
-			keytool_file_path_txt.Text = FindInstallLocationOfJava() + @"bin\keytool.exe";;
+			string InstallLocationOfJava = FindInstallLocationOfJava();
+			if(!string.IsNullOrEmpty(InstallLocationOfJava))
+			{
+				Path = InstallLocationOfJava + @"bin\keytool.exe";;
+			}
+			
+			keytool_file_path_txt.Text = Path;
 		}
 		
 		void Button8Click(object sender, EventArgs e)
