@@ -173,7 +173,7 @@ namespace KeyFingerprintLooker
 			OpenFileDialog OpenDialog = new OpenFileDialog();
 			
 			string[] Objs = new String[] {FILE_TYPE_KEYSTORE, FILE_TYPE_JKS, FILE_TYPE_APK, FILE_TYPE_RSA};
-			OpenDialog.Filter = string.Format("密钥文件|*.{0};*.{1}|应用|*.{2}|APK 包内证书|*.{3}|所有文件|*.*", Objs);
+			OpenDialog.Filter = string.Format("密钥文件, APK 包内证书, 应用|*.{0}; *.{1}; *.{2}; *.{3}|所有文件|*.*", Objs);
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
 			{
