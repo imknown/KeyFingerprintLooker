@@ -32,7 +32,7 @@ namespace KeyFingerprintLooker
 			// TODO: Add constructor code after the InitializeComponent() call.
 			// 
 			
-			ProcessType Type = Reg.GetProcessType();
+			ProcessType Type = RegUtil.GetProcessType();
 			about_txt.Text += ", " + Type.ToString() + " 模式";
 		}
 		
@@ -42,7 +42,7 @@ namespace KeyFingerprintLooker
 			
 			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X86 };
 			
-			ProcessType Type = Reg.GetProcessType();
+			ProcessType Type = RegUtil.GetProcessType();
 			if(Type == ProcessType.X64)
 			{
 				ProcessTypeList.Add(ProcessType.X64);
@@ -54,7 +54,7 @@ namespace KeyFingerprintLooker
 				AppendLog(ProcessType.X86.ToString() + "模式");
 			}
 			
-			List<String> InstallLocationList = Reg.FindRegKey(ProcessTypeList, "Java");
+			List<String> InstallLocationList = RegUtil.FindRegKey(ProcessTypeList, "Java");
 			
 			foreach (string InstallLocation in InstallLocationList)
 			{
@@ -97,16 +97,18 @@ namespace KeyFingerprintLooker
 			string InstallLocationOfJava = FindInstallLocationOfJava();
 			if(!string.IsNullOrEmpty(InstallLocationOfJava))
 			{
-				Path = InstallLocationOfJava + @"bin\keytool.exe";;
+				Path = InstallLocationOfJava + @"bin\" + KEYTOOL_EXE;
 			}
 			
 			keytool_file_path_txt.Text = Path;
 		}
 		
+		public const string KEYTOOL_EXE = "keytool.exe";
+		
 		void Button8Click(object sender, EventArgs e)
 		{
 			OpenFileDialog OpenDialog = new OpenFileDialog();
-			OpenDialog.Filter = "keytool.exe|keytool.exe";
+			OpenDialog.Filter = KEYTOOL_EXE + "|" + KEYTOOL_EXE;
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
 			{
@@ -160,11 +162,18 @@ namespace KeyFingerprintLooker
 		{
 			operation_log_txt.Text = string.Empty;
 		}
+		
+		public const string FILE_TYPE_KEYSTORE = "keystore";
+		public const string FILE_TYPE_JKS = "jks";
+		public const string FILE_TYPE_APK = "APK";
+		public const string FILE_TYPE_RSA = "RSA";
 
 		void Button2Click(object sender, EventArgs e)
 		{
 			OpenFileDialog OpenDialog = new OpenFileDialog();
-			OpenDialog.Filter = "秘钥文件(*.keystore;*.jks)|*.keystore;*.jks|所有文件 (*.*)|*.*";
+			
+			string[] Objs = new String[] {FILE_TYPE_KEYSTORE, FILE_TYPE_JKS, FILE_TYPE_APK, FILE_TYPE_RSA};
+			OpenDialog.Filter = string.Format("密钥文件|*.{0};*.{1}|应用|*.{2}|APK 包内证书|*.{3}|所有文件|*.*", Objs);
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
 			{
@@ -174,6 +183,8 @@ namespace KeyFingerprintLooker
 		
 		# endregion
 		
+		
+		
 		void Button3Click(object sender, EventArgs e)
 		{
 			if(checkBox4.Checked)
@@ -181,35 +192,60 @@ namespace KeyFingerprintLooker
 				operation_log_txt.Text = string.Empty;
 			}
 			
-			string KeystoreFilePath = keystore_file_path_txt.Text;
-			
-			if(!File.Exists(KeystoreFilePath)){
-				AppendLog("秘钥文件不存在");
-				
-				return;
-			}
-			
 			string KeytoolFilePath = keytool_file_path_txt.Text;
 			
-			if(!File.Exists(KeystoreFilePath))
+			if(!File.Exists(KeytoolFilePath))
 			{
 				AppendLog("keytool.exe 文件不存在");
 				
 				return;
 			}
 			
-			string CmdString = surroundInCmd(KeytoolFilePath) + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
+			string KeystoreFilePath = keystore_file_path_txt.Text;
 			
-			string CmdResult = Command.RunCmd(CmdString);
+			if(!File.Exists(KeystoreFilePath)){
+				AppendLog("密钥文件不存在");
+				
+				return;
+			}
+			
+			bool EndsWithKeystore = KeystoreFilePath.EndsWith(FILE_TYPE_KEYSTORE, true, System.Globalization.CultureInfo.CurrentCulture);
+			bool EndsWithJks = KeystoreFilePath.EndsWith(FILE_TYPE_JKS, true, System.Globalization.CultureInfo.CurrentCulture);
+			bool EndsWithAPK = KeystoreFilePath.EndsWith(FILE_TYPE_APK, true, System.Globalization.CultureInfo.CurrentCulture);
+			bool EndsWithRSA = KeystoreFilePath.EndsWith(FILE_TYPE_RSA, true, System.Globalization.CultureInfo.CurrentCulture);
+			
+			string CmdString = string.Empty;
+			
+			if(EndsWithAPK)
+			{
+				string CertRsaPath = ZipUtil.UnzipCERT_RSA(KeystoreFilePath);
+
+				CmdString = surroundInCmd(KeytoolFilePath) + " -printcert -file " + surroundInCmd(CertRsaPath);
+			}
+			else if(EndsWithRSA)
+			{
+				CmdString = surroundInCmd(KeytoolFilePath) + " -printcert -file " + surroundInCmd(KeystoreFilePath);
+			}
+			else
+			{
+				CmdString = surroundInCmd(KeytoolFilePath) + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
+			}
+			
+			string CmdResult = CommandUtil.RunCmd(CmdString);
 			
 			if(CmdResult.Contains(Password.PASSWORD_ERROR))
 			{
 				AppendLog("密码错误");
 				return;
 			}
-			else if(CmdResult.Contains(Password.BAD_FILE_ERROR))
+			else if(CmdResult.Contains(Password.BAD_FORMAT_FILE_ERROR))
 			{
-				AppendLog("密钥文件已损坏");
+				AppendLog("密钥文件格式有误");
+				return;
+			}
+			else if(CmdResult.Contains(Password.BAD_EMPTY_FILE_ERROR))
+			{
+				AppendLog("密钥文件内容为空");
 				return;
 			}
 			else if(CmdResult == string.Empty)
@@ -227,7 +263,7 @@ namespace KeyFingerprintLooker
 			}
 			catch(Exception ex)
 			{
-				AppendLog(ex.StackTrace);
+				AppendLog(ex.ToString());
 			}
 		}
 		
@@ -254,7 +290,7 @@ namespace KeyFingerprintLooker
 		{
 			Result = new Result();
 			
-			comboBox1.Items.Clear();
+			alias_selector_cmb.Items.Clear();
 			Result.AliasInfoList = new List<AliasInfo>();
 			AliasInfo AliasInfo = new AliasInfo();
 			
@@ -296,13 +332,23 @@ namespace KeyFingerprintLooker
 					AliasInfo.SHA1_CAPS = AliasInfo.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
 					
 					Result.AliasInfoList.Add(AliasInfo);
-					comboBox1.Items.Add(AliasInfo.AliasName);
+					alias_selector_cmb.Items.Add(AliasInfo.AliasName);
 				}
 			}
 			
 			sr.Close();
 			label1.Text = Result.AliasCount + " 个别名";
-			comboBox1.SelectedIndex = 0;
+			
+			if(int.Parse(Result.AliasCount) <= 1)
+			{
+				alias_selector_cmb.Enabled = false;
+			}
+			else
+			{
+				alias_selector_cmb.Enabled = true;
+			}
+			
+			alias_selector_cmb.SelectedIndex = 0;
 		}
 		
 		Password password = new Password();
@@ -321,7 +367,7 @@ namespace KeyFingerprintLooker
 		
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
-			int SelectedIndex = comboBox1.SelectedIndex;
+			int SelectedIndex = alias_selector_cmb.SelectedIndex;
 			
 			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
 			
@@ -337,7 +383,7 @@ namespace KeyFingerprintLooker
 		
 		void chechUseColonForSplit()
 		{
-			int SelectedIndex = comboBox1.SelectedIndex;
+			int SelectedIndex = alias_selector_cmb.SelectedIndex;
 			
 			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
 			

@@ -23,7 +23,7 @@ namespace KeyFingerprintLooker.Utils
 	/// <summary>
 	/// Description of Reg.
 	/// </summary>
-	public class Reg
+	public class RegUtil
 	{
 		public static List<String> FindRegKey(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
