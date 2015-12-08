@@ -387,7 +387,7 @@ namespace KeyFingerprintLooker
 			
 			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
 			
-			UseColonForSplit = checkBox1.Checked;
+			UseColonForSplit = colon_for_split_chk.Checked;
 			if(UseColonForSplit)
 			{
 				MD5_txt.Text = AliasInfo.MD5_CAPS_UseColonForSplit;
@@ -402,7 +402,7 @@ namespace KeyFingerprintLooker
 
 		void chechUseCapsOrNot()
 		{
-			UseCaps = checkBox2.Checked;
+			UseCaps = caps_chk.Checked;
 			if(UseCaps)
 			{
 				MD5_txt.Text = MD5_txt.Text.ToUpper();
