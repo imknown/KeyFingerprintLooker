@@ -25,10 +25,12 @@ namespace KeyFingerprintLooker.Utils
 	/// </summary>
 	public class RegUtil
 	{
-		public static List<String> FindRegKey(List<ProcessType> ProcessTypeList, string whichToFound)
+		#region [ FromInstallAppList ]
+		[method: Obsolete("Use FindRegKeyByJavaSoft() instead")]
+		public static List<String> FindRegKeyFromInstallAppList(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
 			#region [ 初始化 ]
-			RegistryKey lmKey, WOW64UninstallKey, CurrentVersionUninstallKey;
+			RegistryKey lmKey, CurrentVersionUninstallKey, WOW64UninstallKey;
 
 			lmKey = Registry.LocalMachine;
 
@@ -50,8 +52,8 @@ namespace KeyFingerprintLooker.Utils
 			
 			#endregion
 			
-			List<String> CurrentVersionInstallLocationList = FindInstallLocation(CurrentVersionUninstallKey, CurrentVersionProgramKeys, whichToFound);
-			List<String> WOW64InstallLocationList = FindInstallLocation(WOW64UninstallKey, WOW64ProgramKeys, whichToFound);
+			List<String> CurrentVersionInstallLocationList = FindInstallLocationFromInstallAppList(CurrentVersionUninstallKey, CurrentVersionProgramKeys, whichToFound);
+			List<String> WOW64InstallLocationList = FindInstallLocationFromInstallAppList(WOW64UninstallKey, WOW64ProgramKeys, whichToFound);
 			
 			List<String> InstallLocationList = new List<String>();
 			InstallLocationList.AddRange(CurrentVersionInstallLocationList);
@@ -64,7 +66,8 @@ namespace KeyFingerprintLooker.Utils
 			return InstallLocationList;
 		}
 
-		private static List<String> FindInstallLocation(RegistryKey UninstallKey, string[] ProgramKeys, string whichToFound)
+		[method: Obsolete("Use FindInstallLocationByJavaSoft() instead")]
+		private static List<String> FindInstallLocationFromInstallAppList(RegistryKey UninstallKey, string[] ProgramKeys, string whichToFound)
 		{
 			List<String> InstallLocationList = new List<String>();
 			
@@ -85,6 +88,86 @@ namespace KeyFingerprintLooker.Utils
 			
 			return InstallLocationList;
 		}
+		
+		#endregion
+		
+		#region [ ByJavaSoft ]
+		
+		public const string JDK_FULL = "Java Development Kit";
+		public const string JRE_FULL = "Java Runtime Environment";
+		
+		public static List<String> FindRegKeyByJavaSoft(List<ProcessType> ProcessTypeList, string whichToFound)
+		{
+			#region [ 初始化 ]
+			RegistryKey lmKey, CurrentVersionJavaSoftKey, WOW64JavaSoftKey;
+
+			lmKey = Registry.LocalMachine;
+
+			CurrentVersionJavaSoftKey = lmKey.OpenSubKey(@"SOFTWARE\JavaSoft\");
+			WOW64JavaSoftKey = lmKey.OpenSubKey(@"SOFTWARE\WOW6432Node\JavaSoft\");
+			
+			string[] CurrentVersionJavaKeys = new String[0];
+			string[] WOW64JavaKeys = new String[0];
+			
+			if(ProcessTypeList.Contains(ProcessType.X64))
+			{
+				CurrentVersionJavaKeys = CurrentVersionJavaSoftKey.GetSubKeyNames();
+			}
+			
+			if(ProcessTypeList.Contains(ProcessType.X86))
+			{
+				WOW64JavaKeys = WOW64JavaSoftKey.GetSubKeyNames();
+			}
+			
+			#endregion
+			
+			List<String> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
+			List<String> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
+			
+			List<String> InstallLocationList = new List<String>();
+			InstallLocationList.AddRange(CurrentVersionInstallLocationList);
+			InstallLocationList.AddRange(WOW64InstallLocationList);
+			
+			lmKey.Close();
+			
+			return InstallLocationList;
+		}
+		
+		private static List<String> FindInstallLocationByJavaSoft(RegistryKey JavaSoftKey, string[] JavaKeys, string whichToFound)
+		{
+			List<String> InstallLocationList = new List<String>();
+			
+			foreach (string keyName in JavaKeys)
+			{
+				if(keyName == JDK_FULL || keyName == JRE_FULL)
+				{
+					RegistryKey JavaTypesKey = JavaSoftKey.OpenSubKey(keyName);
+					
+					string[] JavaTypesSubKeyNames = JavaTypesKey.GetSubKeyNames();
+					
+					foreach(String JavaTypesSubKeyName in JavaTypesSubKeyNames)
+					{
+						RegistryKey JavaVersionsKey = JavaTypesKey.OpenSubKey(JavaTypesSubKeyName);
+						
+						String JavaHome = (String) JavaVersionsKey.GetValue("JavaHome");
+						
+						if(!string.IsNullOrEmpty(JavaHome) && JavaTypesSubKeyName.Contains(whichToFound))
+						{
+							InstallLocationList.Add(JavaHome + "\\");
+						}
+						
+						JavaVersionsKey.Close();
+					}
+					
+					JavaTypesKey.Close();
+				}
+			}
+			
+			JavaSoftKey.Close();
+			
+			return InstallLocationList;
+		}
+		#endregion
 		
 		public static ProcessType GetProcessType()
 		{

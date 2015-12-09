@@ -54,7 +54,8 @@ namespace KeyFingerprintLooker
 				AppendLog(ProcessType.X86.ToString() + "模式");
 			}
 			
-			List<String> InstallLocationList = RegUtil.FindRegKey(ProcessTypeList, "Java");
+			// List<String> InstallLocationList = RegUtil.FindRegKeyFromInstallAppList(ProcessTypeList, "Java");
+			List<String> InstallLocationList = RegUtil.FindRegKeyByJavaSoft(ProcessTypeList, "_");
 			
 			foreach (string InstallLocation in InstallLocationList)
 			{
@@ -92,13 +93,21 @@ namespace KeyFingerprintLooker
 		{
 			String Path = "未找到有效的文件";
 			
-			// keytool_file_path_txt.Text = GetKeytoolPath();
+			// keytool_file_path_txt.Text = GetKeytoolPath() + @"bin\" + KEYTOOL_EXE;
 			
 			string InstallLocationOfJava = FindInstallLocationOfJava();
 			if(!string.IsNullOrEmpty(InstallLocationOfJava))
 			{
-				Path = InstallLocationOfJava + @"bin\" + KEYTOOL_EXE;
+				string PathTemp = InstallLocationOfJava + @"bin\" + KEYTOOL_EXE;
+				
+				AppendLog(PathTemp);
+				
+				if(File.Exists(PathTemp))
+				{
+					Path = PathTemp;
+				}
 			}
+			
 			
 			keytool_file_path_txt.Text = Path;
 		}
