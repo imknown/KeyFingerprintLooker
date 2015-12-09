@@ -133,6 +133,13 @@ namespace KeyFingerprintLooker.Utils
 			return InstallLocationList;
 		}
 		
+		/// <summary>
+		/// Thanks: https://github.com/Redth/Android.Signature.Tool
+		/// </summary>
+		/// <param name="JavaSoftKey"></param>
+		/// <param name="JavaKeys"></param>
+		/// <param name="whichToFound"></param>
+		/// <returns></returns>
 		private static List<String> FindInstallLocationByJavaSoft(RegistryKey JavaSoftKey, string[] JavaKeys, string whichToFound)
 		{
 			List<String> InstallLocationList = new List<String>();
