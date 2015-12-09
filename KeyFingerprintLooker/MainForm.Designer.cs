@@ -76,9 +76,10 @@ namespace KeyFingerprintLooker
 			this.keystore_file_path_txt.AllowDrop = true;
 			this.keystore_file_path_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.keystore_file_path_txt.Location = new System.Drawing.Point(118, 47);
+			this.keystore_file_path_txt.Location = new System.Drawing.Point(157, 55);
+			this.keystore_file_path_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.keystore_file_path_txt.Name = "keystore_file_path_txt";
-			this.keystore_file_path_txt.Size = new System.Drawing.Size(389, 21);
+			this.keystore_file_path_txt.Size = new System.Drawing.Size(397, 25);
 			this.keystore_file_path_txt.TabIndex = 1;
 			this.keystore_file_path_txt.Text = "请指定密钥文件或APK路径, 支持拖拽";
 			this.keystore_file_path_txt.TextChanged += new System.EventHandler(this.Keystore_file_path_txtTextChanged);
@@ -88,9 +89,10 @@ namespace KeyFingerprintLooker
 			// auto_fetch_keystore_file_path_btn
 			// 
 			this.auto_fetch_keystore_file_path_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.auto_fetch_keystore_file_path_btn.Location = new System.Drawing.Point(513, 45);
+			this.auto_fetch_keystore_file_path_btn.Location = new System.Drawing.Point(562, 54);
+			this.auto_fetch_keystore_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.auto_fetch_keystore_file_path_btn.Name = "auto_fetch_keystore_file_path_btn";
-			this.auto_fetch_keystore_file_path_btn.Size = new System.Drawing.Size(70, 23);
+			this.auto_fetch_keystore_file_path_btn.Size = new System.Drawing.Size(90, 28);
 			this.auto_fetch_keystore_file_path_btn.TabIndex = 5;
 			this.auto_fetch_keystore_file_path_btn.Text = "自动寻找";
 			this.auto_fetch_keystore_file_path_btn.UseVisualStyleBackColor = true;
@@ -99,9 +101,10 @@ namespace KeyFingerprintLooker
 			// browse_keystore_file_path_btn
 			// 
 			this.browse_keystore_file_path_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.browse_keystore_file_path_btn.Location = new System.Drawing.Point(588, 45);
+			this.browse_keystore_file_path_btn.Location = new System.Drawing.Point(660, 54);
+			this.browse_keystore_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.browse_keystore_file_path_btn.Name = "browse_keystore_file_path_btn";
-			this.browse_keystore_file_path_btn.Size = new System.Drawing.Size(70, 23);
+			this.browse_keystore_file_path_btn.Size = new System.Drawing.Size(90, 28);
 			this.browse_keystore_file_path_btn.TabIndex = 6;
 			this.browse_keystore_file_path_btn.Text = "浏览...";
 			this.browse_keystore_file_path_btn.UseVisualStyleBackColor = true;
@@ -113,8 +116,8 @@ namespace KeyFingerprintLooker
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.xamarin_first_chk);
 			this.groupBox2.Controls.Add(this.auto_fetch_keytool_file_path_btn);
-			this.groupBox2.Controls.Add(this.browse_keytool_file_path_btn);
 			this.groupBox2.Controls.Add(this.label6);
+			this.groupBox2.Controls.Add(this.browse_keytool_file_path_btn);
 			this.groupBox2.Controls.Add(this.keytool_file_path_txt);
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.label4);
@@ -122,11 +125,13 @@ namespace KeyFingerprintLooker
 			this.groupBox2.Controls.Add(this.keystore_file_type_debug_rdbtn);
 			this.groupBox2.Controls.Add(this.password_txt);
 			this.groupBox2.Controls.Add(this.keystore_file_path_txt);
-			this.groupBox2.Controls.Add(this.auto_fetch_keystore_file_path_btn);
 			this.groupBox2.Controls.Add(this.browse_keystore_file_path_btn);
-			this.groupBox2.Location = new System.Drawing.Point(11, 12);
+			this.groupBox2.Controls.Add(this.auto_fetch_keystore_file_path_btn);
+			this.groupBox2.Location = new System.Drawing.Point(13, 12);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(665, 139);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.groupBox2.Size = new System.Drawing.Size(758, 159);
 			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "源";
@@ -135,9 +140,10 @@ namespace KeyFingerprintLooker
 			// 
 			this.xamarin_first_chk.Checked = true;
 			this.xamarin_first_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.xamarin_first_chk.Location = new System.Drawing.Point(118, 74);
+			this.xamarin_first_chk.Location = new System.Drawing.Point(157, 86);
+			this.xamarin_first_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.xamarin_first_chk.Name = "xamarin_first_chk";
-			this.xamarin_first_chk.Size = new System.Drawing.Size(388, 24);
+			this.xamarin_first_chk.Size = new System.Drawing.Size(378, 26);
 			this.xamarin_first_chk.TabIndex = 20;
 			this.xamarin_first_chk.Text = "优先查找 Xamarin Debug Key";
 			this.xamarin_first_chk.UseVisualStyleBackColor = true;
@@ -145,9 +151,10 @@ namespace KeyFingerprintLooker
 			// auto_fetch_keytool_file_path_btn
 			// 
 			this.auto_fetch_keytool_file_path_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.auto_fetch_keytool_file_path_btn.Location = new System.Drawing.Point(513, 20);
+			this.auto_fetch_keytool_file_path_btn.Location = new System.Drawing.Point(562, 23);
+			this.auto_fetch_keytool_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.auto_fetch_keytool_file_path_btn.Name = "auto_fetch_keytool_file_path_btn";
-			this.auto_fetch_keytool_file_path_btn.Size = new System.Drawing.Size(70, 23);
+			this.auto_fetch_keytool_file_path_btn.Size = new System.Drawing.Size(90, 28);
 			this.auto_fetch_keytool_file_path_btn.TabIndex = 3;
 			this.auto_fetch_keytool_file_path_btn.Text = "自动寻找";
 			this.auto_fetch_keytool_file_path_btn.UseVisualStyleBackColor = true;
@@ -156,9 +163,10 @@ namespace KeyFingerprintLooker
 			// browse_keytool_file_path_btn
 			// 
 			this.browse_keytool_file_path_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.browse_keytool_file_path_btn.Location = new System.Drawing.Point(588, 20);
+			this.browse_keytool_file_path_btn.Location = new System.Drawing.Point(660, 23);
+			this.browse_keytool_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.browse_keytool_file_path_btn.Name = "browse_keytool_file_path_btn";
-			this.browse_keytool_file_path_btn.Size = new System.Drawing.Size(70, 23);
+			this.browse_keytool_file_path_btn.Size = new System.Drawing.Size(90, 28);
 			this.browse_keytool_file_path_btn.TabIndex = 4;
 			this.browse_keytool_file_path_btn.Text = "浏览...";
 			this.browse_keytool_file_path_btn.UseVisualStyleBackColor = true;
@@ -166,9 +174,10 @@ namespace KeyFingerprintLooker
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(6, 20);
+			this.label6.Location = new System.Drawing.Point(8, 18);
+			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(106, 23);
+			this.label6.Size = new System.Drawing.Size(141, 36);
 			this.label6.TabIndex = 23;
 			this.label6.Text = "keytool.exe 地址";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -178,9 +187,10 @@ namespace KeyFingerprintLooker
 			this.keytool_file_path_txt.AllowDrop = true;
 			this.keytool_file_path_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.keytool_file_path_txt.Location = new System.Drawing.Point(118, 20);
+			this.keytool_file_path_txt.Location = new System.Drawing.Point(157, 24);
+			this.keytool_file_path_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.keytool_file_path_txt.Name = "keytool_file_path_txt";
-			this.keytool_file_path_txt.Size = new System.Drawing.Size(389, 21);
+			this.keytool_file_path_txt.Size = new System.Drawing.Size(397, 25);
 			this.keytool_file_path_txt.TabIndex = 0;
 			this.keytool_file_path_txt.Text = "请指定 keytool.exe 路径, 支持拖拽";
 			this.keytool_file_path_txt.DragDrop += new System.Windows.Forms.DragEventHandler(this.keytool_file_path_txtDragDrop);
@@ -188,18 +198,20 @@ namespace KeyFingerprintLooker
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(6, 45);
+			this.label5.Location = new System.Drawing.Point(8, 49);
+			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(106, 23);
+			this.label5.Size = new System.Drawing.Size(141, 36);
 			this.label5.TabIndex = 21;
 			this.label5.Text = "密钥或APK地址";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(6, 103);
+			this.label4.Location = new System.Drawing.Point(8, 112);
+			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(106, 23);
+			this.label4.Size = new System.Drawing.Size(141, 36);
 			this.label4.TabIndex = 20;
 			this.label4.Text = "密钥密码";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -207,9 +219,10 @@ namespace KeyFingerprintLooker
 			// keystore_file_type_release_rdbtn
 			// 
 			this.keystore_file_type_release_rdbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.keystore_file_type_release_rdbtn.Location = new System.Drawing.Point(588, 102);
+			this.keystore_file_type_release_rdbtn.Location = new System.Drawing.Point(660, 112);
+			this.keystore_file_type_release_rdbtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.keystore_file_type_release_rdbtn.Name = "keystore_file_type_release_rdbtn";
-			this.keystore_file_type_release_rdbtn.Size = new System.Drawing.Size(70, 24);
+			this.keystore_file_type_release_rdbtn.Size = new System.Drawing.Size(90, 38);
 			this.keystore_file_type_release_rdbtn.TabIndex = 8;
 			this.keystore_file_type_release_rdbtn.Text = "Release";
 			this.keystore_file_type_release_rdbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -220,9 +233,10 @@ namespace KeyFingerprintLooker
 			// 
 			this.keystore_file_type_debug_rdbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.keystore_file_type_debug_rdbtn.Checked = true;
-			this.keystore_file_type_debug_rdbtn.Location = new System.Drawing.Point(513, 102);
+			this.keystore_file_type_debug_rdbtn.Location = new System.Drawing.Point(562, 112);
+			this.keystore_file_type_debug_rdbtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.keystore_file_type_debug_rdbtn.Name = "keystore_file_type_debug_rdbtn";
-			this.keystore_file_type_debug_rdbtn.Size = new System.Drawing.Size(70, 24);
+			this.keystore_file_type_debug_rdbtn.Size = new System.Drawing.Size(90, 38);
 			this.keystore_file_type_debug_rdbtn.TabIndex = 7;
 			this.keystore_file_type_debug_rdbtn.TabStop = true;
 			this.keystore_file_type_debug_rdbtn.Text = "Debug";
@@ -235,10 +249,11 @@ namespace KeyFingerprintLooker
 			this.password_txt.AllowDrop = true;
 			this.password_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.password_txt.Location = new System.Drawing.Point(118, 105);
+			this.password_txt.Location = new System.Drawing.Point(157, 118);
+			this.password_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.password_txt.Name = "password_txt";
 			this.password_txt.ReadOnly = true;
-			this.password_txt.Size = new System.Drawing.Size(389, 21);
+			this.password_txt.Size = new System.Drawing.Size(397, 25);
 			this.password_txt.TabIndex = 2;
 			this.password_txt.Text = "android";
 			this.password_txt.TextChanged += new System.EventHandler(this.TextBox1TextChanged);
@@ -247,9 +262,10 @@ namespace KeyFingerprintLooker
 			// 
 			this.colon_for_split_chk.Checked = true;
 			this.colon_for_split_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.colon_for_split_chk.Location = new System.Drawing.Point(118, 107);
+			this.colon_for_split_chk.Location = new System.Drawing.Point(155, 119);
+			this.colon_for_split_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.colon_for_split_chk.Name = "colon_for_split_chk";
-			this.colon_for_split_chk.Size = new System.Drawing.Size(101, 24);
+			this.colon_for_split_chk.Size = new System.Drawing.Size(135, 26);
 			this.colon_for_split_chk.TabIndex = 6;
 			this.colon_for_split_chk.Text = "冒号分隔";
 			this.colon_for_split_chk.UseVisualStyleBackColor = true;
@@ -260,17 +276,19 @@ namespace KeyFingerprintLooker
 			this.SHA1_txt.AllowDrop = true;
 			this.SHA1_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.SHA1_txt.Location = new System.Drawing.Point(118, 80);
+			this.SHA1_txt.Location = new System.Drawing.Point(155, 88);
+			this.SHA1_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.SHA1_txt.Name = "SHA1_txt";
 			this.SHA1_txt.ReadOnly = true;
-			this.SHA1_txt.Size = new System.Drawing.Size(464, 21);
+			this.SHA1_txt.Size = new System.Drawing.Size(397, 25);
 			this.SHA1_txt.TabIndex = 8;
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(6, 78);
+			this.label2.Location = new System.Drawing.Point(6, 82);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(106, 23);
+			this.label2.Size = new System.Drawing.Size(141, 36);
 			this.label2.TabIndex = 5;
 			this.label2.Text = "SHA1";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -278,9 +296,10 @@ namespace KeyFingerprintLooker
 			// copy_SHA1_btn
 			// 
 			this.copy_SHA1_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.copy_SHA1_btn.Location = new System.Drawing.Point(588, 78);
+			this.copy_SHA1_btn.Location = new System.Drawing.Point(560, 86);
+			this.copy_SHA1_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.copy_SHA1_btn.Name = "copy_SHA1_btn";
-			this.copy_SHA1_btn.Size = new System.Drawing.Size(70, 23);
+			this.copy_SHA1_btn.Size = new System.Drawing.Size(190, 28);
 			this.copy_SHA1_btn.TabIndex = 10;
 			this.copy_SHA1_btn.Text = "复制";
 			this.copy_SHA1_btn.UseVisualStyleBackColor = true;
@@ -291,21 +310,23 @@ namespace KeyFingerprintLooker
 			this.operation_log_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.operation_log_txt.Location = new System.Drawing.Point(6, 137);
+			this.operation_log_txt.Location = new System.Drawing.Point(8, 151);
+			this.operation_log_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.operation_log_txt.Multiline = true;
 			this.operation_log_txt.Name = "operation_log_txt";
 			this.operation_log_txt.ReadOnly = true;
 			this.operation_log_txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.operation_log_txt.Size = new System.Drawing.Size(654, 218);
+			this.operation_log_txt.Size = new System.Drawing.Size(742, 215);
 			this.operation_log_txt.TabIndex = 13;
 			this.operation_log_txt.Text = "\r\n无日志";
 			// 
 			// get_fingerprint_btn
 			// 
 			this.get_fingerprint_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.get_fingerprint_btn.Location = new System.Drawing.Point(588, 21);
+			this.get_fingerprint_btn.Location = new System.Drawing.Point(560, 24);
+			this.get_fingerprint_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.get_fingerprint_btn.Name = "get_fingerprint_btn";
-			this.get_fingerprint_btn.Size = new System.Drawing.Size(70, 23);
+			this.get_fingerprint_btn.Size = new System.Drawing.Size(190, 28);
 			this.get_fingerprint_btn.TabIndex = 9;
 			this.get_fingerprint_btn.Text = "计算指纹";
 			this.get_fingerprint_btn.UseVisualStyleBackColor = true;
@@ -314,9 +335,10 @@ namespace KeyFingerprintLooker
 			// button6
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button6.Location = new System.Drawing.Point(588, 361);
+			this.button6.Location = new System.Drawing.Point(657, 372);
+			this.button6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(70, 23);
+			this.button6.Size = new System.Drawing.Size(93, 28);
 			this.button6.TabIndex = 11;
 			this.button6.Text = "清空";
 			this.button6.UseVisualStyleBackColor = true;
@@ -327,18 +349,20 @@ namespace KeyFingerprintLooker
 			this.MD5_txt.AllowDrop = true;
 			this.MD5_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.MD5_txt.Location = new System.Drawing.Point(118, 53);
+			this.MD5_txt.Location = new System.Drawing.Point(155, 57);
+			this.MD5_txt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.MD5_txt.Name = "MD5_txt";
 			this.MD5_txt.ReadOnly = true;
-			this.MD5_txt.Size = new System.Drawing.Size(464, 21);
+			this.MD5_txt.Size = new System.Drawing.Size(397, 25);
 			this.MD5_txt.TabIndex = 15;
 			// 
 			// copy_MD5_btn
 			// 
 			this.copy_MD5_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.copy_MD5_btn.Location = new System.Drawing.Point(588, 49);
+			this.copy_MD5_btn.Location = new System.Drawing.Point(560, 55);
+			this.copy_MD5_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.copy_MD5_btn.Name = "copy_MD5_btn";
-			this.copy_MD5_btn.Size = new System.Drawing.Size(70, 23);
+			this.copy_MD5_btn.Size = new System.Drawing.Size(190, 28);
 			this.copy_MD5_btn.TabIndex = 16;
 			this.copy_MD5_btn.Text = "复制";
 			this.copy_MD5_btn.UseVisualStyleBackColor = true;
@@ -347,8 +371,9 @@ namespace KeyFingerprintLooker
 			// label3
 			// 
 			this.label3.Location = new System.Drawing.Point(6, 51);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(106, 23);
+			this.label3.Size = new System.Drawing.Size(141, 36);
 			this.label3.TabIndex = 14;
 			this.label3.Text = "MD5";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -374,9 +399,11 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.SHA1_txt);
 			this.groupBox1.Controls.Add(this.colon_for_split_chk);
-			this.groupBox1.Location = new System.Drawing.Point(11, 157);
+			this.groupBox1.Location = new System.Drawing.Point(13, 177);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(665, 390);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.groupBox1.Size = new System.Drawing.Size(756, 406);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "结果";
@@ -386,9 +413,10 @@ namespace KeyFingerprintLooker
 			this.not_wrap_content_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.not_wrap_content_chk.Checked = true;
 			this.not_wrap_content_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.not_wrap_content_chk.Location = new System.Drawing.Point(481, 361);
+			this.not_wrap_content_chk.Location = new System.Drawing.Point(532, 374);
+			this.not_wrap_content_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.not_wrap_content_chk.Name = "not_wrap_content_chk";
-			this.not_wrap_content_chk.Size = new System.Drawing.Size(102, 24);
+			this.not_wrap_content_chk.Size = new System.Drawing.Size(117, 26);
 			this.not_wrap_content_chk.TabIndex = 25;
 			this.not_wrap_content_chk.Text = "自动换行";
 			this.not_wrap_content_chk.UseVisualStyleBackColor = true;
@@ -397,9 +425,10 @@ namespace KeyFingerprintLooker
 			// about_txt
 			// 
 			this.about_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.about_txt.Location = new System.Drawing.Point(6, 361);
+			this.about_txt.Location = new System.Drawing.Point(8, 373);
+			this.about_txt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.about_txt.Name = "about_txt";
-			this.about_txt.Size = new System.Drawing.Size(134, 23);
+			this.about_txt.Size = new System.Drawing.Size(179, 26);
 			this.about_txt.TabIndex = 24;
 			this.about_txt.Text = "0.2 beta";
 			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -409,9 +438,10 @@ namespace KeyFingerprintLooker
 			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox4.Checked = true;
 			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox4.Location = new System.Drawing.Point(300, 361);
+			this.checkBox4.Location = new System.Drawing.Point(336, 374);
+			this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(165, 24);
+			this.checkBox4.Size = new System.Drawing.Size(188, 26);
 			this.checkBox4.TabIndex = 19;
 			this.checkBox4.Text = "重新计算后, 清空日志";
 			this.checkBox4.UseVisualStyleBackColor = true;
@@ -423,9 +453,10 @@ namespace KeyFingerprintLooker
 			this.alias_selector_cmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.alias_selector_cmb.Enabled = false;
 			this.alias_selector_cmb.FormattingEnabled = true;
-			this.alias_selector_cmb.Location = new System.Drawing.Point(118, 24);
+			this.alias_selector_cmb.Location = new System.Drawing.Point(155, 24);
+			this.alias_selector_cmb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.alias_selector_cmb.Name = "alias_selector_cmb";
-			this.alias_selector_cmb.Size = new System.Drawing.Size(464, 20);
+			this.alias_selector_cmb.Size = new System.Drawing.Size(397, 27);
 			this.alias_selector_cmb.TabIndex = 18;
 			this.alias_selector_cmb.SelectedIndexChanged += new System.EventHandler(this.ComboBox1SelectedIndexChanged);
 			// 
@@ -433,9 +464,10 @@ namespace KeyFingerprintLooker
 			// 
 			this.caps_chk.Checked = true;
 			this.caps_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.caps_chk.Location = new System.Drawing.Point(225, 107);
+			this.caps_chk.Location = new System.Drawing.Point(298, 119);
+			this.caps_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.caps_chk.Name = "caps_chk";
-			this.caps_chk.Size = new System.Drawing.Size(112, 24);
+			this.caps_chk.Size = new System.Drawing.Size(149, 26);
 			this.caps_chk.TabIndex = 17;
 			this.caps_chk.Text = "字母大写";
 			this.caps_chk.UseVisualStyleBackColor = true;
@@ -443,9 +475,10 @@ namespace KeyFingerprintLooker
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(6, 22);
+			this.label1.Location = new System.Drawing.Point(6, 18);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(106, 23);
+			this.label1.Size = new System.Drawing.Size(141, 36);
 			this.label1.TabIndex = 14;
 			this.label1.Text = "无别名";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -453,12 +486,14 @@ namespace KeyFingerprintLooker
 			// MainForm
 			// 
 			this.AllowDrop = true;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(688, 559);
+			this.ClientSize = new System.Drawing.Size(784, 595);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.MinimumSize = new System.Drawing.Size(704, 598);
+			this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.MinimumSize = new System.Drawing.Size(800, 634);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "密钥指纹获取器";
