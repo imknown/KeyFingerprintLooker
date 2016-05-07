@@ -2,6 +2,7 @@
 
 
 - [x] Intelligent find files auto.<br />
+- [x] Unicode and CJK characters supported.<br />
 - [x] Xamarin Debug Key.<br />
 - [x] Keystore/JKS, APK, RSA. (last 2 options have bugs, fixing)<br />
 - [x] 64bit Javas.<br />
