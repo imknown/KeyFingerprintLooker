@@ -3,9 +3,9 @@
 
 - [x] Intelligent find files auto.<br />
 - [x] Unicode, control symbols and CJK characters supported.<br />
-- [x] Xamarin Debug Key.<br />
+- [x] Visual Studio/Xamarin/Mono Debug Key.<br />
 - [x] Keystore/JKS, APK, RSA. (last 2 options have bugs, fixing)<br />
-- [x] 32bit & 64bit Javas 6/7/8.<br />
+- [x] 32bit & 64bit Java 5/6/7/8/9.<br />
 - [x] High DPI Screen.<br />
 - [x] Win7/Win8/Win8.1/Win10.<br />
 - [ ] Multi-Language i18n (soon).
