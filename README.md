@@ -1,18 +1,23 @@
 ## KeyFingerprintLooker GUI by imknown ##
 
 
-- [x] Intelligent find files auto.<br />
-- [x] Unicode, control symbols and CJK characters supported.<br />
-- [x] Visual Studio/Xamarin/Mono Debug Key.<br />
-- [x] Keystore/JKS, APK, RSA. (last 2 options have bugs, fixing)<br />
-- [x] 32bit & 64bit Java 5/6/7/8/9.<br />
-- [x] High DPI Screen.<br />
-- [x] Win7/Win8/Win8.1/Win10.<br />
-- [ ] Multi-Language i18n (soon).
+- [x] Win7/Win8/Win8.1/Win10 all are okay<br />
+- [x] 32bit & 64bit Java 5/6/7/8/9<br />
+- [x] Auto intelligently finding files <br />
+- [x] Unicode, control symbols and CJK characters supported<br />
+- [x] Keystore/JKS
+- [x] VisualStudio/Xamarin/MonoDeveloper Debug Key<br />
+- [x] APK, RSA (having bugs)<br />
+- [x] High DPI Screen<br />
+
+- [ ] Multi-Language i18n (soon but now Chinese only).
 
 
 [![image]](https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png)
 [image]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png "中文"
+
+# Download (Chinese only now)
+https://github.com/imknown/KeyFingerprintLooker/releases/
 
 # License
     Copyright 2016 imknown
