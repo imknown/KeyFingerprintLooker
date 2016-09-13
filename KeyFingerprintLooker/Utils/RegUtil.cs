@@ -109,24 +109,22 @@ namespace KeyFingerprintLooker.Utils
 			string[] CurrentVersionJavaKeys = new String[0];
 			string[] WOW64JavaKeys = new String[0];
 			
-			if(ProcessTypeList.Contains(ProcessType.X64))
+			List<String> InstallLocationList = new List<String>();
+			
+			if(ProcessTypeList.Contains(ProcessType.X64) && CurrentVersionJavaSoftKey != null)
 			{
 				CurrentVersionJavaKeys = CurrentVersionJavaSoftKey.GetSubKeyNames();
+				List<String> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
+				InstallLocationList.AddRange(CurrentVersionInstallLocationList);
 			}
 			
-			if(ProcessTypeList.Contains(ProcessType.X86))
+			if(ProcessTypeList.Contains(ProcessType.X86) && WOW64JavaSoftKey != null)
 			{
 				WOW64JavaKeys = WOW64JavaSoftKey.GetSubKeyNames();
+				List<String> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
+				InstallLocationList.AddRange(WOW64InstallLocationList);
 			}
-			
 			#endregion
-			
-			List<String> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
-			List<String> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
-			
-			List<String> InstallLocationList = new List<String>();
-			InstallLocationList.AddRange(CurrentVersionInstallLocationList);
-			InstallLocationList.AddRange(WOW64InstallLocationList);
 			
 			lmKey.Close();
 			
