@@ -9,7 +9,6 @@
 - [x] VisualStudio/Xamarin/MonoDeveloper Debug Key<br />
 - [x] APK, RSA (having bugs)<br />
 - [x] High DPI Screen<br />
-
 - [ ] Multi-Language i18n (soon but now Chinese only).
 
 
