@@ -42,8 +42,8 @@ namespace KeyFingerprintLooker
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.auto_fetch_keytool_file_path_btn = new System.Windows.Forms.Button();
-			this.browse_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.label6 = new System.Windows.Forms.Label();
+			this.browse_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.keytool_file_path_txt = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -160,6 +160,16 @@ namespace KeyFingerprintLooker
 			this.auto_fetch_keytool_file_path_btn.UseVisualStyleBackColor = true;
 			this.auto_fetch_keytool_file_path_btn.Click += new System.EventHandler(this.Button4Click);
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(8, 18);
+			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(141, 36);
+			this.label6.TabIndex = 23;
+			this.label6.Text = "keytool.exe 地址";
+			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// browse_keytool_file_path_btn
 			// 
 			this.browse_keytool_file_path_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -171,16 +181,6 @@ namespace KeyFingerprintLooker
 			this.browse_keytool_file_path_btn.Text = "浏览...";
 			this.browse_keytool_file_path_btn.UseVisualStyleBackColor = true;
 			this.browse_keytool_file_path_btn.Click += new System.EventHandler(this.Button8Click);
-			// 
-			// label6
-			// 
-			this.label6.Location = new System.Drawing.Point(8, 18);
-			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(141, 36);
-			this.label6.TabIndex = 23;
-			this.label6.Text = "keytool.exe 地址";
-			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// keytool_file_path_txt
 			// 
@@ -430,7 +430,7 @@ namespace KeyFingerprintLooker
 			this.about_txt.Name = "about_txt";
 			this.about_txt.Size = new System.Drawing.Size(179, 26);
 			this.about_txt.TabIndex = 24;
-			this.about_txt.Text = "0.2 beta";
+			this.about_txt.Text = "0.2 beta fix2";
 			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// checkBox4
