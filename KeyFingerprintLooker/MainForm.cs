@@ -354,11 +354,11 @@ namespace KeyFingerprintLooker
 			sr.Close();
 			
 			bool hasNoAliasCount = string.IsNullOrEmpty(Result.AliasCount);
-			string AliasCount = "0";
+			string AliasCount = "无";
 			if(!hasNoAliasCount) {
-				AliasCount = Result.AliasCount;
+				AliasCount = Result.AliasCount + "个";
 			}
-			alias_counter_lbl.Text = AliasCount + " 个别名";
+			alias_counter_lbl.Text = AliasCount + "别名";
 			
 			if(hasNoAliasCount || int.Parse(Result.AliasCount) <= 1)
 			{
