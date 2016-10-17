@@ -5,9 +5,8 @@
 - [x] 32bit & 64bit Java 5/6/7/8/9<br />
 - [x] Auto intelligently finding files <br />
 - [x] Unicode, <kbd>Space</kbd> and CJK characters supported<br />
-- [x] Keystore/JKS
+- [x] Keystore/JKS file; APK, RSA file
 - [x] VisualStudio/Xamarin/MonoDeveloper Debug Key<br />
-- [x] APK, RSA (having bugs)<br />
 - [x] High DPI Screen<br />
 - [ ] Multi-Language i18n (soon but now Chinese only).
 
