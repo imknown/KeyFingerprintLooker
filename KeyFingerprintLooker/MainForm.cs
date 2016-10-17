@@ -358,7 +358,7 @@ namespace KeyFingerprintLooker
 			if(!hasNoAliasCount) {
 				AliasCount = Result.AliasCount;
 			}
-			label1.Text = AliasCount + " 个别名";
+			alias_counter_lbl.Text = AliasCount + " 个别名";
 			
 			if(hasNoAliasCount || int.Parse(Result.AliasCount) <= 1)
 			{

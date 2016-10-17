@@ -42,31 +42,31 @@ namespace KeyFingerprintLooker
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.auto_fetch_keytool_file_path_btn = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
+			this.keytool_file_path_lbl = new System.Windows.Forms.Label();
 			this.browse_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.keytool_file_path_txt = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.keystore_file_path_lbl = new System.Windows.Forms.Label();
+			this.password_lbl = new System.Windows.Forms.Label();
 			this.keystore_file_type_release_rdbtn = new System.Windows.Forms.RadioButton();
 			this.keystore_file_type_debug_rdbtn = new System.Windows.Forms.RadioButton();
 			this.password_txt = new System.Windows.Forms.TextBox();
 			this.colon_for_split_chk = new System.Windows.Forms.CheckBox();
 			this.SHA1_txt = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
+			this.sha1_lbl = new System.Windows.Forms.Label();
 			this.copy_SHA1_btn = new System.Windows.Forms.Button();
 			this.operation_log_txt = new System.Windows.Forms.TextBox();
 			this.get_fingerprint_btn = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.MD5_txt = new System.Windows.Forms.TextBox();
 			this.copy_MD5_btn = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
+			this.md5_lbl = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.not_wrap_content_chk = new System.Windows.Forms.CheckBox();
 			this.about_txt = new System.Windows.Forms.Label();
 			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.alias_selector_cmb = new System.Windows.Forms.ComboBox();
 			this.caps_chk = new System.Windows.Forms.CheckBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.alias_counter_lbl = new System.Windows.Forms.Label();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -116,11 +116,11 @@ namespace KeyFingerprintLooker
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.xamarin_first_chk);
 			this.groupBox2.Controls.Add(this.auto_fetch_keytool_file_path_btn);
-			this.groupBox2.Controls.Add(this.label6);
+			this.groupBox2.Controls.Add(this.keytool_file_path_lbl);
 			this.groupBox2.Controls.Add(this.browse_keytool_file_path_btn);
 			this.groupBox2.Controls.Add(this.keytool_file_path_txt);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.label4);
+			this.groupBox2.Controls.Add(this.keystore_file_path_lbl);
+			this.groupBox2.Controls.Add(this.password_lbl);
 			this.groupBox2.Controls.Add(this.keystore_file_type_release_rdbtn);
 			this.groupBox2.Controls.Add(this.keystore_file_type_debug_rdbtn);
 			this.groupBox2.Controls.Add(this.password_txt);
@@ -160,15 +160,15 @@ namespace KeyFingerprintLooker
 			this.auto_fetch_keytool_file_path_btn.UseVisualStyleBackColor = true;
 			this.auto_fetch_keytool_file_path_btn.Click += new System.EventHandler(this.Button4Click);
 			// 
-			// label6
+			// keytool_file_path_lbl
 			// 
-			this.label6.Location = new System.Drawing.Point(8, 18);
-			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(141, 36);
-			this.label6.TabIndex = 23;
-			this.label6.Text = "keytool.exe 地址";
-			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.keytool_file_path_lbl.Location = new System.Drawing.Point(8, 18);
+			this.keytool_file_path_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.keytool_file_path_lbl.Name = "keytool_file_path_lbl";
+			this.keytool_file_path_lbl.Size = new System.Drawing.Size(141, 36);
+			this.keytool_file_path_lbl.TabIndex = 23;
+			this.keytool_file_path_lbl.Text = "keytool.exe 地址";
+			this.keytool_file_path_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// browse_keytool_file_path_btn
 			// 
@@ -196,25 +196,25 @@ namespace KeyFingerprintLooker
 			this.keytool_file_path_txt.DragDrop += new System.Windows.Forms.DragEventHandler(this.keytool_file_path_txtDragDrop);
 			this.keytool_file_path_txt.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBox_DragEnter);
 			// 
-			// label5
+			// keystore_file_path_lbl
 			// 
-			this.label5.Location = new System.Drawing.Point(8, 49);
-			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(141, 36);
-			this.label5.TabIndex = 21;
-			this.label5.Text = "密钥或APK地址";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.keystore_file_path_lbl.Location = new System.Drawing.Point(8, 49);
+			this.keystore_file_path_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.keystore_file_path_lbl.Name = "keystore_file_path_lbl";
+			this.keystore_file_path_lbl.Size = new System.Drawing.Size(141, 36);
+			this.keystore_file_path_lbl.TabIndex = 21;
+			this.keystore_file_path_lbl.Text = "密钥或APK地址";
+			this.keystore_file_path_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// label4
+			// password_lbl
 			// 
-			this.label4.Location = new System.Drawing.Point(8, 112);
-			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(141, 36);
-			this.label4.TabIndex = 20;
-			this.label4.Text = "密钥密码";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.password_lbl.Location = new System.Drawing.Point(8, 112);
+			this.password_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.password_lbl.Name = "password_lbl";
+			this.password_lbl.Size = new System.Drawing.Size(141, 36);
+			this.password_lbl.TabIndex = 20;
+			this.password_lbl.Text = "密钥密码";
+			this.password_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// keystore_file_type_release_rdbtn
 			// 
@@ -283,15 +283,15 @@ namespace KeyFingerprintLooker
 			this.SHA1_txt.Size = new System.Drawing.Size(397, 25);
 			this.SHA1_txt.TabIndex = 8;
 			// 
-			// label2
+			// sha1_lbl
 			// 
-			this.label2.Location = new System.Drawing.Point(6, 82);
-			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(141, 36);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "SHA1";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.sha1_lbl.Location = new System.Drawing.Point(6, 82);
+			this.sha1_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.sha1_lbl.Name = "sha1_lbl";
+			this.sha1_lbl.Size = new System.Drawing.Size(141, 36);
+			this.sha1_lbl.TabIndex = 5;
+			this.sha1_lbl.Text = "SHA1";
+			this.sha1_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// copy_SHA1_btn
 			// 
@@ -368,15 +368,15 @@ namespace KeyFingerprintLooker
 			this.copy_MD5_btn.UseVisualStyleBackColor = true;
 			this.copy_MD5_btn.Click += new System.EventHandler(this.Button7Click);
 			// 
-			// label3
+			// md5_lbl
 			// 
-			this.label3.Location = new System.Drawing.Point(6, 51);
-			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(141, 36);
-			this.label3.TabIndex = 14;
-			this.label3.Text = "MD5";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.md5_lbl.Location = new System.Drawing.Point(6, 51);
+			this.md5_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.md5_lbl.Name = "md5_lbl";
+			this.md5_lbl.Size = new System.Drawing.Size(141, 36);
+			this.md5_lbl.TabIndex = 14;
+			this.md5_lbl.Text = "MD5";
+			this.md5_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// groupBox1
 			// 
@@ -388,15 +388,15 @@ namespace KeyFingerprintLooker
 			this.groupBox1.Controls.Add(this.checkBox4);
 			this.groupBox1.Controls.Add(this.alias_selector_cmb);
 			this.groupBox1.Controls.Add(this.caps_chk);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Controls.Add(this.alias_counter_lbl);
+			this.groupBox1.Controls.Add(this.md5_lbl);
 			this.groupBox1.Controls.Add(this.copy_MD5_btn);
 			this.groupBox1.Controls.Add(this.MD5_txt);
 			this.groupBox1.Controls.Add(this.button6);
 			this.groupBox1.Controls.Add(this.get_fingerprint_btn);
 			this.groupBox1.Controls.Add(this.operation_log_txt);
 			this.groupBox1.Controls.Add(this.copy_SHA1_btn);
-			this.groupBox1.Controls.Add(this.label2);
+			this.groupBox1.Controls.Add(this.sha1_lbl);
 			this.groupBox1.Controls.Add(this.SHA1_txt);
 			this.groupBox1.Controls.Add(this.colon_for_split_chk);
 			this.groupBox1.Location = new System.Drawing.Point(13, 177);
@@ -473,15 +473,15 @@ namespace KeyFingerprintLooker
 			this.caps_chk.UseVisualStyleBackColor = true;
 			this.caps_chk.CheckedChanged += new System.EventHandler(this.CheckBox2CheckedChanged);
 			// 
-			// label1
+			// alias_counter_lbl
 			// 
-			this.label1.Location = new System.Drawing.Point(6, 18);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(141, 36);
-			this.label1.TabIndex = 14;
-			this.label1.Text = "无别名";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.alias_counter_lbl.Location = new System.Drawing.Point(6, 18);
+			this.alias_counter_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.alias_counter_lbl.Name = "alias_counter_lbl";
+			this.alias_counter_lbl.Size = new System.Drawing.Size(141, 36);
+			this.alias_counter_lbl.TabIndex = 14;
+			this.alias_counter_lbl.Text = "无别名";
+			this.alias_counter_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// MainForm
 			// 
@@ -508,12 +508,12 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.CheckBox xamarin_first_chk;
 		private System.Windows.Forms.Button browse_keytool_file_path_btn;
 		private System.Windows.Forms.Button auto_fetch_keytool_file_path_btn;
-		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label keystore_file_path_lbl;
 		private System.Windows.Forms.TextBox keytool_file_path_txt;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label keytool_file_path_lbl;
+		private System.Windows.Forms.Label password_lbl;
 		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label alias_counter_lbl;
 		private System.Windows.Forms.ComboBox alias_selector_cmb;
 		private System.Windows.Forms.RadioButton keystore_file_type_debug_rdbtn;
 		private System.Windows.Forms.RadioButton keystore_file_type_release_rdbtn;
@@ -521,7 +521,7 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.CheckBox caps_chk;
 		private System.Windows.Forms.TextBox MD5_txt;
 		private System.Windows.Forms.Button copy_MD5_btn;
-		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label md5_lbl;
 		private System.Windows.Forms.TextBox operation_log_txt;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.GroupBox groupBox2;
@@ -529,7 +529,7 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.Button copy_SHA1_btn;
 		private System.Windows.Forms.TextBox SHA1_txt;
 		private System.Windows.Forms.CheckBox colon_for_split_chk;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label sha1_lbl;
 		private System.Windows.Forms.Button get_fingerprint_btn;
 		private System.Windows.Forms.Button browse_keystore_file_path_btn;
 		private System.Windows.Forms.Button auto_fetch_keystore_file_path_btn;
