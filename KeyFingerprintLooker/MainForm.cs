@@ -341,14 +341,26 @@ namespace KeyFingerprintLooker
 					AliasInfo.SHA1_CAPS = AliasInfo.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
 					
 					Result.AliasInfoList.Add(AliasInfo);
-					alias_selector_cmb.Items.Add(AliasInfo.AliasName);
+					
+					string AliasName = AliasInfo.AliasName;
+					if(string.IsNullOrEmpty(AliasInfo.AliasName))
+					{
+						AliasName = "未找到别名";
+					}
+					alias_selector_cmb.Items.Add(AliasName);
 				}
 			}
 			
 			sr.Close();
-			label1.Text = Result.AliasCount + " 个别名";
 			
-			if(int.Parse(Result.AliasCount) <= 1)
+			bool hasNoAliasCount = string.IsNullOrEmpty(Result.AliasCount);
+			string AliasCount = "0";
+			if(!hasNoAliasCount) {
+				AliasCount = Result.AliasCount;
+			}
+			label1.Text = AliasCount + " 个别名";
+			
+			if(hasNoAliasCount || int.Parse(Result.AliasCount) <= 1)
 			{
 				alias_selector_cmb.Enabled = false;
 			}
