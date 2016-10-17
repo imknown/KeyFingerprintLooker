@@ -430,7 +430,7 @@ namespace KeyFingerprintLooker
 			this.about_txt.Name = "about_txt";
 			this.about_txt.Size = new System.Drawing.Size(179, 26);
 			this.about_txt.TabIndex = 24;
-			this.about_txt.Text = "0.2 beta fix2";
+			this.about_txt.Text = "0.3 beta";
 			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// checkBox4
