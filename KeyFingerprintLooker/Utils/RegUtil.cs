@@ -99,31 +99,55 @@ namespace KeyFingerprintLooker.Utils
 		public static List<String> FindRegKeyByJavaSoft(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
 			#region [ 初始化 ]
-			RegistryKey lmKey, CurrentVersionJavaSoftKey, WOW64JavaSoftKey;
+			RegistryKey lmKey;
+			RegistryKey CurrentVersionJavaSoftKey; // '64bit OS' run 'x64 program' to find 'x64 Java', OR '32bit OS' run 'x86 program' to find 'x86 Java'
+			RegistryKey WOW64JavaSoftKey; // '64bit OS' run 'x64 program' to find 'x86 Java'
+
+			RegistryKey Imx86PrgFindx64Key; 
+			RegistryKey x86PrgFindx64JavaSoftKey; // '64bit OS' run 'x86 program' to find 'x64 Java'
 
 			lmKey = Registry.LocalMachine;
-
 			CurrentVersionJavaSoftKey = lmKey.OpenSubKey(@"SOFTWARE\JavaSoft\");
 			WOW64JavaSoftKey = lmKey.OpenSubKey(@"SOFTWARE\WOW6432Node\JavaSoft\");
 			
+			Imx86PrgFindx64Key = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine,  RegistryView.Registry64);
+			x86PrgFindx64JavaSoftKey= Imx86PrgFindx64Key.OpenSubKey(@"SOFTWARE\JavaSoft\"); 
+			
 			string[] CurrentVersionJavaKeys = new String[0];
 			string[] WOW64JavaKeys = new String[0];
+			string[] x86PrgFindx64JavaKey = new String[0];
 			
 			List<String> InstallLocationList = new List<String>();
 			
-			if(ProcessTypeList.Contains(ProcessType.X64) && CurrentVersionJavaSoftKey != null)
+			// shun 'x64 java' duplicate
+			// Here are only 'x86 java', if there are...
+			// Why wrote this if statement here first?
+			// Because anyone may want to use 'x64 java' first.
+			if(OsUtil.GetProcessType() == ProcessType.X86 && x86PrgFindx64JavaSoftKey != null)
+			{
+				x86PrgFindx64JavaKey = x86PrgFindx64JavaSoftKey.GetSubKeyNames();
+				List<String> x86PrgFindx64VersionInstallLocationList = FindInstallLocationByJavaSoft(x86PrgFindx64JavaSoftKey, x86PrgFindx64JavaKey, whichToFound);
+				InstallLocationList.AddRange(x86PrgFindx64VersionInstallLocationList);
+			}
+			
+			// Maybe 'x64 java' or 'x86 java' here.
+			// And this bases on the OS bit.
+			if(CurrentVersionJavaSoftKey != null)
 			{
 				CurrentVersionJavaKeys = CurrentVersionJavaSoftKey.GetSubKeyNames();
 				List<String> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
 				InstallLocationList.AddRange(CurrentVersionInstallLocationList);
 			}
-			
-			if(ProcessTypeList.Contains(ProcessType.X86) && WOW64JavaSoftKey != null)
+
+			// shun 'x86 java' duplicate.
+			// Here are only 'x86 java', if there are...
+			if(OsUtil.GetProcessType() == ProcessType.X64 && WOW64JavaSoftKey != null)
 			{
 				WOW64JavaKeys = WOW64JavaSoftKey.GetSubKeyNames();
 				List<String> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
 				InstallLocationList.AddRange(WOW64InstallLocationList);
 			}
+			
 			#endregion
 			
 			lmKey.Close();
@@ -173,21 +197,5 @@ namespace KeyFingerprintLooker.Utils
 			return InstallLocationList;
 		}
 		#endregion
-		
-		public static ProcessType GetProcessType()
-		{
-			ProcessType ProcessType = ProcessType.Unknown;
-			
-			if (IntPtr.Size == 4)
-			{
-				ProcessType = ProcessType.X86;
-			}
-			else if (IntPtr.Size == 8)
-			{
-				ProcessType = ProcessType.X64;
-			}
-			
-			return ProcessType;
-		}
 	}
 }

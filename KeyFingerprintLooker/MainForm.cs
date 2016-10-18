@@ -21,6 +21,8 @@ namespace KeyFingerprintLooker
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		public const string VERSION = "0.3 beta";
+		
 		public MainForm()
 		{
 			//
@@ -32,27 +34,14 @@ namespace KeyFingerprintLooker
 			// TODO: Add constructor code after the InitializeComponent() call.
 			// 
 			
-			ProcessType Type = RegUtil.GetProcessType();
-			about_txt.Text += ", " + Type.ToString() + " 模式";
+			about_txt.Text = VERSION + ", " + OsUtil.GetProcessType() + " 模式, " + (int) OsUtil.GetOsBit() + "位 系统";
 		}
 		
 		private string FindInstallLocationOfJava()
 		{
 			string InstallLocationWant = string.Empty;
 			
-			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X86 };
-			
-			ProcessType Type = RegUtil.GetProcessType();
-			if(Type == ProcessType.X64)
-			{
-				ProcessTypeList.Add(ProcessType.X64);
-				
-				AppendLog(ProcessType.X64.ToString() + "模式");
-			}
-			else
-			{
-				AppendLog(ProcessType.X86.ToString() + "模式");
-			}
+			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X86, ProcessType.X64 };
 			
 			// List<String> InstallLocationList = RegUtil.FindRegKeyFromInstallAppList(ProcessTypeList, "Java");
 			List<String> InstallLocationList = RegUtil.FindRegKeyByJavaSoft(ProcessTypeList, "_");
@@ -126,7 +115,6 @@ namespace KeyFingerprintLooker
 		}
 		
 		# region [ 秘钥文件 ]
-		
 		void Keystore_file_path_txtTextChanged(object sender, EventArgs e)
 		{
 			if(keystore_file_path_txt.Text == string.Empty)
@@ -189,10 +177,7 @@ namespace KeyFingerprintLooker
 				keystore_file_path_txt.Text = OpenDialog.FileName;
 			}
 		}
-		
 		# endregion
-		
-		
 		
 		void Button3Click(object sender, EventArgs e)
 		{

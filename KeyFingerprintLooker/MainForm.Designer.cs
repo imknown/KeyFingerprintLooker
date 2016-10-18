@@ -428,9 +428,9 @@ namespace KeyFingerprintLooker
 			this.about_txt.Location = new System.Drawing.Point(8, 373);
 			this.about_txt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.about_txt.Name = "about_txt";
-			this.about_txt.Size = new System.Drawing.Size(179, 26);
+			this.about_txt.Size = new System.Drawing.Size(200, 26);
 			this.about_txt.TabIndex = 24;
-			this.about_txt.Text = "0.3 beta";
+			this.about_txt.Text = "0.0 beta, X00 模式, 00位 系统";
 			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// checkBox4
