@@ -380,7 +380,8 @@ namespace KeyFingerprintLooker
 		
 		void AppendLog(string something)
 		{
-			operation_log_txt.Text = "\r\n" + DateTime.Now.TimeOfDay.ToString() + "\r\n" + something + "\r\n" + operation_log_txt.Text  ;
+			string time = DateTime.Now.ToString("T");
+			operation_log_txt.Text = time + ", " + something + "\r\n" + operation_log_txt.Text;
 		}
 		
 		string surroundInCmd(string something)
