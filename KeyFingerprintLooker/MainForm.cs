@@ -21,7 +21,7 @@ namespace KeyFingerprintLooker
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		public const string VERSION = "0.3 beta";
+		public const string VERSION = "0.3.1 beta";
 		
 		public MainForm()
 		{
