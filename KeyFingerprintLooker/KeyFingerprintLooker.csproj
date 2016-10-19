@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>KeyFingerprintLooker</RootNamespace>
     <AssemblyName>KeyFingerprintLooker</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
