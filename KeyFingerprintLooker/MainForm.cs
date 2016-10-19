@@ -102,6 +102,8 @@ namespace KeyFingerprintLooker
 		}
 		
 		public const string KEYTOOL_EXE = "keytool.exe";
+		public const string DEBUG_KEYSTORE = "debug.keystore";
+		public const string DOT_ANDROID_PATH = @"\.android\";
 		
 		void Button8Click(object sender, EventArgs e)
 		{
@@ -132,24 +134,39 @@ namespace KeyFingerprintLooker
 		{
 			String Path = "未找到有效的文件";
 			
-			string MyDocumentFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string DotAndroidFolderPath = MyDocumentFolderPath.Substring(0, MyDocumentFolderPath.LastIndexOf(@"\"));
-			string GoogleOfficialKey = DotAndroidFolderPath + @"\.android\" + "debug.keystore";
-
-			string XamarinUnofficialKey = Environment.GetEnvironmentVariable("LocalAppData") + @"\Xamarin\Mono for Android\debug.keystore";
+			string UserProfileFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 			
-			if(File.Exists(XamarinUnofficialKey))
+			// string MyDocumentFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			string PersonalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			string PersonalProfileFolderPath = PersonalFolderPath.Substring(0, PersonalFolderPath.LastIndexOf(@"\"));
+			
+			string UserProfileFolderlKey = UserProfileFolderPath + DOT_ANDROID_PATH + DEBUG_KEYSTORE;
+			string PersonalUserFolderKey = PersonalProfileFolderPath + DOT_ANDROID_PATH + DEBUG_KEYSTORE;
+
+			string XamarinKey = Environment.GetEnvironmentVariable("LocalAppData") + @"\Xamarin\Mono for Android\" + DEBUG_KEYSTORE;
+			
+			if(File.Exists(UserProfileFolderlKey))
 			{
-				AppendLog(XamarinUnofficialKey);
+				AppendLog(UserProfileFolderlKey);
 				
-				Path = XamarinUnofficialKey;
+				Path = UserProfileFolderlKey;
 			}
 			
-			if((!xamarin_first_chk.Checked || !File.Exists(XamarinUnofficialKey)) && File.Exists(GoogleOfficialKey))
+			if(File.Exists(PersonalUserFolderKey))
 			{
-				AppendLog(GoogleOfficialKey);
+				AppendLog(PersonalUserFolderKey);
 				
-				Path = GoogleOfficialKey;
+				Path = PersonalUserFolderKey;
+			}
+			
+			if( File.Exists(XamarinKey))
+			{
+				AppendLog(XamarinKey);
+				
+				if(xamarin_first_chk.Checked)
+				{
+					Path = XamarinKey;
+				}
 			}
 			
 			keystore_file_path_txt.Text = Path;
@@ -190,7 +207,7 @@ namespace KeyFingerprintLooker
 			
 			if(!File.Exists(KeytoolFilePath))
 			{
-				AppendLog("keytool.exe 文件不存在");
+				AppendLog(KEYTOOL_EXE + " 文件不存在");
 				
 				return;
 			}
