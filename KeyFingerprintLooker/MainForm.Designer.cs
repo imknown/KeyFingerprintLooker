@@ -36,7 +36,7 @@ namespace KeyFingerprintLooker
 			this.keystore_file_path_txt = new System.Windows.Forms.TextBox();
 			this.auto_fetch_keystore_file_path_btn = new System.Windows.Forms.Button();
 			this.browse_keystore_file_path_btn = new System.Windows.Forms.Button();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.source_gpb = new System.Windows.Forms.GroupBox();
 			this.xamarin_first_chk = new System.Windows.Forms.CheckBox();
 			this.auto_fetch_keytool_file_path_btn = new System.Windows.Forms.Button();
 			this.keytool_file_path_lbl = new System.Windows.Forms.Label();
@@ -57,15 +57,15 @@ namespace KeyFingerprintLooker
 			this.MD5_txt = new System.Windows.Forms.TextBox();
 			this.copy_MD5_btn = new System.Windows.Forms.Button();
 			this.md5_lbl = new System.Windows.Forms.Label();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.result_gpb = new System.Windows.Forms.GroupBox();
 			this.not_wrap_content_chk = new System.Windows.Forms.CheckBox();
 			this.about_txt = new System.Windows.Forms.Label();
 			this.clear_log_after_recalc_chk = new System.Windows.Forms.CheckBox();
 			this.alias_selector_cmb = new System.Windows.Forms.ComboBox();
 			this.caps_chk = new System.Windows.Forms.CheckBox();
 			this.alias_counter_lbl = new System.Windows.Forms.Label();
-			this.groupBox2.SuspendLayout();
-			this.groupBox1.SuspendLayout();
+			this.source_gpb.SuspendLayout();
+			this.result_gpb.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// keystore_file_path_txt
@@ -107,31 +107,31 @@ namespace KeyFingerprintLooker
 			this.browse_keystore_file_path_btn.UseVisualStyleBackColor = true;
 			this.browse_keystore_file_path_btn.Click += new System.EventHandler(this.browse_keystore_file_path_btnClick);
 			// 
-			// groupBox2
+			// source_gpb
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.source_gpb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.xamarin_first_chk);
-			this.groupBox2.Controls.Add(this.auto_fetch_keytool_file_path_btn);
-			this.groupBox2.Controls.Add(this.keytool_file_path_lbl);
-			this.groupBox2.Controls.Add(this.browse_keytool_file_path_btn);
-			this.groupBox2.Controls.Add(this.keytool_file_path_txt);
-			this.groupBox2.Controls.Add(this.keystore_file_path_lbl);
-			this.groupBox2.Controls.Add(this.password_lbl);
-			this.groupBox2.Controls.Add(this.keystore_file_type_release_rdbtn);
-			this.groupBox2.Controls.Add(this.keystore_file_type_debug_rdbtn);
-			this.groupBox2.Controls.Add(this.password_txt);
-			this.groupBox2.Controls.Add(this.keystore_file_path_txt);
-			this.groupBox2.Controls.Add(this.browse_keystore_file_path_btn);
-			this.groupBox2.Controls.Add(this.auto_fetch_keystore_file_path_btn);
-			this.groupBox2.Location = new System.Drawing.Point(13, 12);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.groupBox2.Size = new System.Drawing.Size(792, 159);
-			this.groupBox2.TabIndex = 12;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "源";
+			this.source_gpb.Controls.Add(this.xamarin_first_chk);
+			this.source_gpb.Controls.Add(this.auto_fetch_keytool_file_path_btn);
+			this.source_gpb.Controls.Add(this.keytool_file_path_lbl);
+			this.source_gpb.Controls.Add(this.browse_keytool_file_path_btn);
+			this.source_gpb.Controls.Add(this.keytool_file_path_txt);
+			this.source_gpb.Controls.Add(this.keystore_file_path_lbl);
+			this.source_gpb.Controls.Add(this.password_lbl);
+			this.source_gpb.Controls.Add(this.keystore_file_type_release_rdbtn);
+			this.source_gpb.Controls.Add(this.keystore_file_type_debug_rdbtn);
+			this.source_gpb.Controls.Add(this.password_txt);
+			this.source_gpb.Controls.Add(this.keystore_file_path_txt);
+			this.source_gpb.Controls.Add(this.browse_keystore_file_path_btn);
+			this.source_gpb.Controls.Add(this.auto_fetch_keystore_file_path_btn);
+			this.source_gpb.Location = new System.Drawing.Point(13, 12);
+			this.source_gpb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.source_gpb.Name = "source_gpb";
+			this.source_gpb.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.source_gpb.Size = new System.Drawing.Size(792, 159);
+			this.source_gpb.TabIndex = 12;
+			this.source_gpb.TabStop = false;
+			this.source_gpb.Text = "源";
 			// 
 			// xamarin_first_chk
 			// 
@@ -377,35 +377,35 @@ namespace KeyFingerprintLooker
 			this.md5_lbl.Text = "MD5";
 			this.md5_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// groupBox1
+			// result_gpb
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.result_gpb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 			| System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.not_wrap_content_chk);
-			this.groupBox1.Controls.Add(this.about_txt);
-			this.groupBox1.Controls.Add(this.clear_log_after_recalc_chk);
-			this.groupBox1.Controls.Add(this.alias_selector_cmb);
-			this.groupBox1.Controls.Add(this.caps_chk);
-			this.groupBox1.Controls.Add(this.alias_counter_lbl);
-			this.groupBox1.Controls.Add(this.md5_lbl);
-			this.groupBox1.Controls.Add(this.copy_MD5_btn);
-			this.groupBox1.Controls.Add(this.MD5_txt);
-			this.groupBox1.Controls.Add(this.clear_log_btn);
-			this.groupBox1.Controls.Add(this.calc_fingerprint_btn);
-			this.groupBox1.Controls.Add(this.operation_log_txt);
-			this.groupBox1.Controls.Add(this.copy_SHA1_btn);
-			this.groupBox1.Controls.Add(this.sha1_lbl);
-			this.groupBox1.Controls.Add(this.SHA1_txt);
-			this.groupBox1.Controls.Add(this.colon_for_split_chk);
-			this.groupBox1.Location = new System.Drawing.Point(13, 177);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.groupBox1.Size = new System.Drawing.Size(790, 342);
-			this.groupBox1.TabIndex = 11;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "结果";
+			this.result_gpb.Controls.Add(this.not_wrap_content_chk);
+			this.result_gpb.Controls.Add(this.about_txt);
+			this.result_gpb.Controls.Add(this.clear_log_after_recalc_chk);
+			this.result_gpb.Controls.Add(this.alias_selector_cmb);
+			this.result_gpb.Controls.Add(this.caps_chk);
+			this.result_gpb.Controls.Add(this.alias_counter_lbl);
+			this.result_gpb.Controls.Add(this.md5_lbl);
+			this.result_gpb.Controls.Add(this.copy_MD5_btn);
+			this.result_gpb.Controls.Add(this.MD5_txt);
+			this.result_gpb.Controls.Add(this.clear_log_btn);
+			this.result_gpb.Controls.Add(this.calc_fingerprint_btn);
+			this.result_gpb.Controls.Add(this.operation_log_txt);
+			this.result_gpb.Controls.Add(this.copy_SHA1_btn);
+			this.result_gpb.Controls.Add(this.sha1_lbl);
+			this.result_gpb.Controls.Add(this.SHA1_txt);
+			this.result_gpb.Controls.Add(this.colon_for_split_chk);
+			this.result_gpb.Location = new System.Drawing.Point(13, 177);
+			this.result_gpb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.result_gpb.Name = "result_gpb";
+			this.result_gpb.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.result_gpb.Size = new System.Drawing.Size(790, 342);
+			this.result_gpb.TabIndex = 11;
+			this.result_gpb.TabStop = false;
+			this.result_gpb.Text = "结果";
 			// 
 			// not_wrap_content_chk
 			// 
@@ -489,18 +489,18 @@ namespace KeyFingerprintLooker
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(818, 531);
-			this.Controls.Add(this.groupBox2);
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.source_gpb);
+			this.Controls.Add(this.result_gpb);
 			this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.MinimumSize = new System.Drawing.Size(834, 570);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "密钥指纹获取器";
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
+			this.source_gpb.ResumeLayout(false);
+			this.source_gpb.PerformLayout();
+			this.result_gpb.ResumeLayout(false);
+			this.result_gpb.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -525,8 +525,8 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.Label md5_lbl;
 		private System.Windows.Forms.TextBox operation_log_txt;
 		private System.Windows.Forms.Button clear_log_btn;
-		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox source_gpb;
+		private System.Windows.Forms.GroupBox result_gpb;
 		private System.Windows.Forms.Button copy_SHA1_btn;
 		private System.Windows.Forms.TextBox SHA1_txt;
 		private System.Windows.Forms.CheckBox colon_for_split_chk;
