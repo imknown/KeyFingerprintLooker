@@ -20,7 +20,7 @@ namespace KeyFingerprintLooker.Utils
 	/// <summary>
 	/// Description of Reg.
 	/// </summary>
-	public static class RegUtil
+	public static class RegUtils
 	{
 		#region [ FromInstallAppList ]
 		[method: Obsolete("Use FindRegKeyByJavaSoft() instead")]
@@ -118,7 +118,7 @@ namespace KeyFingerprintLooker.Utils
 			// Here are only 'x86 java', if there are...
 			// Why wrote this if statement here first?
 			// Because anyone may want to use 'x64 java' first.
-			if(OsUtil.GetProcessType() == ProcessType.X86 && x86PrgFindx64JavaSoftKey != null)
+			if(OsUtils.GetProcessType() == ProcessType.X86 && x86PrgFindx64JavaSoftKey != null)
 			{
 				x86PrgFindx64JavaKey = x86PrgFindx64JavaSoftKey.GetSubKeyNames();
 				List<string> x86PrgFindx64VersionInstallLocationList = FindInstallLocationByJavaSoft(x86PrgFindx64JavaSoftKey, x86PrgFindx64JavaKey, whichToFound);
@@ -136,7 +136,7 @@ namespace KeyFingerprintLooker.Utils
 
 			// shun 'x86 java' duplicate.
 			// Here are only 'x86 java', if there are...
-			if(OsUtil.GetProcessType() == ProcessType.X64 && WOW64JavaSoftKey != null)
+			if(OsUtils.GetProcessType() == ProcessType.X64 && WOW64JavaSoftKey != null)
 			{
 				WOW64JavaKeys = WOW64JavaSoftKey.GetSubKeyNames();
 				List<string> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);

@@ -7,7 +7,7 @@ using System;
 
 namespace KeyFingerprintLooker.Utils
 {
-	public static class OsUtil
+	public static class OsUtils
 	{
 		public static ProcessType GetProcessType()
 		{

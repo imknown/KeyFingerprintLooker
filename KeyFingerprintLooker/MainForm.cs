@@ -32,7 +32,7 @@ namespace KeyFingerprintLooker
 			//
 			InitializeComponent();
 			
-			about_txt.Text = VERSION + ", " + OsUtil.GetProcessType() + " 模式, " + (int) OsUtil.GetOsBit() + "位 系统";
+			about_txt.Text = VERSION + ", " + OsUtils.GetProcessType() + " 模式, " + (int) OsUtils.GetOsBit() + "位 系统";
 		}
 		
 		# region [ keytool ]
@@ -95,7 +95,7 @@ namespace KeyFingerprintLooker
 			var ProcessTypeList = new List<ProcessType> { ProcessType.X86, ProcessType.X64 };
 			
 			// List<string> InstallLocationList = RegUtil.FindRegKeyFromInstallAppList(ProcessTypeList, "Java");
-			List<string> InstallLocationList = RegUtil.FindRegKeyByJavaSoft(ProcessTypeList, "_");
+			List<string> InstallLocationList = RegUtils.FindRegKeyByJavaSoft(ProcessTypeList, "_");
 			
 			foreach (string InstallLocation in InstallLocationList)
 			{
@@ -273,7 +273,7 @@ namespace KeyFingerprintLooker
 			
 			if(EndsWithAPK)
 			{
-				string CertRsaPath = ZipUtil.UnzipCERT_RSA(KeystoreFilePath);
+				string CertRsaPath = ZipUtils.UnzipCERT_RSA(KeystoreFilePath);
 
 				CmdString = SurroundInCmd(KeytoolFilePath) + " -printcert -file " + SurroundInCmd(CertRsaPath);
 			}
@@ -286,7 +286,7 @@ namespace KeyFingerprintLooker
 				CmdString = SurroundInCmd(KeytoolFilePath) + " -list -v -keystore " + SurroundInCmd(KeystoreFilePath) + " -storepass " + SurroundInCmd(password_txt.Text);
 			}
 			
-			string CmdResult = CommandUtil.RunCmd(CmdString);
+			string CmdResult = CommandUtils.RunCmd(CmdString);
 			
 			if(CmdResult.Contains(Password.PASSWORD_ERROR))
 			{

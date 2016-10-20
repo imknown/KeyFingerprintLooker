@@ -11,7 +11,7 @@ namespace KeyFingerprintLooker.Utils
 	/// <summary>
 	/// Description of Command.
 	/// </summary>
-	public static class CommandUtil
+	public static class CommandUtils
 	{
 		public static string RunCmd(string command)
 		{
