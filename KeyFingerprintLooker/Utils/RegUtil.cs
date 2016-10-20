@@ -1,10 +1,7 @@
 ﻿/*
- * 由SharpDevelop创建。
  * 用户： imknown
  * 日期: 2015/12/6 周日
  * 时间: 下午 9:09
- * 
- * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
  */
 using System;
 using System.Collections.Generic;
@@ -23,11 +20,11 @@ namespace KeyFingerprintLooker.Utils
 	/// <summary>
 	/// Description of Reg.
 	/// </summary>
-	public class RegUtil
+	public static class RegUtil
 	{
 		#region [ FromInstallAppList ]
 		[method: Obsolete("Use FindRegKeyByJavaSoft() instead")]
-		public static List<String> FindRegKeyFromInstallAppList(List<ProcessType> ProcessTypeList, string whichToFound)
+		public static List<string> FindRegKeyFromInstallAppList(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
 			#region [ 初始化 ]
 			RegistryKey lmKey, CurrentVersionUninstallKey, WOW64UninstallKey;
@@ -37,8 +34,8 @@ namespace KeyFingerprintLooker.Utils
 			CurrentVersionUninstallKey = lmKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\");
 			WOW64UninstallKey = lmKey.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\");
 
-			string[] CurrentVersionProgramKeys = new String[0];
-			string[] WOW64ProgramKeys = new String[0];
+			var CurrentVersionProgramKeys = new string[0];
+			var WOW64ProgramKeys = new string[0];
 			
 			if(ProcessTypeList.Contains(ProcessType.X64))
 			{
@@ -49,13 +46,12 @@ namespace KeyFingerprintLooker.Utils
 			{
 				WOW64ProgramKeys = WOW64UninstallKey.GetSubKeyNames();
 			}
-			
 			#endregion
 			
-			List<String> CurrentVersionInstallLocationList = FindInstallLocationFromInstallAppList(CurrentVersionUninstallKey, CurrentVersionProgramKeys, whichToFound);
-			List<String> WOW64InstallLocationList = FindInstallLocationFromInstallAppList(WOW64UninstallKey, WOW64ProgramKeys, whichToFound);
+			List<string> CurrentVersionInstallLocationList = FindInstallLocationFromInstallAppList(CurrentVersionUninstallKey, CurrentVersionProgramKeys, whichToFound);
+			List<string> WOW64InstallLocationList = FindInstallLocationFromInstallAppList(WOW64UninstallKey, WOW64ProgramKeys, whichToFound);
 			
-			List<String> InstallLocationList = new List<String>();
+			var InstallLocationList = new List<string>();
 			InstallLocationList.AddRange(CurrentVersionInstallLocationList);
 			InstallLocationList.AddRange(WOW64InstallLocationList);
 			
@@ -67,16 +63,16 @@ namespace KeyFingerprintLooker.Utils
 		}
 
 		[method: Obsolete("Use FindInstallLocationByJavaSoft() instead")]
-		private static List<String> FindInstallLocationFromInstallAppList(RegistryKey UninstallKey, string[] ProgramKeys, string whichToFound)
+		private static List<string> FindInstallLocationFromInstallAppList(RegistryKey UninstallKey, string[] ProgramKeys, string whichToFound)
 		{
-			List<String> InstallLocationList = new List<String>();
+			var InstallLocationList = new List<string>();
 			
 			foreach (string keyName in ProgramKeys)
 			{
 				RegistryKey programKey = UninstallKey.OpenSubKey(keyName);
 
-				String DisplayName = (String) programKey.GetValue("DisplayName");
-				String InstallLocation = (String) programKey.GetValue("InstallLocation");
+				var DisplayName = (string) programKey.GetValue("DisplayName");
+				var InstallLocation = (string) programKey.GetValue("InstallLocation");
 
 				programKey.Close();
 				
@@ -92,11 +88,10 @@ namespace KeyFingerprintLooker.Utils
 		#endregion
 		
 		#region [ ByJavaSoft ]
-		
 		public const string JDK_FULL = "Java Development Kit";
 		public const string JRE_FULL = "Java Runtime Environment";
 		
-		public static List<String> FindRegKeyByJavaSoft(List<ProcessType> ProcessTypeList, string whichToFound)
+		public static List<string> FindRegKeyByJavaSoft(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
 			#region [ 初始化 ]
 			RegistryKey lmKey;
@@ -113,11 +108,11 @@ namespace KeyFingerprintLooker.Utils
 			Imx86PrgFindx64Key = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine,  RegistryView.Registry64);
 			x86PrgFindx64JavaSoftKey= Imx86PrgFindx64Key.OpenSubKey(@"SOFTWARE\JavaSoft\"); 
 			
-			string[] CurrentVersionJavaKeys = new String[0];
-			string[] WOW64JavaKeys = new String[0];
-			string[] x86PrgFindx64JavaKey = new String[0];
+			var CurrentVersionJavaKeys = new string[0];
+			var WOW64JavaKeys = new string[0];
+			var x86PrgFindx64JavaKey = new string[0];
 			
-			List<String> InstallLocationList = new List<String>();
+			var InstallLocationList = new List<string>();
 			
 			// shun 'x64 java' duplicate
 			// Here are only 'x86 java', if there are...
@@ -126,7 +121,7 @@ namespace KeyFingerprintLooker.Utils
 			if(OsUtil.GetProcessType() == ProcessType.X86 && x86PrgFindx64JavaSoftKey != null)
 			{
 				x86PrgFindx64JavaKey = x86PrgFindx64JavaSoftKey.GetSubKeyNames();
-				List<String> x86PrgFindx64VersionInstallLocationList = FindInstallLocationByJavaSoft(x86PrgFindx64JavaSoftKey, x86PrgFindx64JavaKey, whichToFound);
+				List<string> x86PrgFindx64VersionInstallLocationList = FindInstallLocationByJavaSoft(x86PrgFindx64JavaSoftKey, x86PrgFindx64JavaKey, whichToFound);
 				InstallLocationList.AddRange(x86PrgFindx64VersionInstallLocationList);
 			}
 			
@@ -135,7 +130,7 @@ namespace KeyFingerprintLooker.Utils
 			if(CurrentVersionJavaSoftKey != null)
 			{
 				CurrentVersionJavaKeys = CurrentVersionJavaSoftKey.GetSubKeyNames();
-				List<String> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
+				List<string> CurrentVersionInstallLocationList = FindInstallLocationByJavaSoft(CurrentVersionJavaSoftKey, CurrentVersionJavaKeys, whichToFound);
 				InstallLocationList.AddRange(CurrentVersionInstallLocationList);
 			}
 
@@ -144,10 +139,9 @@ namespace KeyFingerprintLooker.Utils
 			if(OsUtil.GetProcessType() == ProcessType.X64 && WOW64JavaSoftKey != null)
 			{
 				WOW64JavaKeys = WOW64JavaSoftKey.GetSubKeyNames();
-				List<String> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
+				List<string> WOW64InstallLocationList = FindInstallLocationByJavaSoft(WOW64JavaSoftKey, WOW64JavaKeys, whichToFound);
 				InstallLocationList.AddRange(WOW64InstallLocationList);
 			}
-			
 			#endregion
 			
 			lmKey.Close();
@@ -162,9 +156,9 @@ namespace KeyFingerprintLooker.Utils
 		/// <param name="JavaKeys"></param>
 		/// <param name="whichToFound"></param>
 		/// <returns></returns>
-		private static List<String> FindInstallLocationByJavaSoft(RegistryKey JavaSoftKey, string[] JavaKeys, string whichToFound)
+		private static List<string> FindInstallLocationByJavaSoft(RegistryKey JavaSoftKey, string[] JavaKeys, string whichToFound)
 		{
-			List<String> InstallLocationList = new List<String>();
+			var InstallLocationList = new List<string>();
 			
 			foreach (string keyName in JavaKeys)
 			{
@@ -174,11 +168,11 @@ namespace KeyFingerprintLooker.Utils
 					
 					string[] JavaTypesSubKeyNames = JavaTypesKey.GetSubKeyNames();
 					
-					foreach(String JavaTypesSubKeyName in JavaTypesSubKeyNames)
+					foreach(string JavaTypesSubKeyName in JavaTypesSubKeyNames)
 					{
 						RegistryKey JavaVersionsKey = JavaTypesKey.OpenSubKey(JavaTypesSubKeyName);
 						
-						String JavaHome = (String) JavaVersionsKey.GetValue("JavaHome");
+						string JavaHome = (string) JavaVersionsKey.GetValue("JavaHome");
 						
 						if(!string.IsNullOrEmpty(JavaHome) && JavaTypesSubKeyName.Contains(whichToFound))
 						{

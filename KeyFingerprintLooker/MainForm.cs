@@ -1,13 +1,11 @@
 ﻿/*
- * 由SharpDevelop创建。
  * 用户： imknown
  * 日期: 2015/12/3 周四
  * 时间: 上午 11:22
- * 
- * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
  */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -23,6 +21,10 @@ namespace KeyFingerprintLooker
 	{
 		public const string VERSION = "0.3.1 beta";
 		
+		public const string KEYTOOL_EXE = "keytool.exe";
+		public const string DEBUG_KEYSTORE = "debug.keystore";
+		public const string DOT_ANDROID_PATH = @"\.android\";
+		
 		public MainForm()
 		{
 			//
@@ -30,57 +32,31 @@ namespace KeyFingerprintLooker
 			//
 			InitializeComponent();
 			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			// 
-			
 			about_txt.Text = VERSION + ", " + OsUtil.GetProcessType() + " 模式, " + (int) OsUtil.GetOsBit() + "位 系统";
 		}
 		
-		private string FindInstallLocationOfJava()
+		# region [ keytool ]
+		void TextBox_DragEnter(object sender, DragEventArgs e)
 		{
-			string InstallLocationWant = string.Empty;
-			
-			List<ProcessType> ProcessTypeList = new List<ProcessType> { ProcessType.X86, ProcessType.X64 };
-			
-			// List<String> InstallLocationList = RegUtil.FindRegKeyFromInstallAppList(ProcessTypeList, "Java");
-			List<String> InstallLocationList = RegUtil.FindRegKeyByJavaSoft(ProcessTypeList, "_");
-			
-			foreach (string InstallLocation in InstallLocationList)
-			{
-				AppendLog(InstallLocation);
-			}
-			
-			foreach (string InstallLocationTemp in InstallLocationList)
-			{
-				InstallLocationWant = InstallLocationTemp;
-				
-				break;
-			}
-			
-			return InstallLocationWant;
+			e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Link : e.Effect = DragDropEffects.None;
 		}
 		
-		private void TextBox_DragEnter(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(DataFormats.FileDrop))
-			{
-				e.Effect = DragDropEffects.Link;
-			}
-			else
-			{
-				e.Effect = DragDropEffects.None;
-			}
-		}
-		
-		private void keytool_file_path_txtDragDrop(object sender, DragEventArgs e)
+		void keytool_file_path_txtDragDrop(object sender, DragEventArgs e)
 		{
 			keystore_file_path_txt.Text = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
 		}
 		
-		void Button4Click(object sender, EventArgs e)
+		void keytool_file_path_txtTextChanged(object sender, EventArgs e)
 		{
-			String Path = "未找到有效的文件";
+			if(keytool_file_path_txt.Text == string.Empty)
+			{
+				keytool_file_path_txt.Text = "请指定 keytool.exe 路径, 支持拖拽";
+			}
+		}
+		
+		void auto_fetch_keytool_file_path_btnClick(object sender, EventArgs e)
+		{
+			string Path = "未找到有效的文件";
 			
 			// keytool_file_path_txt.Text = GetKeytoolPath() + @"bin\" + KEYTOOL_EXE;
 			
@@ -101,13 +77,9 @@ namespace KeyFingerprintLooker
 			keytool_file_path_txt.Text = Path;
 		}
 		
-		public const string KEYTOOL_EXE = "keytool.exe";
-		public const string DEBUG_KEYSTORE = "debug.keystore";
-		public const string DOT_ANDROID_PATH = @"\.android\";
-		
-		void Button8Click(object sender, EventArgs e)
+		void browse_keytool_file_path_btnClick(object sender, EventArgs e)
 		{
-			OpenFileDialog OpenDialog = new OpenFileDialog();
+			var OpenDialog = new OpenFileDialog();
 			OpenDialog.Filter = KEYTOOL_EXE + "|" + KEYTOOL_EXE;
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
@@ -116,29 +88,73 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
-		# region [ 秘钥文件 ]
-		void Keystore_file_path_txtTextChanged(object sender, EventArgs e)
+		string FindInstallLocationOfJava()
 		{
-			if(keystore_file_path_txt.Text == string.Empty)
+			string InstallLocationWant = string.Empty;
+			
+			var ProcessTypeList = new List<ProcessType> { ProcessType.X86, ProcessType.X64 };
+			
+			// List<string> InstallLocationList = RegUtil.FindRegKeyFromInstallAppList(ProcessTypeList, "Java");
+			List<string> InstallLocationList = RegUtil.FindRegKeyByJavaSoft(ProcessTypeList, "_");
+			
+			foreach (string InstallLocation in InstallLocationList)
 			{
-				keystore_file_path_txt.Text = "请指定 秘钥文件 路径, 支持拖拽";
+				AppendLog(InstallLocation);
 			}
+			
+			foreach (string InstallLocationTemp in InstallLocationList)
+			{
+				InstallLocationWant = InstallLocationTemp;
+				
+				break;
+			}
+			
+			return InstallLocationWant;
 		}
 		
-		private void Keystore_file_path_txtDragDrop(object sender, DragEventArgs e)
+		[method: Obsolete("Use FindInstallLocationOfJava() instead")]
+		string GetKeytoolPath()
+		{
+			string KeytoolPath = "";
+			string JavaHome = Environment.GetEnvironmentVariable("Java_Home");
+			
+			if(Directory.Exists(JavaHome))
+			{
+				KeytoolPath = JavaHome + @"\bin\keytool.exe";
+				
+				// 判断环境变量是否有效
+				if(!File.Exists(KeytoolPath)){
+					KeytoolPath = string.Empty;
+				}
+			}
+			
+			return KeytoolPath;
+		}
+		# endregion
+		
+		# region [ keystore ]
+		void keystore_file_path_txtDragDrop(object sender, DragEventArgs e)
 		{
 			keystore_file_path_txt.Text = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
 		}
 		
-		void Button1Click(object sender, EventArgs e)
+		void keystore_file_path_txtTextChanged(object sender, EventArgs e)
 		{
-			String Path = "未找到有效的文件";
+			if(keystore_file_path_txt.Text == string.Empty)
+			{
+				keystore_file_path_txt.Text = "请指定密钥文件或APK路径, 支持拖拽";
+			}
+		}
+		
+		void auto_fetch_keystore_file_path_btnClick(object sender, EventArgs e)
+		{
+			string Path = "未找到有效的文件";
 			
 			string UserProfileFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 			
 			// string MyDocumentFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			string PersonalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string PersonalProfileFolderPath = PersonalFolderPath.Substring(0, PersonalFolderPath.LastIndexOf(@"\"));
+			string PersonalProfileFolderPath = PersonalFolderPath.Substring(0, PersonalFolderPath.LastIndexOf(@"\", StringComparison.CurrentCulture));
 			
 			string UserProfileFolderlKey = UserProfileFolderPath + DOT_ANDROID_PATH + DEBUG_KEYSTORE;
 			string PersonalUserFolderKey = PersonalProfileFolderPath + DOT_ANDROID_PATH + DEBUG_KEYSTORE;
@@ -171,22 +187,12 @@ namespace KeyFingerprintLooker
 			
 			keystore_file_path_txt.Text = Path;
 		}
-
-		void Button6Click(object sender, EventArgs e)
-		{
-			operation_log_txt.Text = string.Empty;
-		}
 		
-		public const string FILE_TYPE_KEYSTORE = "keystore";
-		public const string FILE_TYPE_JKS = "jks";
-		public const string FILE_TYPE_APK = "APK";
-		public const string FILE_TYPE_RSA = "RSA";
-
-		void Button2Click(object sender, EventArgs e)
+		void browse_keystore_file_path_btnClick(object sender, EventArgs e)
 		{
-			OpenFileDialog OpenDialog = new OpenFileDialog();
+			var OpenDialog = new OpenFileDialog();
 			
-			string[] Objs = new String[] {FILE_TYPE_KEYSTORE, FILE_TYPE_JKS, FILE_TYPE_APK, FILE_TYPE_RSA};
+			var Objs = new string[] {FILE_TYPE_KEYSTORE, FILE_TYPE_JKS, FILE_TYPE_APK, FILE_TYPE_RSA};
 			OpenDialog.Filter = string.Format("密钥文件, APK 包内证书, 应用|*.{0}; *.{1}; *.{2}; *.{3}|所有文件|*.*", Objs);
 			
 			if(DialogResult.OK == OpenDialog.ShowDialog())
@@ -196,9 +202,47 @@ namespace KeyFingerprintLooker
 		}
 		# endregion
 		
-		void Button3Click(object sender, EventArgs e)
+		# region [ password ]
+		void password_txtTextChanged(object sender, EventArgs e)
 		{
-			if(checkBox4.Checked)
+			if(keystore_file_type_release_rdbtn.Checked)
+			{
+				MyPassword.ReleaseKeyStorePassword = password_txt.Text;
+			}
+		}
+		
+		void keystore_file_type_debug_rdbtnCheckedChanged(object sender, EventArgs e)
+		{
+			if(keystore_file_type_debug_rdbtn.Checked)
+			{
+				password_txt.ReadOnly = true;
+				auto_fetch_keystore_file_path_btn.Enabled = true;
+				
+				password_txt.Text = Password.DEBUG_KEYSTORE_PASSWORD;
+			}
+		}
+		
+		void keystore_file_type_release_rdbtnCheckedChanged(object sender, EventArgs e)
+		{
+			if(keystore_file_type_release_rdbtn.Checked)
+			{
+				password_txt.ReadOnly = false;
+				auto_fetch_keystore_file_path_btn.Enabled = false;
+				
+				password_txt.Text = MyPassword.ReleaseKeyStorePassword;
+			}
+		}
+		# endregion
+		
+		# region [ calc ]
+		public const string FILE_TYPE_KEYSTORE = "keystore";
+		public const string FILE_TYPE_JKS = "jks";
+		public const string FILE_TYPE_APK = "apk";
+		public const string FILE_TYPE_RSA = "RSA";
+		
+		void calc_fingerprint_btnClick(object sender, EventArgs e)
+		{
+			if(clear_log_after_recalc_chk.Checked)
 			{
 				operation_log_txt.Text = string.Empty;
 			}
@@ -220,10 +264,10 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			
-			bool EndsWithKeystore = KeystoreFilePath.EndsWith(FILE_TYPE_KEYSTORE, true, System.Globalization.CultureInfo.CurrentCulture);
-			bool EndsWithJks = KeystoreFilePath.EndsWith(FILE_TYPE_JKS, true, System.Globalization.CultureInfo.CurrentCulture);
-			bool EndsWithAPK = KeystoreFilePath.EndsWith(FILE_TYPE_APK, true, System.Globalization.CultureInfo.CurrentCulture);
-			bool EndsWithRSA = KeystoreFilePath.EndsWith(FILE_TYPE_RSA, true, System.Globalization.CultureInfo.CurrentCulture);
+			// bool EndsWithKeystore = KeystoreFilePath.EndsWith(FILE_TYPE_KEYSTORE, StringComparison.CurrentCulture);
+			// bool EndsWithJks = KeystoreFilePath.EndsWith(FILE_TYPE_JKS, StringComparison.CurrentCulture);
+			bool EndsWithAPK = KeystoreFilePath.EndsWith(FILE_TYPE_APK, StringComparison.CurrentCulture);
+			bool EndsWithRSA = KeystoreFilePath.EndsWith(FILE_TYPE_RSA, StringComparison.CurrentCulture);
 			
 			string CmdString = string.Empty;
 			
@@ -231,15 +275,15 @@ namespace KeyFingerprintLooker
 			{
 				string CertRsaPath = ZipUtil.UnzipCERT_RSA(KeystoreFilePath);
 
-				CmdString = surroundInCmd(KeytoolFilePath) + " -printcert -file " + surroundInCmd(CertRsaPath);
+				CmdString = SurroundInCmd(KeytoolFilePath) + " -printcert -file " + SurroundInCmd(CertRsaPath);
 			}
 			else if(EndsWithRSA)
 			{
-				CmdString = surroundInCmd(KeytoolFilePath) + " -printcert -file " + surroundInCmd(KeystoreFilePath);
+				CmdString = SurroundInCmd(KeytoolFilePath) + " -printcert -file " + SurroundInCmd(KeystoreFilePath);
 			}
 			else
 			{
-				CmdString = surroundInCmd(KeytoolFilePath) + " -list -v -keystore " + surroundInCmd(KeystoreFilePath) + " -storepass " + surroundInCmd(password_txt.Text);
+				CmdString = SurroundInCmd(KeytoolFilePath) + " -list -v -keystore " + SurroundInCmd(KeystoreFilePath) + " -storepass " + SurroundInCmd(password_txt.Text);
 			}
 			
 			string CmdResult = CommandUtil.RunCmd(CmdString);
@@ -265,12 +309,12 @@ namespace KeyFingerprintLooker
 				return;
 			}
 			
-			String CmdResultForWindows = CmdResult.Replace("\r\n", "\n").Replace("\n", "\r\n");
+			string CmdResultForWindows = CmdResult.Replace("\r\n", "\n").Replace("\n", "\r\n");
 			AppendLog(CmdResultForWindows);
 			
 			try
 			{
-				parseResult(CmdResult);
+				ParseResult(CmdResult);
 			}
 			catch(Exception ex)
 			{
@@ -278,34 +322,15 @@ namespace KeyFingerprintLooker
 			}
 		}
 		
-		[method: Obsolete("Use FindInstallLocationOfJava() instead")]
-		string GetKeytoolPath()
+		void ParseResult(string CmdResult)
 		{
-			string KeytoolPath = "";
-			string JavaHome = Environment.GetEnvironmentVariable("Java_Home");
-			
-			if(Directory.Exists(JavaHome))
-			{
-				KeytoolPath = JavaHome + @"\bin\keytool.exe";
-				
-				// 判断环境变量是否有效
-				if(!File.Exists(KeytoolPath)){
-					KeytoolPath = string.Empty;
-				}
-			}
-			
-			return KeytoolPath;
-		}
-		
-		void parseResult(string CmdResult)
-		{
-			Result = new Result();
+			MyResult = new Result();
 			
 			alias_selector_cmb.Items.Clear();
-			Result.AliasInfoList = new List<AliasInfo>();
-			AliasInfo AliasInfo = new AliasInfo();
+			MyResult.AliasInfoList = new List<AliasInfo>();
+			var AliasInfo = new AliasInfo();
 			
-			StringReader sr = new StringReader(CmdResult);
+			var sr = new StringReader(CmdResult);
 			string str = string.Empty;
 			
 			while (sr.Peek() != -1)
@@ -319,7 +344,7 @@ namespace KeyFingerprintLooker
 				
 				if (str.Contains("您的密钥库包含"))
 				{
-					Result.AliasCount =  str.Replace("您的密钥库包含 ", string.Empty).Replace(" 个条目", string.Empty );
+					MyResult.AliasCount =  str.Replace("您的密钥库包含 ", string.Empty).Replace(" 个条目", string.Empty );
 				}
 				else if(str.Contains("别名: "))
 				{
@@ -342,7 +367,7 @@ namespace KeyFingerprintLooker
 					AliasInfo.SHA1_CAPS_UseColonForSplit = str.Replace("SHA1: ", string.Empty);
 					AliasInfo.SHA1_CAPS = AliasInfo.SHA1_CAPS_UseColonForSplit.Replace(":", string.Empty);
 					
-					Result.AliasInfoList.Add(AliasInfo);
+					MyResult.AliasInfoList.Add(AliasInfo);
 					
 					string AliasName = AliasInfo.AliasName;
 					if(string.IsNullOrEmpty(AliasInfo.AliasName))
@@ -355,14 +380,14 @@ namespace KeyFingerprintLooker
 			
 			sr.Close();
 			
-			bool hasNoAliasCount = string.IsNullOrEmpty(Result.AliasCount);
+			bool hasNoAliasCount = string.IsNullOrEmpty(MyResult.AliasCount);
 			string AliasCount = "无";
 			if(!hasNoAliasCount) {
-				AliasCount = Result.AliasCount + "个";
+				AliasCount = MyResult.AliasCount + "个";
 			}
 			alias_counter_lbl.Text = AliasCount + "别名";
 			
-			if(hasNoAliasCount || int.Parse(Result.AliasCount) <= 1)
+			if(hasNoAliasCount || int.Parse(MyResult.AliasCount) <= 1)
 			{
 				alias_selector_cmb.Enabled = false;
 			}
@@ -372,11 +397,14 @@ namespace KeyFingerprintLooker
 			}
 			
 			alias_selector_cmb.SelectedIndex = 0;
+			
+			colon_for_split_chk.Enabled = true;
+			caps_chk.Enabled = true;
 		}
 		
-		Password password = new Password();
+		Password MyPassword = new Password();
 		bool UseColonForSplit = true, UseCaps = true;
-		Result Result = new Result();
+		Result MyResult = new Result();
 		
 		void AppendLog(string something)
 		{
@@ -384,32 +412,34 @@ namespace KeyFingerprintLooker
 			operation_log_txt.Text = time + ", " + something + "\r\n" + operation_log_txt.Text;
 		}
 		
-		string surroundInCmd(string something)
+		string SurroundInCmd(string something)
 		{
 			return "\"" + something + "\"";
 		}
+		# endregion
 		
-		void CheckBox1CheckedChanged(object sender, EventArgs e)
+		# region [ check ]
+		void UseColonForSplitCheckedChanged(object sender, EventArgs e)
 		{
 			int SelectedIndex = alias_selector_cmb.SelectedIndex;
 			
-			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
+			AliasInfo AliasInfo = MyResult.AliasInfoList[SelectedIndex];
 			
-			chechUseColonForSplit();
+			CheckUseColonForSplit();
 			
-			chechUseCapsOrNot();
+			CheckUseCapsOrNot();
 		}
 		
-		void CheckBox2CheckedChanged(object sender, EventArgs e)
+		void UseCapsOrNotCheckedChanged(object sender, EventArgs e)
 		{
-			chechUseCapsOrNot();
+			CheckUseCapsOrNot();
 		}
 		
-		void chechUseColonForSplit()
+		void CheckUseColonForSplit()
 		{
 			int SelectedIndex = alias_selector_cmb.SelectedIndex;
 			
-			AliasInfo AliasInfo = Result.AliasInfoList[SelectedIndex];
+			AliasInfo AliasInfo = MyResult.AliasInfoList[SelectedIndex];
 			
 			UseColonForSplit = colon_for_split_chk.Checked;
 			if(UseColonForSplit)
@@ -424,7 +454,7 @@ namespace KeyFingerprintLooker
 			}
 		}
 
-		void chechUseCapsOrNot()
+		void CheckUseCapsOrNot()
 		{
 			UseCaps = caps_chk.Checked;
 			if(UseCaps)
@@ -438,54 +468,28 @@ namespace KeyFingerprintLooker
 				SHA1_txt.Text = SHA1_txt.Text.ToLower();
 			}
 		}
+		# endregion
 		
-		void Button7Click(object sender, EventArgs e)
+		# region [ result ]
+		void alias_selector_cmbSelectedIndexChanged(object sender, EventArgs e)
+		{
+			CheckUseColonForSplit();
+			CheckUseCapsOrNot();
+		}
+		
+		void copy_MD5_btnClick(object sender, EventArgs e)
 		{
 			Clipboard.SetDataObject(MD5_txt.Text);
 		}
 		
-		void Button5Click(object sender, EventArgs e)
+		void copy_SHA1_btnClick(object sender, EventArgs e)
 		{
 			Clipboard.SetDataObject(SHA1_txt.Text);
 		}
+		# endregion
 		
-		void RadioButton1CheckedChanged(object sender, EventArgs e)
-		{
-			if(keystore_file_type_debug_rdbtn.Checked)
-			{
-				password_txt.ReadOnly = true;
-				auto_fetch_keystore_file_path_btn.Enabled = true;
-				
-				password_txt.Text = Password.DEBUG_KEYSTORE_PASSWORD;
-			}
-		}
-		
-		void RadioButton2CheckedChanged(object sender, EventArgs e)
-		{
-			if(keystore_file_type_release_rdbtn.Checked)
-			{
-				password_txt.ReadOnly = false;
-				auto_fetch_keystore_file_path_btn.Enabled = false;
-				
-				password_txt.Text = password.ReleaseKeyStorePassword;
-			}
-		}
-		
-		void TextBox1TextChanged(object sender, EventArgs e)
-		{
-			if(keystore_file_type_release_rdbtn.Checked)
-			{
-				password.ReleaseKeyStorePassword = password_txt.Text;
-			}
-		}
-		
-		void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
-		{
-			chechUseColonForSplit();
-			chechUseCapsOrNot();
-		}
-		
-		void Not_wrap_content_chkCheckedChanged(object sender, EventArgs e)
+		# region [ control ]
+		void not_wrap_content_chkCheckedChanged(object sender, EventArgs e)
 		{
 			if(not_wrap_content_chk.Checked)
 			{
@@ -498,5 +502,11 @@ namespace KeyFingerprintLooker
 				operation_log_txt.ScrollBars = ScrollBars.Both;
 			}
 		}
+		
+		void clear_log_btnClick(object sender, EventArgs e)
+		{
+			operation_log_txt.Text = string.Empty;
+		}
+		# endregion
 	}
 }

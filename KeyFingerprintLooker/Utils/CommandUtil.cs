@@ -1,10 +1,7 @@
 ﻿/*
- * 由SharpDevelop创建。
  * 用户： imknown
  * 日期: 2015/12/3 周四
  * 时间: 下午 12:59
- * 
- * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
  */
 using System;
 using System.Diagnostics;
@@ -14,11 +11,11 @@ namespace KeyFingerprintLooker.Utils
 	/// <summary>
 	/// Description of Command.
 	/// </summary>
-	public class CommandUtil
+	public static class CommandUtil
 	{
 		public static string RunCmd(string command)
 		{
-			Process p = new Process();
+			var p = new Process();
 
 			p.StartInfo.FileName = "cmd.exe";           //设定程序名
 			// p.StartInfo.Arguments = "/c " + command;    //设定程式执行参数
