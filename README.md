@@ -8,14 +8,14 @@
 - [x] Keystore/JKS file; APK, RSA file
 - [x] VisualStudio/Xamarin/MonoDeveloper Debug Key<br />
 - [x] High DPI Screen<br />
-- [ ] Multi-Language i18n (under construction but now Chinese only)
+- [x] Multi-Language i18n (more language under construction)
 - [ ] Cross-platform (thinking...)
 
 
 [![image]](https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png)
 [image]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png "中文"
 
-# Download (Chinese only now)
+# Download
 https://github.com/imknown/KeyFingerprintLooker/releases/
 
 # License
