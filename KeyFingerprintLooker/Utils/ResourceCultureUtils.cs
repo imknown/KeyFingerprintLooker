@@ -154,7 +154,7 @@ namespace KeyFingerprintLooker.Utils
 				var menuStrip = control as MenuStrip;
 				if (menuStrip != null)
 				{
-					dododo(form, menuStrip.Items);
+					InitToolStripItem(form, menuStrip.Items);
 				}
 				
 				control.Text = String(form, control);
@@ -166,7 +166,7 @@ namespace KeyFingerprintLooker.Utils
 			}
 		}
 		
-		static void dododo(Form form, ToolStripItemCollection items)
+		static void InitToolStripItem(Form form, ToolStripItemCollection items)
 		{
 			foreach (ToolStripMenuItem item in items)
 			{
@@ -174,7 +174,7 @@ namespace KeyFingerprintLooker.Utils
 				
 				if(item.HasDropDownItems)
 				{
-					dododo(form, item.DropDownItems);
+					InitToolStripItem(form, item.DropDownItems);
 				}
 			}
 		}
