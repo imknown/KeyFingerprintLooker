@@ -2,6 +2,7 @@
 
 
 - [x] Win7/Win8/Win8.1/Win10 all are okay<br />
+- [x] .NET Framework runtime 4.0+<br />
 - [x] 32bit & 64bit Java 5/6/7/8/9<br />
 - [x] Auto intelligently finding files <br />
 - [x] Unicode, <kbd>Space</kbd> and CJK characters supported<br />
