@@ -7,15 +7,9 @@ using System;
 
 namespace KeyFingerprintLooker.Model
 {
-	/// <summary>
-	/// Description of Password.
-	/// </summary>
 	public class Password
 	{
 		public const string DEBUG_KEYSTORE_PASSWORD = "android";
-		public const string PASSWORD_ERROR = "Keystore was tampered with, or password was incorrect";
-		public const string BAD_FORMAT_FILE_ERROR = "Invalid keystore format";
-		public const string BAD_EMPTY_FILE_ERROR = "密钥库文件存在, 但为空";
 		
 		string _ReleaseKeyStorePassword = DEBUG_KEYSTORE_PASSWORD;
 		public string ReleaseKeyStorePassword

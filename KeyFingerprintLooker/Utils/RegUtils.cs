@@ -17,16 +17,13 @@ namespace KeyFingerprintLooker.Utils
 		Unknown = -1
 	};
 	
-	/// <summary>
-	/// Description of Reg.
-	/// </summary>
 	public static class RegUtils
 	{
 		#region [ FromInstallAppList ]
 		[method: Obsolete("Use FindRegKeyByJavaSoft() instead")]
 		public static List<string> FindRegKeyFromInstallAppList(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
-			#region [ 初始化 ]
+			#region [ init ]
 			RegistryKey lmKey, CurrentVersionUninstallKey, WOW64UninstallKey;
 
 			lmKey = Registry.LocalMachine;
@@ -93,7 +90,7 @@ namespace KeyFingerprintLooker.Utils
 		
 		public static List<string> FindRegKeyByJavaSoft(List<ProcessType> ProcessTypeList, string whichToFound)
 		{
-			#region [ 初始化 ]
+			#region [ init ]
 			RegistryKey lmKey;
 			RegistryKey CurrentVersionJavaSoftKey; // '64bit OS' run 'x64 program' to find 'x64 Java', OR '32bit OS' run 'x86 program' to find 'x86 Java'
 			RegistryKey WOW64JavaSoftKey; // '64bit OS' run 'x64 program' to find 'x86 Java'
@@ -152,10 +149,6 @@ namespace KeyFingerprintLooker.Utils
 		/// <summary>
 		/// Thanks: https://github.com/Redth/Android.Signature.Tool
 		/// </summary>
-		/// <param name="JavaSoftKey"></param>
-		/// <param name="JavaKeys"></param>
-		/// <param name="whichToFound"></param>
-		/// <returns></returns>
 		private static List<string> FindInstallLocationByJavaSoft(RegistryKey JavaSoftKey, string[] JavaKeys, string whichToFound)
 		{
 			var InstallLocationList = new List<string>();

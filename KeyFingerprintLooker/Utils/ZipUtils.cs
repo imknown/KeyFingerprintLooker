@@ -8,9 +8,6 @@ using ICSharpCode.SharpZipLib.Zip;
 
 namespace KeyFingerprintLooker.Utils
 {
-	/// <summary>
-	/// Description of ZipUtil.
-	/// </summary>
 	public static class ZipUtils
 	{
 		public const string DIR_WHERE_CERT_RSA_IN = "META-INF";
