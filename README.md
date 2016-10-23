@@ -12,8 +12,8 @@
 - [ ] Cross-platform (thinking...)
 
 
-[![image]](https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png)
-[image]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/Chinese.png "中文"
+[![image]](https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/MainForm.png)
+[image]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/MainForm.png "MainForm"
 
 # Download
 https://github.com/imknown/KeyFingerprintLooker/releases/
