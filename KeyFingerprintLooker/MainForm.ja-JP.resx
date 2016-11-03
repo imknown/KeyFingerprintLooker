@@ -117,29 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="keystore_file_path_txt.Hint" xml:space="preserve">
+    <value>ここに キー または APK のアドレスを入力して、ドラッグ アンド ドロップのサポート</value>
+  </data>
   <data name="auto_fetch_keystore_file_path_btn.Text" xml:space="preserve">
-    <value>auto fetch</value>
+    <value>自動検索</value>
   </data>
   <data name="browse_keystore_file_path_btn.Text" xml:space="preserve">
-    <value>browse...</value>
+    <value>参照...</value>
   </data>
   <data name="xamarin_first_chk.Text" xml:space="preserve">
-    <value>fetch Xamarin Debug Key first</value>
+    <value>優先検索 Xamarin Debug キー</value>
   </data>
   <data name="auto_fetch_keytool_file_path_btn.Text" xml:space="preserve">
-    <value>auto fetch</value>
+    <value>自動検索</value>
   </data>
   <data name="keytool_file_path_lbl.Text" xml:space="preserve">
-    <value>keytool.exe location</value>
+    <value>keytool.exe アドレス</value>
   </data>
   <data name="browse_keytool_file_path_btn.Text" xml:space="preserve">
-    <value>browse...</value>
+    <value>参照...</value>
+  </data>
+  <data name="keytool_file_path_txt.Hint" xml:space="preserve">
+    <value>ここに keytool.exe のアドレスを入力して、ドラッグ アンド ドロップのサポート</value>
   </data>
   <data name="keystore_file_path_lbl.Text" xml:space="preserve">
-    <value>key or apk location</value>
+    <value>キー/APK アドレス</value>
   </data>
   <data name="password_lbl.Text" xml:space="preserve">
-    <value>key password</value>
+    <value>キー パスワード</value>
+  </data>
+  <data name="source_gpb.Text" xml:space="preserve">
+    <value>ソース</value>
+  </data>
+  <data name="colon_for_split_chk.Text" xml:space="preserve">
+    <value>コロンで区切られました</value>
+  </data>
+  <data name="copy_SHA1_btn.Text" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="operation_log_txt.Text" xml:space="preserve">
+    <value>ログでない</value>
+  </data>
+  <data name="calc_fingerprint_btn.Text" xml:space="preserve">
+    <value>計算指紋</value>
+  </data>
+  <data name="clear_log_btn.Text" xml:space="preserve">
+    <value>ログのクリア</value>
+  </data>
+  <data name="copy_MD5_btn.Text" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="not_wrap_content_chk.Text" xml:space="preserve">
+    <value>右端で折り返す</value>
+  </data>
+  <data name="about_txt.Text" xml:space="preserve">
+    <value>{0}、{1} モード、{2}ビット システム</value>
+  </data>
+  <data name="clear_log_after_recalc_chk.Text" xml:space="preserve">
+    <value>再計算後、ログを空に</value>
+  </data>
+  <data name="caps_chk.Text" xml:space="preserve">
+    <value>大文字</value>
+  </data>
+  <data name="aliases_counter_lbl.Text" xml:space="preserve">
+    <value>別名はない</value>
+  </data>
+  <data name="result_gpb.Text" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="MainForm.Text" xml:space="preserve">
+    <value>キー指紋ビューアー</value>
   </data>
   <data name="keystore_file_type_release_rdbtn.Text" xml:space="preserve">
     <value>Release</value>
@@ -147,128 +195,83 @@
   <data name="keystore_file_type_debug_rdbtn.Text" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="password_txt.Text" xml:space="preserve">
-    <value>android</value>
-  </data>
-  <data name="source_gpb.Text" xml:space="preserve">
-    <value>source</value>
-  </data>
-  <data name="colon_for_split_chk.Text" xml:space="preserve">
-    <value>split with colon</value>
-  </data>
   <data name="sha1_lbl.Text" xml:space="preserve">
     <value>SHA1</value>
-  </data>
-  <data name="copy_SHA1_btn.Text" xml:space="preserve">
-    <value>copy</value>
-  </data>
-  <data name="operation_log_txt.Text" xml:space="preserve">
-    <value>no log</value>
-  </data>
-  <data name="calc_fingerprint_btn.Text" xml:space="preserve">
-    <value>calc fingerprint</value>
-  </data>
-  <data name="clear_log_btn.Text" xml:space="preserve">
-    <value>clear log</value>
-  </data>
-  <data name="copy_MD5_btn.Text" xml:space="preserve">
-    <value>copy</value>
   </data>
   <data name="md5_lbl.Text" xml:space="preserve">
     <value>MD5</value>
   </data>
-  <data name="not_wrap_content_chk.Text" xml:space="preserve">
-    <value>wrap content</value>
-  </data>
-  <data name="about_txt.Text" xml:space="preserve">
-    <value>{0}, {1} mode, {2}bit OS</value>
-  </data>
-  <data name="clear_log_after_recalc_chk.Text" xml:space="preserve">
-    <value>clear log after recalc</value>
-  </data>
-  <data name="caps_chk.Text" xml:space="preserve">
-    <value>capitals</value>
-  </data>
-  <data name="aliases_counter_lbl.Text" xml:space="preserve">
-    <value>no aliases</value>
-  </data>
-  <data name="result_gpb.Text" xml:space="preserve">
-    <value>result</value>
-  </data>
-  <data name="MainForm.Text" xml:space="preserve">
-    <value>KeyFingerprintLooker</value>
-  </data>
-  <data name="keytool_file_path_txt.Hint" xml:space="preserve">
-    <value>input keytool.exe location here, dragdrop supported</value>
-  </data>
-  <data name="keystore_file_path_txt.Hint" xml:space="preserve">
-    <value>input key or apk location here, dragdrop supported</value>
+  <data name="password_txt.Text" xml:space="preserve">
+    <value>android</value>
   </data>
   <data name="zzcommon_check_file_not_exist" xml:space="preserve">
-    <value>{0} file does not exist.</value>
-  </data>
-  <data name="zzcommon_check_no_valid_file_found" xml:space="preserve">
-    <value>No valid file found.</value>
-  </data>
-  <data name="zzcommon_file_types" xml:space="preserve">
-    <value>keystore/jks, apk, CERT.RSA|*.{0}; *.{1}; *.{2}; *.{3}|All|*.*</value>
+    <value>{0} ファイルが存在しません。</value>
   </data>
   <data name="zzcommon_result_cannot_get_alias_name" xml:space="preserve">
-    <value>&lt;cannot get alias name&gt;</value>
+    <value>&lt;別名を取得できません&gt;</value>
   </data>
-  <data name="zzcommon_result_alias_name" xml:space="preserve">
-    <value>Alias name:</value>
+  <data name="zzcommon_file_types" xml:space="preserve">
+    <value>keystore/jks, apk, CERT.RSA|*.{0}; *.{1}; *.{2}; *.{3}|すべてのファイル|*.*</value>
+  </data>
+  <data name="zzcommon_result_your_keystore_contains" xml:space="preserve">
+    <value>キーストアには</value>
   </data>
   <data name="zzcommon_result_entry" xml:space="preserve">
-    <value>entry</value>
+    <value>エントリが含まれます</value>
   </data>
   <data name="zzcommon_result_sha1" xml:space="preserve">
     <value>SHA1:</value>
   </data>
   <data name="zzcommon_result_creation_date" xml:space="preserve">
-    <value>Creation date:</value>
+    <value>有効期間の開始日:</value>
   </data>
   <data name="zzcommon_result_md5" xml:space="preserve">
     <value>MD5:</value>
   </data>
-  <data name="zzcommon_result_your_keystore_contains" xml:space="preserve">
-    <value>Your keystore contains</value>
+  <data name="zzcommon_result_alias_name" xml:space="preserve">
+    <value>別名:</value>
+  </data>
+  <data name="zzcommon_check_no_valid_file_found" xml:space="preserve">
+    <value>有効なファイルが見つかりません。</value>
   </data>
   <data name="zzcommon_result_count_aliases" xml:space="preserve">
-    <value>aliases</value>
+    <value>別名</value>
   </data>
   <data name="zzcommon_result_count_quantifier" xml:space="preserve">
     <value />
   </data>
   <data name="zzcommon_keystore_or_apk" xml:space="preserve">
-    <value>key or apk</value>
+    <value>キー または apk</value>
   </data>
   <data name="zzcommon_result_entries" xml:space="preserve">
-    <value>entries</value>
+    <value>エントリが含まれます</value>
   </data>
   <data name="zzcommon_language" xml:space="preserve">
-    <value>en-US</value>
-  </data>
-  <data name="zzcommon_check_error_empty_file_desc" xml:space="preserve">
-    <value>Keystore file exists, but is empty.</value>
-  </data>
-  <data name="zzcommon_check_error_bad_file_format_desc" xml:space="preserve">
-    <value>Invalid keystore format.</value>
-  </data>
-  <data name="zzcommon_check_error_keytool_path_invalid_or_has_space_desc" xml:space="preserve">
-    <value>File path is invalid or has space.</value>
-  </data>
-  <data name="zzcommon_check_error_bad_file_format" xml:space="preserve">
-    <value>Invalid keystore format</value>
-  </data>
-  <data name="zzcommon_check_error_empty_file" xml:space="preserve">
-    <value>Keystore file exists, but is empty</value>
+    <value>ja-JP</value>
   </data>
   <data name="zzcommon_check_error_wrong_password" xml:space="preserve">
     <value>Keystore was tampered with, or password was incorrect</value>
   </data>
+  <data name="zzcommon_check_error_empty_file" xml:space="preserve">
+    <value>キーストア・ファイルは存在しますが、空です</value>
+  </data>
+  <data name="zzcommon_check_error_bad_file_format" xml:space="preserve">
+    <value>Invalid keystore format</value>
+  </data>
   <data name="zzcommon_check_error_wrong_password_desc" xml:space="preserve">
-    <value>Keystore was tampered with, or password was incorrect.</value>
+    <value>キー ファイルが改ざんされて、またはパスワードが無効です。</value>
+  </data>
+  <data name="zzcommon_check_error_empty_file_desc" xml:space="preserve">
+    <value>キーストア・ファイルは存在しますが、空です。</value>
+  </data>
+  <data name="zzcommon_check_error_keytool_path_invalid_or_has_space_desc" xml:space="preserve">
+    <value>ファイルのアドレスが正しくない、またはスペースがあります。</value>
+  </data>
+  <data name="zzcommon_check_error_bad_file_format_desc" xml:space="preserve">
+    <value>キー形式が无効です。</value>
+  </data>
+  <data name="zzcommon_language_author_email" xml:space="preserve">
+    <value>imknown@qq.com</value>
   </data>
   <data name="zzcommon_language_author_name" xml:space="preserve">
     <value>imknown</value>
@@ -276,26 +279,23 @@
   <data name="zzcommon_language_author_homepage" xml:space="preserve">
     <value>http://imknown.net/</value>
   </data>
-  <data name="zzcommon_language_author_email" xml:space="preserve">
-    <value>imknown@qq.com</value>
-  </data>
-  <data name="file_tsmi.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
-  <data name="view_tsmi.Text" xml:space="preserve">
-    <value>&amp;View</value>
-  </data>
-  <data name="language_tsmi.Text" xml:space="preserve">
-    <value>&amp;Language</value>
-  </data>
-  <data name="about_tsmi.Text" xml:space="preserve">
-    <value>&amp;About</value>
-  </data>
   <data name="simple_chinese_prc_tsmi.Text" xml:space="preserve">
     <value>大陆简体中文(&amp;P)</value>
   </data>
   <data name="english_united_states_tsmi.Text" xml:space="preserve">
     <value>English (&amp;United States)</value>
+  </data>
+  <data name="about_tsmi.Text" xml:space="preserve">
+    <value>について(&amp;A)</value>
+  </data>
+  <data name="view_tsmi.Text" xml:space="preserve">
+    <value>表示(&amp;V)</value>
+  </data>
+  <data name="file_tsmi.Text" xml:space="preserve">
+    <value>ファイル(&amp;F)</value>
+  </data>
+  <data name="language_tsmi.Text" xml:space="preserve">
+    <value>&amp;Language</value>
   </data>
   <data name="japanese_tsmi.Text" xml:space="preserve">
     <value>日本语(&amp;J)</value>
