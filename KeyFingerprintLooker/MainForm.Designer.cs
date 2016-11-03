@@ -63,13 +63,14 @@ namespace KeyFingerprintLooker
 			this.clear_log_after_recalc_chk = new System.Windows.Forms.CheckBox();
 			this.alias_selector_cmb = new System.Windows.Forms.ComboBox();
 			this.caps_chk = new System.Windows.Forms.CheckBox();
-			this.aliased_counter_lbl = new System.Windows.Forms.Label();
+			this.aliases_counter_lbl = new System.Windows.Forms.Label();
 			this.main_ms = new System.Windows.Forms.MenuStrip();
 			this.file_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.view_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.language_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.english_united_states_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.simple_chinese_prc_tsmi = new System.Windows.Forms.ToolStripMenuItem();
+			this.japanese_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.about_tsmi = new System.Windows.Forms.ToolStripMenuItem();
 			this.source_gpb.SuspendLayout();
 			this.result_gpb.SuspendLayout();
@@ -107,7 +108,7 @@ namespace KeyFingerprintLooker
 			this.browse_keystore_file_path_btn.Location = new System.Drawing.Point(694, 54);
 			this.browse_keystore_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.browse_keystore_file_path_btn.Name = "browse_keystore_file_path_btn";
-			this.browse_keystore_file_path_btn.Size = new System.Drawing.Size(90, 28);
+			this.browse_keystore_file_path_btn.Size = new System.Drawing.Size(88, 28);
 			this.browse_keystore_file_path_btn.TabIndex = 5;
 			this.browse_keystore_file_path_btn.Text = "browse...";
 			this.browse_keystore_file_path_btn.UseVisualStyleBackColor = true;
@@ -163,10 +164,10 @@ namespace KeyFingerprintLooker
 			// 
 			// keytool_file_path_lbl
 			// 
-			this.keytool_file_path_lbl.Location = new System.Drawing.Point(8, 18);
+			this.keytool_file_path_lbl.Location = new System.Drawing.Point(8, 23);
 			this.keytool_file_path_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.keytool_file_path_lbl.Name = "keytool_file_path_lbl";
-			this.keytool_file_path_lbl.Size = new System.Drawing.Size(141, 36);
+			this.keytool_file_path_lbl.Size = new System.Drawing.Size(141, 26);
 			this.keytool_file_path_lbl.TabIndex = 23;
 			this.keytool_file_path_lbl.Text = "keytool.exe location";
 			this.keytool_file_path_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,7 +178,7 @@ namespace KeyFingerprintLooker
 			this.browse_keytool_file_path_btn.Location = new System.Drawing.Point(694, 23);
 			this.browse_keytool_file_path_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.browse_keytool_file_path_btn.Name = "browse_keytool_file_path_btn";
-			this.browse_keytool_file_path_btn.Size = new System.Drawing.Size(90, 28);
+			this.browse_keytool_file_path_btn.Size = new System.Drawing.Size(88, 28);
 			this.browse_keytool_file_path_btn.TabIndex = 2;
 			this.browse_keytool_file_path_btn.Text = "browse...";
 			this.browse_keytool_file_path_btn.UseVisualStyleBackColor = true;
@@ -198,20 +199,20 @@ namespace KeyFingerprintLooker
 			// 
 			// keystore_file_path_lbl
 			// 
-			this.keystore_file_path_lbl.Location = new System.Drawing.Point(8, 49);
+			this.keystore_file_path_lbl.Location = new System.Drawing.Point(8, 54);
 			this.keystore_file_path_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.keystore_file_path_lbl.Name = "keystore_file_path_lbl";
-			this.keystore_file_path_lbl.Size = new System.Drawing.Size(141, 36);
+			this.keystore_file_path_lbl.Size = new System.Drawing.Size(141, 26);
 			this.keystore_file_path_lbl.TabIndex = 21;
 			this.keystore_file_path_lbl.Text = "key or apk location";
 			this.keystore_file_path_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// password_lbl
 			// 
-			this.password_lbl.Location = new System.Drawing.Point(8, 112);
+			this.password_lbl.Location = new System.Drawing.Point(8, 118);
 			this.password_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.password_lbl.Name = "password_lbl";
-			this.password_lbl.Size = new System.Drawing.Size(141, 36);
+			this.password_lbl.Size = new System.Drawing.Size(141, 26);
 			this.password_lbl.TabIndex = 20;
 			this.password_lbl.Text = "key password";
 			this.password_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -286,10 +287,10 @@ namespace KeyFingerprintLooker
 			// 
 			// sha1_lbl
 			// 
-			this.sha1_lbl.Location = new System.Drawing.Point(6, 82);
+			this.sha1_lbl.Location = new System.Drawing.Point(8, 87);
 			this.sha1_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.sha1_lbl.Name = "sha1_lbl";
-			this.sha1_lbl.Size = new System.Drawing.Size(141, 36);
+			this.sha1_lbl.Size = new System.Drawing.Size(139, 26);
 			this.sha1_lbl.TabIndex = 5;
 			this.sha1_lbl.Text = "SHA1";
 			this.sha1_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -300,7 +301,7 @@ namespace KeyFingerprintLooker
 			this.copy_SHA1_btn.Location = new System.Drawing.Point(594, 86);
 			this.copy_SHA1_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.copy_SHA1_btn.Name = "copy_SHA1_btn";
-			this.copy_SHA1_btn.Size = new System.Drawing.Size(190, 28);
+			this.copy_SHA1_btn.Size = new System.Drawing.Size(188, 28);
 			this.copy_SHA1_btn.TabIndex = 15;
 			this.copy_SHA1_btn.Text = "copy";
 			this.copy_SHA1_btn.UseVisualStyleBackColor = true;
@@ -317,7 +318,7 @@ namespace KeyFingerprintLooker
 			this.operation_log_txt.Name = "operation_log_txt";
 			this.operation_log_txt.ReadOnly = true;
 			this.operation_log_txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.operation_log_txt.Size = new System.Drawing.Size(776, 136);
+			this.operation_log_txt.Size = new System.Drawing.Size(774, 136);
 			this.operation_log_txt.TabIndex = 18;
 			this.operation_log_txt.Text = "no log";
 			// 
@@ -327,7 +328,7 @@ namespace KeyFingerprintLooker
 			this.calc_fingerprint_btn.Location = new System.Drawing.Point(594, 24);
 			this.calc_fingerprint_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.calc_fingerprint_btn.Name = "calc_fingerprint_btn";
-			this.calc_fingerprint_btn.Size = new System.Drawing.Size(190, 28);
+			this.calc_fingerprint_btn.Size = new System.Drawing.Size(188, 28);
 			this.calc_fingerprint_btn.TabIndex = 11;
 			this.calc_fingerprint_btn.Text = "calc fingerprint";
 			this.calc_fingerprint_btn.UseVisualStyleBackColor = true;
@@ -363,7 +364,7 @@ namespace KeyFingerprintLooker
 			this.copy_MD5_btn.Location = new System.Drawing.Point(594, 55);
 			this.copy_MD5_btn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.copy_MD5_btn.Name = "copy_MD5_btn";
-			this.copy_MD5_btn.Size = new System.Drawing.Size(190, 28);
+			this.copy_MD5_btn.Size = new System.Drawing.Size(188, 28);
 			this.copy_MD5_btn.TabIndex = 13;
 			this.copy_MD5_btn.Text = "copy";
 			this.copy_MD5_btn.UseVisualStyleBackColor = true;
@@ -371,10 +372,10 @@ namespace KeyFingerprintLooker
 			// 
 			// md5_lbl
 			// 
-			this.md5_lbl.Location = new System.Drawing.Point(6, 51);
+			this.md5_lbl.Location = new System.Drawing.Point(8, 56);
 			this.md5_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.md5_lbl.Name = "md5_lbl";
-			this.md5_lbl.Size = new System.Drawing.Size(141, 36);
+			this.md5_lbl.Size = new System.Drawing.Size(139, 26);
 			this.md5_lbl.TabIndex = 14;
 			this.md5_lbl.Text = "MD5";
 			this.md5_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -389,7 +390,7 @@ namespace KeyFingerprintLooker
 			this.result_gpb.Controls.Add(this.clear_log_after_recalc_chk);
 			this.result_gpb.Controls.Add(this.alias_selector_cmb);
 			this.result_gpb.Controls.Add(this.caps_chk);
-			this.result_gpb.Controls.Add(this.aliased_counter_lbl);
+			this.result_gpb.Controls.Add(this.aliases_counter_lbl);
 			this.result_gpb.Controls.Add(this.md5_lbl);
 			this.result_gpb.Controls.Add(this.copy_MD5_btn);
 			this.result_gpb.Controls.Add(this.MD5_txt);
@@ -414,10 +415,10 @@ namespace KeyFingerprintLooker
 			this.not_wrap_content_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.not_wrap_content_chk.Checked = true;
 			this.not_wrap_content_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.not_wrap_content_chk.Location = new System.Drawing.Point(566, 295);
+			this.not_wrap_content_chk.Location = new System.Drawing.Point(498, 295);
 			this.not_wrap_content_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.not_wrap_content_chk.Name = "not_wrap_content_chk";
-			this.not_wrap_content_chk.Size = new System.Drawing.Size(117, 26);
+			this.not_wrap_content_chk.Size = new System.Drawing.Size(185, 26);
 			this.not_wrap_content_chk.TabIndex = 20;
 			this.not_wrap_content_chk.Text = "wrap content";
 			this.not_wrap_content_chk.UseVisualStyleBackColor = true;
@@ -429,7 +430,7 @@ namespace KeyFingerprintLooker
 			this.about_txt.Location = new System.Drawing.Point(8, 294);
 			this.about_txt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.about_txt.Name = "about_txt";
-			this.about_txt.Size = new System.Drawing.Size(219, 26);
+			this.about_txt.Size = new System.Drawing.Size(289, 26);
 			this.about_txt.TabIndex = 24;
 			this.about_txt.Text = "{0}, {1} mode, {2}bit OS";
 			this.about_txt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -439,10 +440,10 @@ namespace KeyFingerprintLooker
 			this.clear_log_after_recalc_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.clear_log_after_recalc_chk.Checked = true;
 			this.clear_log_after_recalc_chk.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.clear_log_after_recalc_chk.Location = new System.Drawing.Point(370, 295);
+			this.clear_log_after_recalc_chk.Location = new System.Drawing.Point(305, 295);
 			this.clear_log_after_recalc_chk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.clear_log_after_recalc_chk.Name = "clear_log_after_recalc_chk";
-			this.clear_log_after_recalc_chk.Size = new System.Drawing.Size(188, 26);
+			this.clear_log_after_recalc_chk.Size = new System.Drawing.Size(185, 26);
 			this.clear_log_after_recalc_chk.TabIndex = 19;
 			this.clear_log_after_recalc_chk.Text = "clear log after recalc";
 			this.clear_log_after_recalc_chk.UseVisualStyleBackColor = true;
@@ -475,15 +476,15 @@ namespace KeyFingerprintLooker
 			this.caps_chk.UseVisualStyleBackColor = true;
 			this.caps_chk.CheckedChanged += new System.EventHandler(this.UseCapsOrNotCheckedChanged);
 			// 
-			// aliased_counter_lbl
+			// aliases_counter_lbl
 			// 
-			this.aliased_counter_lbl.Location = new System.Drawing.Point(6, 18);
-			this.aliased_counter_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.aliased_counter_lbl.Name = "aliased_counter_lbl";
-			this.aliased_counter_lbl.Size = new System.Drawing.Size(141, 36);
-			this.aliased_counter_lbl.TabIndex = 14;
-			this.aliased_counter_lbl.Text = "0 aliased";
-			this.aliased_counter_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.aliases_counter_lbl.Location = new System.Drawing.Point(8, 25);
+			this.aliases_counter_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.aliases_counter_lbl.Name = "aliases_counter_lbl";
+			this.aliases_counter_lbl.Size = new System.Drawing.Size(139, 26);
+			this.aliases_counter_lbl.TabIndex = 14;
+			this.aliases_counter_lbl.Text = "0 aliases";
+			this.aliases_counter_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// main_ms
 			// 
@@ -493,14 +494,14 @@ namespace KeyFingerprintLooker
 			this.about_tsmi});
 			this.main_ms.Location = new System.Drawing.Point(0, 0);
 			this.main_ms.Name = "main_ms";
-			this.main_ms.Size = new System.Drawing.Size(818, 25);
+			this.main_ms.Size = new System.Drawing.Size(818, 24);
 			this.main_ms.TabIndex = 13;
 			this.main_ms.Text = "menuStrip1";
 			// 
 			// file_tsmi
 			// 
 			this.file_tsmi.Name = "file_tsmi";
-			this.file_tsmi.Size = new System.Drawing.Size(39, 21);
+			this.file_tsmi.Size = new System.Drawing.Size(37, 20);
 			this.file_tsmi.Text = "&File";
 			// 
 			// view_tsmi
@@ -508,36 +509,44 @@ namespace KeyFingerprintLooker
 			this.view_tsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.language_tsmi});
 			this.view_tsmi.Name = "view_tsmi";
-			this.view_tsmi.Size = new System.Drawing.Size(47, 21);
+			this.view_tsmi.Size = new System.Drawing.Size(44, 20);
 			this.view_tsmi.Text = "&View";
 			// 
 			// language_tsmi
 			// 
 			this.language_tsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.english_united_states_tsmi,
-			this.simple_chinese_prc_tsmi});
+			this.simple_chinese_prc_tsmi,
+			this.japanese_tsmi});
 			this.language_tsmi.Name = "language_tsmi";
-			this.language_tsmi.Size = new System.Drawing.Size(133, 22);
+			this.language_tsmi.Size = new System.Drawing.Size(126, 22);
 			this.language_tsmi.Text = "&Language";
 			// 
 			// english_united_states_tsmi
 			// 
 			this.english_united_states_tsmi.Name = "english_united_states_tsmi";
-			this.english_united_states_tsmi.Size = new System.Drawing.Size(206, 22);
+			this.english_united_states_tsmi.Size = new System.Drawing.Size(192, 22);
 			this.english_united_states_tsmi.Text = "English (&United States)";
 			this.english_united_states_tsmi.Click += new System.EventHandler(this.english_united_states_tsmiClick);
 			// 
 			// simple_chinese_prc_tsmi
 			// 
 			this.simple_chinese_prc_tsmi.Name = "simple_chinese_prc_tsmi";
-			this.simple_chinese_prc_tsmi.Size = new System.Drawing.Size(206, 22);
+			this.simple_chinese_prc_tsmi.Size = new System.Drawing.Size(192, 22);
 			this.simple_chinese_prc_tsmi.Text = "大陆简体中文 (&P)";
 			this.simple_chinese_prc_tsmi.Click += new System.EventHandler(this.simple_chinese_prc_tsmiClick);
+			// 
+			// japanese_tsmi
+			// 
+			this.japanese_tsmi.Name = "japanese_tsmi";
+			this.japanese_tsmi.Size = new System.Drawing.Size(192, 22);
+			this.japanese_tsmi.Text = "日本语 (&J)";
+			this.japanese_tsmi.Click += new System.EventHandler(this.japanese_tsmiClick);
 			// 
 			// about_tsmi
 			// 
 			this.about_tsmi.Name = "about_tsmi";
-			this.about_tsmi.Size = new System.Drawing.Size(55, 21);
+			this.about_tsmi.Size = new System.Drawing.Size(52, 20);
 			this.about_tsmi.Text = "&About";
 			this.about_tsmi.Click += new System.EventHandler(this.about_tsmiClick);
 			// 
@@ -577,7 +586,7 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.Label keytool_file_path_lbl;
 		private System.Windows.Forms.Label password_lbl;
 		private System.Windows.Forms.CheckBox clear_log_after_recalc_chk;
-		private System.Windows.Forms.Label aliased_counter_lbl;
+		private System.Windows.Forms.Label aliases_counter_lbl;
 		private System.Windows.Forms.ComboBox alias_selector_cmb;
 		private System.Windows.Forms.RadioButton keystore_file_type_debug_rdbtn;
 		private System.Windows.Forms.RadioButton keystore_file_type_release_rdbtn;
@@ -605,5 +614,6 @@ namespace KeyFingerprintLooker
 		private System.Windows.Forms.ToolStripMenuItem language_tsmi;
 		private System.Windows.Forms.ToolStripMenuItem english_united_states_tsmi;
 		private System.Windows.Forms.ToolStripMenuItem simple_chinese_prc_tsmi;
+		private System.Windows.Forms.ToolStripMenuItem japanese_tsmi;
 	}
 }

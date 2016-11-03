@@ -15,7 +15,7 @@ namespace KeyFingerprintLooker
 	public partial class MainForm : Form
 	{
 		# region [ static define ]
-		public const string VERSION = "0.4 beta";
+		public const string VERSION = "0.4.1 beta";
 		
 		public const string FILE_TYPE_KEYSTORE = "keystore";
 		public const string FILE_TYPE_JKS = "jks";
@@ -49,15 +49,23 @@ namespace KeyFingerprintLooker
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+
 			MyResult.AliasInfoList = new List<Result.AliasInfo>();
 			
 			R.SetBestCurrentCulture(this);
 			
 			InitText();
+			
+			InitTextOnceOnly();
 		}
 		
-		void InitText() {
+		void InitTextOnceOnly()
+		{
+			operation_log_txt.Text = R.String(this, operation_log_txt);
+		}
+		
+		void InitText()
+		{
 			R.InitControl(this, Controls);
 			
 			InitRuntimeStrings();
@@ -95,7 +103,6 @@ namespace KeyFingerprintLooker
 		string STRING_RESULT_CANNOT_GET_ALIAS_NAME;
 		
 		string STRING_RESULT_COUNT_ALIASES;
-		string STRING_RESULT_COUNT_NONE;
 		string STRING_RESULT_COUNT_QUANTIFIER;
 		# endregion
 		
@@ -135,7 +142,6 @@ namespace KeyFingerprintLooker
 			STRING_RESULT_CANNOT_GET_ALIAS_NAME = R.String(this, "zzcommon_result_cannot_get_alias_name");
 			
 			STRING_RESULT_COUNT_ALIASES = R.String(this, "zzcommon_result_count_aliases");
-			STRING_RESULT_COUNT_NONE = R.String(this, "zzcommon_result_count_none");
 			STRING_RESULT_COUNT_QUANTIFIER = R.String(this, "zzcommon_result_count_quantifier");
 		}
 		# endregion
@@ -510,7 +516,7 @@ namespace KeyFingerprintLooker
 		
 		void calcAliasNameCount()
 		{
-			aliased_counter_lbl.Text = MyResult.AliasInfoList.Count + " " + STRING_RESULT_COUNT_QUANTIFIER + STRING_RESULT_COUNT_ALIASES;
+			aliases_counter_lbl.Text = MyResult.AliasInfoList.Count + " " + STRING_RESULT_COUNT_QUANTIFIER + STRING_RESULT_COUNT_ALIASES;
 		}
 		
 		void AppendLog(string something)
@@ -620,6 +626,11 @@ namespace KeyFingerprintLooker
 		void simple_chinese_prc_tsmiClick(object sender, EventArgs e)
 		{
 			TryToChangeLanguage(R.LANGUAGE_ZH_CN);
+		}
+		
+		void japanese_tsmiClick(object sender, EventArgs e)
+		{
+			TryToChangeLanguage(R.LANGUAGE_JA_JP);
 		}
 		
 		void TryToChangeLanguage(string name)
