@@ -9,7 +9,7 @@
 - [x] Keystore/JKS file; APK, RSA file
 - [x] VisualStudio/Xamarin/MonoDeveloper Debug Key<br />
 - [x] High DPI Screen<br />
-- [x] Multi-Language i18n (now English & Chinese & Japanese, **contributions are welcome**)
+- [x] Multi-Language OS (now English & Chinese & Japanese, **contributions are welcome**)
 - [ ] Cross-platform (thinking...)
 
 
