@@ -1,9 +1,9 @@
 ## KeyFingerprintLooker GUI by imknown ##
 
 
-- [x] Win7/Win8/Win8.1/Win10 all are okay<br />
+- [x] Win7/Win8/Win8.1/Win10 x64/x86 are all okay<br />
 - [x] .NET Framework runtime 4.0+<br />
-- [x] 32bit & 64bit Java 5/6/7/8/9<br />
+- [x] i586 & x86_64 Java 5/6/7/8/9<br />
 - [x] Auto intelligently finding files <br />
 - [x] Unicode, <kbd>Space</kbd> and CJK characters supported<br />
 - [x] Keystore/JKS file; APK, RSA file
