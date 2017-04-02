@@ -13,8 +13,9 @@
 - [ ] Cross-platform (thinking...)
 
 
-[![image]](https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/MainForm.png)
-[image]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/MainForm.png "MainForm"
+![image][MainFormImage]
+
+[MainFormImage]: https://raw.githubusercontent.com/imknown/KeyFingerprintLooker/master/Art/MainForm.png "MainForm"
 
 # Download
 https://github.com/imknown/KeyFingerprintLooker/releases/
