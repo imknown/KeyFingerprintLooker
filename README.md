@@ -1,10 +1,10 @@
 ## KeyFingerprintLooker GUI by imknown ##
 
-
+Some features but not all that supported below:
 - [x] Win7/Win8/Win8.1/Win10 x64/x86
-- [x] *nux-like Wine works, but bugs
+- [x] *nux-like Wine and Mono work, but bugs
 - [x] .NET Framework runtime 4.0+
-- [x] i586 & x86_64 Java 5/6/7/8/9
+- [x] i586 & x86_64 Java 5/6/7/8/9/10/11
 - [x] Auto intelligently finding files
 - [x] Unicode, <kbd>Space</kbd> and CJK characters
 - [x] Keystore/JKS file; APK, RSA file
